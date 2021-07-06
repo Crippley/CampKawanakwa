@@ -5,10 +5,6 @@ using Unity.MLAgents.Sensors;
 using UnityEngine;
 using Core;
 
-#if UNITY_EDITOR
-using System.Linq;
-#endif
-
 namespace Entities
 {
     public class Player : Agent
