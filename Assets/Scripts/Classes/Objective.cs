@@ -8,6 +8,22 @@ namespace Items
         public bool IsActive {get; set;}
         public bool IsCompleted {get; set;}
 
+        private Vector3 startingPosition;
+
+        #region Initialization
+        private void Start() 
+        {
+            startingPosition = transform.position;
+        }
+
+        public void Reset()
+        {
+            transform.position = startingPosition;
+            IsActive = true;
+            IsCompleted = false;
+        }
+        #endregion
+
         private void OnTriggerEnter2D(Collider2D other) 
         {
             if (!IsActive)
@@ -15,7 +31,7 @@ namespace Items
 
             Camper triggeringCamper = other?.GetComponent<Camper>();
 
-            if (triggeringCamper)
+            if (triggeringCamper && triggeringCamper.HeldItem == null)
             {
                 triggeringCamper.AddItem(this);
                 transform.SetParent(triggeringCamper.transform, true);

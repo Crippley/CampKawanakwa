@@ -8,20 +8,26 @@ namespace CustomEditorScripts
 {
     #if UNITY_EDITOR
 
-    [CustomEditor(typeof(Player))]
+    [CustomEditor(typeof(AgentManager))]
     public class AgentManagerEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            AgentManager agentManager = (AgentManager)target;
-            
-            if (GUILayout.Button("Fetch all campers"))
-                agentManager.FindAllCampers();
+            AgentManager agentManager = target as AgentManager;
 
-            if (GUILayout.Button("Fetch killer"))
-                agentManager.FindKiller();
+            if (agentManager)
+            {
+                if (GUILayout.Button("Fetch killer"))
+                    agentManager.FindKiller();
+
+                if (GUILayout.Button("Fetch all campers"))
+                    agentManager.FindAllCampers();
+
+                if (GUILayout.Button("Fetch all objectives"))
+                    agentManager.FindAllObjectives();
+            }
         }
     }
 
