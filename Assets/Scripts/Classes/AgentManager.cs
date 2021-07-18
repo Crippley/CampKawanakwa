@@ -24,7 +24,8 @@ namespace Core
         public Player killer;
         public List<Camper> campers = new List<Camper>();
         public List<Objective> objectives = new List<Objective>();
-        public List<SpawnZone> spawnZones = new List<SpawnZone>();
+        public List<SpawnZone> camperSpawnZones = new List<SpawnZone>();
+        public List<SpawnZone> objectiveSpawnZones = new List<SpawnZone>();
 
         [NonSerialized] public bool IsKillerConditionMet = Instance && !Instance.IsCamperConditionMet && Instance.campers?.Count == 0;
         [NonSerialized] public bool IsCamperConditionMet = Instance && Instance.objectives.Find(x => !x.IsCompleted) == null;
@@ -84,14 +85,21 @@ namespace Core
             }
         }
 
-        public Vector3 GetRandomSpawnPosition()
+        public Vector3 GetRandomCamperSpawnPosition()
         {
-            int randomSpawnZone = UnityEngine.Random.Range(0, spawnZones.Count);
-            return spawnZones[randomSpawnZone].GetRandomPoint();
+            int randomSpawnZone = UnityEngine.Random.Range(0, camperSpawnZones.Count);
+            return camperSpawnZones[randomSpawnZone].GetRandomPoint();
+        }
+
+        public Vector3 GetRandomObjectiveSpawnPosition()
+        {
+            int randomSpawnZone = UnityEngine.Random.Range(0, objectiveSpawnZones.Count);
+            return objectiveSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
         public static void InvokeEpisodeBegin()
         {
+            Debug.Log("Episode started again");
             if (Instance.continueLooping)
             {
                 for(int i = 0; i < Instance.campers.Count; i++)
@@ -103,6 +111,8 @@ namespace Core
                 {
                     Instance.objectives[i].Reset();
                 }
+
+                Debug.Log("Objective position's reset");
             }
         }
 
@@ -135,7 +145,11 @@ namespace Core
                 }
 
                 Instance.killer.AddReward(killerReward);
+
+                Debug.Log("Killer's episode ended");
                 Instance.killer.EndEpisode();
+
+                Debug.Log("Episode ended");
             }
         }
         #endregion

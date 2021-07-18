@@ -77,6 +77,7 @@ namespace Entities
                 RemoveItem(false);
             }
 
+            Debug.Log("Camper " + name + "'s episode ended");
             EndEpisode();
             gameObject.SetActive(false);
         }
@@ -85,7 +86,8 @@ namespace Entities
         #region Agent code
         public override void OnEpisodeBegin()
         {
-            transform.position = AgentManager.Instance.GetRandomSpawnPosition();
+            Debug.Log("Camper " + name + "'s episode started again");
+            transform.position = AgentManager.Instance.GetRandomCamperSpawnPosition();
             heldItem = null;
         }
 

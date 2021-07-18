@@ -1,3 +1,4 @@
+using Core;
 using Entities;
 using UnityEngine;
 
@@ -8,17 +9,15 @@ namespace Items
         public bool IsActive {get; set;}
         public bool IsCompleted {get; set;}
 
-        private Vector3 startingPosition;
-
         #region Initialization
         private void Start() 
         {
-            startingPosition = transform.position;
+            transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
         }
 
         public void Reset()
         {
-            transform.position = startingPosition;
+            transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
             IsActive = true;
             IsCompleted = false;
         }
