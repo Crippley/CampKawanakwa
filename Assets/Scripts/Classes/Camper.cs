@@ -86,7 +86,7 @@ namespace Entities
         #region Agent code
         public override void OnEpisodeBegin()
         {
-            Debug.Log("Camper " + name + "'s episode started again");
+            Debug.Log("Camper " + name + "'s episode started");
             transform.position = AgentManager.Instance.GetRandomCamperSpawnPosition();
             heldItem = null;
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 using Items;
 using System;
 using Unity.MLAgents;
+using Zones;
 
 #if UNITY_EDITOR
 using System.Linq;
@@ -19,9 +20,11 @@ namespace Core
 
         public float winReward;
         public float lossReward;
-        public int maxEpisodeStepCount = 30000;
+        public int maxStepCountPerEpisode = 30000;
+        public int maxEpisodes;
 
         public Player killer;
+        public DropOffZone dropOffZone;
         public List<Camper> campers = new List<Camper>();
         public List<Objective> objectives = new List<Objective>();
         public List<SpawnZone> camperSpawnZones = new List<SpawnZone>();
@@ -32,6 +35,8 @@ namespace Core
         [NonSerialized] public bool IsResetConditionMet = false; // TODO: Replace when a reset condition has been found (camper/killer getting stuck, items becoming inaccessible, anything that breaks the game)
 
         public bool continueLooping;
+
+        private int currentMaxStepCountPerEpisode = 0;
         #endregion
         
         #region Editor code
@@ -56,6 +61,8 @@ namespace Core
         #region Init
         private void Awake()
         {
+            currentMaxStepCountPerEpisode = maxStepCountPerEpisode;
+
             if (Instance != null)
             {
                 Destroy(gameObject);
@@ -78,8 +85,9 @@ namespace Core
         #region Agent
         private void FixedUpdate() 
         {
-            if (Academy.Instance.StepCount > maxEpisodeStepCount)
+            if (Academy.Instance.StepCount > currentMaxStepCountPerEpisode)
             {
+                currentMaxStepCountPerEpisode += maxStepCountPerEpisode;
                 IsResetConditionMet = true;
                 InvokeEpisodeEnd();
             }
@@ -99,9 +107,12 @@ namespace Core
 
         public static void InvokeEpisodeBegin()
         {
-            Debug.Log("Episode started again");
-            if (Instance.continueLooping)
+            Debug.Log("Episode started");
+
+            if (Instance.continueLooping && Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
             {
+                Instance.dropOffZone.Reset();
+
                 for(int i = 0; i < Instance.campers.Count; i++)
                 {
                     Instance.campers[i].gameObject.SetActive(true);
@@ -114,6 +125,10 @@ namespace Core
 
                 Debug.Log("Objective position's reset");
             }
+            else
+            {
+                Application.Quit();
+            }
         }
 
         public static void InvokeEpisodeEnd()
@@ -125,6 +140,24 @@ namespace Core
 
             if (killerWins || campersWin || Instance.IsResetConditionMet)
             {
+                if (Instance.IsResetConditionMet)
+                {
+                    for(int i = 0; i < Instance.campers.Count; i++)
+                    {
+                        if (Instance.campers[i].isActiveAndEnabled)
+                        {
+                            Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
+                            Instance.campers[i].EndEpisode();
+                        }
+                    }
+
+                    Debug.Log("Killer's episode ended");
+                    Instance.killer.EndEpisode();
+
+                    Debug.Log("Episode ended");
+                    return;
+                }
+
                 if (killerWins)
                 {
                     killerReward = Instance.winReward;
@@ -138,15 +171,15 @@ namespace Core
                     {
                         if (Instance.campers[i].isActiveAndEnabled)
                         {
+                            Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
                             Instance.campers[i].AddReward(camperReward);
                             Instance.campers[i].EndEpisode();
                         }
                     }
                 }
 
-                Instance.killer.AddReward(killerReward);
-
                 Debug.Log("Killer's episode ended");
+                Instance.killer.AddReward(killerReward);
                 Instance.killer.EndEpisode();
 
                 Debug.Log("Episode ended");

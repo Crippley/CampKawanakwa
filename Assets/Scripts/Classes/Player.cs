@@ -60,10 +60,10 @@ namespace Entities
         #region Agent
         public override void OnEpisodeBegin()
         {
-            Debug.Log("Killer's episode started again");
+            Debug.Log("Killer's episode started");
             transform.position = startingPosition;
             visibleCampers = new Dictionary<Camper, List<Collider2D>>();
-            killCamperReward = 0;
+            killedCamperCount = 0;
         }
 
         public override void CollectObservations(VectorSensor sensor)

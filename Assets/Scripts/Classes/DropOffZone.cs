@@ -10,6 +10,11 @@ namespace Zones
     {
         private List<Objective> droppedOffObjectives = new List<Objective>();
 
+        public void Reset()
+        {
+            droppedOffObjectives = new List<Objective>();
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             Camper triggeringCamper = other?.GetComponent<Camper>();
