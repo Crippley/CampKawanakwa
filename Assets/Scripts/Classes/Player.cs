@@ -86,7 +86,7 @@ namespace Entities
             Vector2 offset = new Vector2(mousePosition.x - onScreenPosition.x, mousePosition.y - onScreenPosition.y);
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
 
-            continuousActions[2] = -angle;
+            continuousActions[2] = -angle / 180f;
         }*/
 
         public override void OnActionReceived(ActionBuffers actions)
@@ -97,7 +97,7 @@ namespace Entities
             movementVector = new Vector3(moveX, moveY, 0f);
             movementVector = Vector3.ClampMagnitude(movementVector, 1f);
 
-            float rotateZ = actions.ContinuousActions[2];
+            float rotateZ = actions.ContinuousActions[2] * 180f;
 
             turningRotation = Quaternion.identity;
             turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);

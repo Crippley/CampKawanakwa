@@ -20,7 +20,7 @@ namespace Core
 
         public float winReward;
         public float lossReward;
-        public int maxStepCountPerEpisode = 30000;
+        public int maxStepCountPerEpisode;
         public int maxEpisodes;
 
         public Player killer;
@@ -127,6 +127,7 @@ namespace Core
             }
             else
             {
+                Debug.Log("Training has ended");
                 Application.Quit();
             }
         }
@@ -147,12 +148,14 @@ namespace Core
                         if (Instance.campers[i].isActiveAndEnabled)
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            Instance.campers[i].EndEpisode();
+                            //Instance.campers[i].EndEpisode();
+                            Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
 
                     Debug.Log("Killer's episode ended");
-                    Instance.killer.EndEpisode();
+                    //Instance.killer.EndEpisode();
+                    Instance.killer.gameObject.SetActive(false);
 
                     Debug.Log("Episode ended");
                     return;
@@ -173,14 +176,16 @@ namespace Core
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
                             Instance.campers[i].AddReward(camperReward);
-                            Instance.campers[i].EndEpisode();
+                            //Instance.campers[i].EndEpisode();
+                            Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
                 }
 
                 Debug.Log("Killer's episode ended");
                 Instance.killer.AddReward(killerReward);
-                Instance.killer.EndEpisode();
+                //Instance.killer.EndEpisode();
+                Instance.killer.gameObject.SetActive(false);
 
                 Debug.Log("Episode ended");
             }
