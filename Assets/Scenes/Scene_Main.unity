@@ -1160,8 +1160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winReward: 10
   lossReward: 10
-  maxEpisodeStepCount: 30000
+  maxStepCountPerEpisode: 10000
+  maxEpisodes: 1000
   killer: {fileID: 290203831}
+  dropOffZone: {fileID: 1964423607}
   campers:
   - {fileID: 1687951780}
   - {fileID: 1595177105}
@@ -2617,6 +2619,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e1b8a10898b34f4da0eb134da4dd981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1964423607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7694064161132497837, guid: e21372bd370a58147bd021ed98a8d325, type: 3}
+  m_PrefabInstance: {fileID: 5370911543089464557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ade51e5d3e9a394faa10579a7fdf36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2039653705

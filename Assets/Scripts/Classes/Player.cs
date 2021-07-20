@@ -30,6 +30,7 @@ namespace Entities
         private Quaternion turningRotation;
 
         private float killedCamperCount;
+        private int lastEpisodeCount = -1;
         #endregion
 
         #region Initialization
@@ -60,10 +61,15 @@ namespace Entities
         #region Agent
         public override void OnEpisodeBegin()
         {
+            if (lastEpisodeCount == AgentManager.Instance.currentEpisodeCount)
+                return;
+
             Debug.Log("Killer's episode started");
+            
             transform.position = startingPosition;
             visibleCampers = new Dictionary<Camper, List<Collider2D>>();
             killedCamperCount = 0;
+            lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
         }
 
         public override void CollectObservations(VectorSensor sensor)

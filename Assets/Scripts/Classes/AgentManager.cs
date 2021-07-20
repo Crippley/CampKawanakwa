@@ -34,6 +34,8 @@ namespace Core
         [NonSerialized] public bool IsCamperConditionMet = Instance && Instance.objectives.Find(x => !x.IsCompleted) == null;
         [NonSerialized] public bool IsResetConditionMet = false; // TODO: Replace when a reset condition has been found (camper/killer getting stuck, items becoming inaccessible, anything that breaks the game)
 
+        [NonSerialized] public int currentEpisodeCount = 0;
+
         public bool continueLooping;
 
         private int currentMaxStepCountPerEpisode = 0;
@@ -70,15 +72,6 @@ namespace Core
             }
 
             Instance = this;
-
-            try
-            {
-                Academy.Instance.OnEnvironmentReset += InvokeEpisodeBegin;
-            }
-            catch(Exception e)
-            {
-                Debug.LogError(e.Message);
-            }
         }
         #endregion
 
@@ -109,13 +102,16 @@ namespace Core
         {
             Debug.Log("Episode started");
 
-            if (Instance.continueLooping && Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
+            if (Instance.continueLooping || Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
             {
                 Instance.dropOffZone.Reset();
+
+                Instance.killer.gameObject.SetActive(true);
 
                 for(int i = 0; i < Instance.campers.Count; i++)
                 {
                     Instance.campers[i].gameObject.SetActive(true);
+                    Instance.campers[i].RemoveItem(false);
                 }
 
                 for(int i = 0; i < Instance.objectives.Count; i++)
@@ -123,7 +119,9 @@ namespace Core
                     Instance.objectives[i].Reset();
                 }
 
-                Debug.Log("Objective position's reset");
+                Instance.currentEpisodeCount++;
+
+                Debug.Log("Environment reset");
             }
             else
             {
@@ -148,16 +146,16 @@ namespace Core
                         if (Instance.campers[i].isActiveAndEnabled)
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            //Instance.campers[i].EndEpisode();
-                            Instance.campers[i].gameObject.SetActive(false);
+                            Instance.campers[i].EndEpisode();
                         }
                     }
 
                     Debug.Log("Killer's episode ended");
-                    //Instance.killer.EndEpisode();
-                    Instance.killer.gameObject.SetActive(false);
+                    Instance.killer.EndEpisode();
 
                     Debug.Log("Episode ended");
+                    InvokeEpisodeBegin();
+
                     return;
                 }
 
@@ -176,18 +174,17 @@ namespace Core
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
                             Instance.campers[i].AddReward(camperReward);
-                            //Instance.campers[i].EndEpisode();
-                            Instance.campers[i].gameObject.SetActive(false);
+                            Instance.campers[i].EndEpisode();
                         }
                     }
                 }
 
                 Debug.Log("Killer's episode ended");
                 Instance.killer.AddReward(killerReward);
-                //Instance.killer.EndEpisode();
-                Instance.killer.gameObject.SetActive(false);
+                Instance.killer.EndEpisode();
 
                 Debug.Log("Episode ended");
+                InvokeEpisodeBegin();
             }
         }
         #endregion

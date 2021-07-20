@@ -35,6 +35,7 @@ namespace Entities
 
         private Vector3 movementVector;
         private Quaternion turningRotation;
+        private int lastEpisodeCount = -1;
         #endregion
 
         #region Initialization
@@ -60,7 +61,7 @@ namespace Entities
         {
             if (success)
                 AddReward(objectiveDropOffReward);
-            else
+            else if (heldItem)
                 heldItem.IsActive = true;
 
             heldItem = null;
@@ -78,7 +79,7 @@ namespace Entities
             }
 
             Debug.Log("Camper " + name + "'s episode ended");
-            //EndEpisode();
+            EndEpisode();
             gameObject.SetActive(false);
         }
         #endregion
@@ -86,9 +87,14 @@ namespace Entities
         #region Agent code
         public override void OnEpisodeBegin()
         {
+            if (lastEpisodeCount == AgentManager.Instance.currentEpisodeCount)
+                return;
+            
             Debug.Log("Camper " + name + "'s episode started");
+
             transform.position = AgentManager.Instance.GetRandomCamperSpawnPosition();
             heldItem = null;
+            lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
         }
 
         public override void CollectObservations(VectorSensor sensor)
@@ -108,7 +114,7 @@ namespace Entities
                 sensor.AddObservation(visibleDropOffZone.transform.position);
         }
 
-        /*public override void Heuristic(in ActionBuffers actionsOut)
+        public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
 
@@ -121,7 +127,7 @@ namespace Entities
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
 
             continuousActions[2] = -angle / 180f;
-        }*/
+        }
 
         public override void OnActionReceived(ActionBuffers actions)
         {

@@ -12,6 +12,7 @@ namespace Items
         #region Initialization
         private void Start() 
         {
+            IsActive = true;
             transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
         }
 
