@@ -72,6 +72,8 @@ namespace Core
             }
 
             Instance = this;
+
+            InvokeEpisodeBegin();
         }
         #endregion
 
@@ -104,7 +106,14 @@ namespace Core
 
             if (Instance.continueLooping || Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
             {
+                Instance.currentEpisodeCount++;
+
                 Instance.dropOffZone.Reset();
+
+                for(int i = 0; i < Instance.objectives.Count; i++)
+                {
+                    Instance.objectives[i].Reset();
+                }
 
                 Instance.killer.gameObject.SetActive(true);
 
@@ -113,13 +122,6 @@ namespace Core
                     Instance.campers[i].gameObject.SetActive(true);
                     Instance.campers[i].RemoveItem(false);
                 }
-
-                for(int i = 0; i < Instance.objectives.Count; i++)
-                {
-                    Instance.objectives[i].Reset();
-                }
-
-                Instance.currentEpisodeCount++;
 
                 Debug.Log("Environment reset");
             }
@@ -146,12 +148,14 @@ namespace Core
                         if (Instance.campers[i].isActiveAndEnabled)
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            Instance.campers[i].EndEpisode();
+                            //Instance.campers[i].EndEpisode();
+                            Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
 
                     Debug.Log("Killer's episode ended");
-                    Instance.killer.EndEpisode();
+                    //Instance.killer.EndEpisode();
+                    Instance.killer.gameObject.SetActive(false);
 
                     Debug.Log("Episode ended");
                     InvokeEpisodeBegin();
@@ -174,14 +178,16 @@ namespace Core
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
                             Instance.campers[i].AddReward(camperReward);
-                            Instance.campers[i].EndEpisode();
+                            //Instance.campers[i].EndEpisode();
+                            Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
                 }
 
                 Debug.Log("Killer's episode ended");
                 Instance.killer.AddReward(killerReward);
-                Instance.killer.EndEpisode();
+                //Instance.killer.EndEpisode();
+                Instance.killer.gameObject.SetActive(false);
 
                 Debug.Log("Episode ended");
                 InvokeEpisodeBegin();

@@ -79,7 +79,7 @@ namespace Entities
             }
 
             Debug.Log("Camper " + name + "'s episode ended");
-            EndEpisode();
+            //EndEpisode();
             gameObject.SetActive(false);
         }
         #endregion
