@@ -313,6 +313,12 @@ MonoBehaviour:
   heldItemIgnoreLayerMask:
     serializedVersion: 2
     m_Bits: 5120
+  heldItemLayerMaskAfterPickup:
+    serializedVersion: 2
+    m_Bits: 4096
+  heldItemLayerMaskAfterDropoff:
+    serializedVersion: 2
+    m_Bits: 1024
   visionZone: {fileID: 2285601926518422728}
 --- !u!114 &9208926796268904186
 MonoBehaviour:

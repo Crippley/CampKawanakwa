@@ -25,6 +25,10 @@ namespace Entities
 
         [SerializeField] private LayerMask noHeldItemIgnoreLayerMask;
         [SerializeField] private LayerMask heldItemIgnoreLayerMask;
+
+        [SerializeField] private LayerMask heldItemLayerMaskAfterPickup;
+        [SerializeField] private LayerMask heldItemLayerMaskAfterDropoff;
+
         [SerializeField] private DetectionZone visionZone;
 
         private Dictionary<Camper, List<Collider2D>> visibleCampers = new Dictionary<Camper, List<Collider2D>>();
@@ -53,6 +57,7 @@ namespace Entities
         public void AddItem(Objective item)
         {
             heldItem = item;
+            heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterPickup, 2);
             AddReward(objectivePickupReward);
             visionZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
         }
@@ -64,6 +69,7 @@ namespace Entities
             else if (heldItem)
                 heldItem.IsActive = true;
 
+            heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterDropoff, 2);
             heldItem = null;
             visionZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
         }
