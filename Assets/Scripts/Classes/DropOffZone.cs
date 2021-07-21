@@ -21,10 +21,12 @@ namespace Zones
 
             if (triggeringCamper?.HeldItem)
             {
-                droppedOffObjectives.Add(triggeringCamper.HeldItem);
-                triggeringCamper.HeldItem.transform.SetParent(transform, true);
-                triggeringCamper.HeldItem.IsCompleted = true;
+                Objective droppedOffObjective = triggeringCamper.HeldItem;
                 triggeringCamper.RemoveItem(true);
+
+                droppedOffObjectives.Add(droppedOffObjective);
+                droppedOffObjective.transform.SetParent(transform, true);
+                droppedOffObjective.IsCompleted = true;
 
                 if (droppedOffObjectives.Count >= AgentManager.Instance.objectives.Count)
                     AgentManager.InvokeEpisodeEnd();

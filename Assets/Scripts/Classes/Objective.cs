@@ -6,6 +6,8 @@ namespace Items
 {
     public class Objective : MonoBehaviour
     {
+        public Transform initialParent;
+
         public bool IsActive {get; set;}
         public bool IsCompleted {get; set;}
 
@@ -18,6 +20,7 @@ namespace Items
 
         public void Reset()
         {
+            transform.parent = initialParent;
             transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
             IsActive = true;
             IsCompleted = false;

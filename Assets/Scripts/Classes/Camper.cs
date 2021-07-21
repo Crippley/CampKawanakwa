@@ -66,12 +66,15 @@ namespace Entities
         {
             visionZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
 
-            if (success)
-                AddReward(objectiveDropOffReward);
-            else if (heldItem)
-                heldItem.IsActive = true;
+            if (heldItem)
+                heldItem.transform.parent = heldItem.initialParent;
             else
                 return;
+
+            if (success)
+                AddReward(objectiveDropOffReward);
+            else
+                heldItem.IsActive = true;
 
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterDropoff, 2);
             heldItem = null;
@@ -82,10 +85,7 @@ namespace Entities
             AddReward(deathReward);
 
             if (heldItem)
-            {
-                heldItem.transform.parent = null;
                 RemoveItem(false);
-            }
 
             Debug.Log("Camper " + name + "'s episode ended");
             //EndEpisode();

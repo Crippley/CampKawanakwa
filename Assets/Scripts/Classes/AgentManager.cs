@@ -149,6 +149,7 @@ namespace Core
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
                             //Instance.campers[i].EndEpisode();
+                            Instance.campers[i].RemoveItem(false);
                             Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
@@ -179,6 +180,7 @@ namespace Core
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
                             Instance.campers[i].AddReward(camperReward);
                             //Instance.campers[i].EndEpisode();
+                            Instance.campers[i].RemoveItem(false);
                             Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
