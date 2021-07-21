@@ -64,14 +64,17 @@ namespace Entities
 
         public void RemoveItem(bool success)
         {
+            visionZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
+
             if (success)
                 AddReward(objectiveDropOffReward);
             else if (heldItem)
                 heldItem.IsActive = true;
+            else
+                return;
 
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterDropoff, 2);
             heldItem = null;
-            visionZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
         }
 
         public void GetKilled()
@@ -120,7 +123,7 @@ namespace Entities
                 sensor.AddObservation(visibleDropOffZone.transform.position);
         }
 
-        public override void Heuristic(in ActionBuffers actionsOut)
+        /*public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
 
@@ -133,7 +136,7 @@ namespace Entities
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
 
             continuousActions[2] = -angle / 180f;
-        }
+        }*/
 
         public override void OnActionReceived(ActionBuffers actions)
         {

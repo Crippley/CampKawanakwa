@@ -285,6 +285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Killer
       objectReference: {fileID: 0}
+    - target: {fileID: 5642323442029293954, guid: 8d44943201950934d9d87e64ce88f0ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d44943201950934d9d87e64ce88f0ff, type: 3}
 --- !u!4 &290203830 stripped
@@ -678,6 +682,10 @@ PrefabInstance:
     - target: {fileID: 3858710207979766044, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
       propertyPath: m_Name
       value: Prefab_Camper (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858710207979766044, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6634587654486433759, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
       propertyPath: m_RootOrder
@@ -2134,6 +2142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Camper (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3858710207979766044, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6634587654486433759, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2206,6 +2218,10 @@ PrefabInstance:
     - target: {fileID: 3858710207979766044, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
       propertyPath: m_Name
       value: Prefab_Camper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858710207979766044, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6634587654486433759, guid: bd3d13773c6276c408f9d5fe40934b59, type: 3}
       propertyPath: m_RootOrder
