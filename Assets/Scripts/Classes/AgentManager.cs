@@ -36,6 +36,8 @@ namespace Core
 
         [NonSerialized] public int currentEpisodeCount = 0;
 
+        [NonSerialized] public SimpleMultiAgentGroup camperAgentGroup;
+
         public bool continueLooping;
 
         private int currentMaxStepCountPerEpisode = 0;
@@ -72,6 +74,7 @@ namespace Core
             }
 
             Instance = this;
+            camperAgentGroup = new SimpleMultiAgentGroup();
 
             InvokeEpisodeBegin();
         }
@@ -120,6 +123,7 @@ namespace Core
                 for(int i = 0; i < Instance.campers.Count; i++)
                 {
                     Instance.campers[i].gameObject.SetActive(true);
+                    Instance.camperAgentGroup.RegisterAgent(Instance.campers[i]);
                     Instance.campers[i].RemoveItem(false);
                 }
 
@@ -143,19 +147,19 @@ namespace Core
             {
                 if (Instance.IsResetConditionMet)
                 {
+                    Instance.camperAgentGroup.GroupEpisodeInterrupted();
+
                     for(int i = 0; i < Instance.campers.Count; i++)
                     {
                         if (Instance.campers[i].isActiveAndEnabled)
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            //Instance.campers[i].EndEpisode();
                             Instance.campers[i].RemoveItem(false);
                             Instance.campers[i].gameObject.SetActive(false);
                         }
                     }
 
                     Debug.Log("Killer's episode ended");
-                    //Instance.killer.EndEpisode();
                     Instance.killer.gameObject.SetActive(false);
 
                     Debug.Log("Episode ended");
@@ -173,13 +177,14 @@ namespace Core
                     killerReward = Instance.lossReward;
                     float camperReward = Instance.winReward;
 
+                    Instance.camperAgentGroup.AddGroupReward(camperReward);
+                    Instance.camperAgentGroup.EndGroupEpisode();
+
                     for(int i = 0; i < Instance.campers.Count; i++)
                     {
                         if (Instance.campers[i].isActiveAndEnabled)
                         {
                             Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            Instance.campers[i].AddReward(camperReward);
-                            //Instance.campers[i].EndEpisode();
                             Instance.campers[i].RemoveItem(false);
                             Instance.campers[i].gameObject.SetActive(false);
                         }
@@ -188,7 +193,6 @@ namespace Core
 
                 Debug.Log("Killer's episode ended");
                 Instance.killer.AddReward(killerReward);
-                //Instance.killer.EndEpisode();
                 Instance.killer.gameObject.SetActive(false);
 
                 Debug.Log("Episode ended");

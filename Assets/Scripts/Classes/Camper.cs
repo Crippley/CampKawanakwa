@@ -60,7 +60,7 @@ namespace Entities
         {
             heldItem = item;
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterPickup, 2);
-            AddReward(objectivePickupReward);
+            AgentManager.Instance.camperAgentGroup.AddGroupReward(objectivePickupReward);
             visionZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
         }
 
@@ -74,7 +74,7 @@ namespace Entities
                 return;
 
             if (success)
-                AddReward(objectiveDropOffReward);
+                AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveDropOffReward);
             else
                 heldItem.IsActive = true;
 
