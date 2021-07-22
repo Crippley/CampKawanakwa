@@ -11,6 +11,8 @@ namespace Entities
     public class Player : Agent, IDetectionTriggerHandler
     {
         #region Vars
+        [SerializeField] private Rigidbody2D rb;
+
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
 
@@ -76,8 +78,10 @@ namespace Entities
         {
             sensor.AddObservation(transform.position);
 
+            sensor.AddObservation(rb.velocity);
+
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
-                sensor.AddObservation(value.Key.transform.position);
+                sensor.AddObservation(transform.InverseTransformVector(value.Key.transform.position - transform.position));
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)
