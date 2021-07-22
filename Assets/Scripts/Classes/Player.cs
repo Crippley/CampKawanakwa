@@ -81,7 +81,7 @@ namespace Entities
             sensor.AddObservation(rb.velocity);
 
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
-                sensor.AddObservation(transform.InverseTransformVector(value.Key.transform.position - transform.position));
+                sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)

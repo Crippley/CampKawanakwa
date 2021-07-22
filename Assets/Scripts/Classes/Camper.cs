@@ -115,16 +115,16 @@ namespace Entities
             sensor.AddObservation(rb.velocity);
 
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
-                sensor.AddObservation(transform.InverseTransformVector(value.Key.transform.position - transform.position));
+                sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
             foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
-                sensor.AddObservation(transform.InverseTransformVector(value.Key.transform.position - transform.position));
+                sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
             if (visibleKiller != null)
-                sensor.AddObservation(transform.InverseTransformVector(visibleKiller.transform.position - transform.position));
+                sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleKiller.transform.position - transform.position, Vector3.forward) / 180f);
 
             if (visibleDropOffZone != null)
-                sensor.AddObservation(transform.InverseTransformVector(visibleDropOffZone.transform.position - transform.position));
+                sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleDropOffZone.transform.position - transform.position, Vector3.forward) / 180f);
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)
