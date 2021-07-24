@@ -73,4 +73,4 @@ checkpoint_settings:
     results_dir: results
 torch_settings:
     device: cuda
-debug: true
+debug: false
