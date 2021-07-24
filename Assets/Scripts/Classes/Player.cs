@@ -76,9 +76,9 @@ namespace Entities
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(transform.position);
+            sensor.AddObservation(transform.position.normalized);
 
-            sensor.AddObservation(rb.velocity);
+            sensor.AddObservation(rb.velocity.normalized);
 
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
