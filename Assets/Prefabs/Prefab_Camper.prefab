@@ -300,8 +300,8 @@ MonoBehaviour:
   rb: {fileID: 6611187521747357997}
   movementSpeed: 6
   rotationSpeed: 8
-  objectiveFoundReward: 0.05
-  objectiveLostReward: -0.05
+  objectiveFoundReward: 0.1
+  objectiveLostReward: -0.1
   objectivePickupReward: 0.1
   objectiveDropOffReward: 0.25
   seeingKillerReward: -0.05

@@ -112,7 +112,7 @@ namespace Entities
             turningRotation = Quaternion.identity;
             turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);
             
-            AddReward(timeReward);
+            //AddReward(timeReward);
         }
 
         private void FixedUpdate() 

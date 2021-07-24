@@ -155,7 +155,7 @@ namespace Entities
             turningRotation = Quaternion.identity;
             turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);
 
-            AddReward(timeReward);
+            //AddReward(timeReward);
         }
 
         private void FixedUpdate() 
@@ -200,7 +200,7 @@ namespace Entities
                     visibleObjectives[detectedObjective].Add(detectingCollider);
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to turn towards the objective after finding it
-                    AddReward(objectiveFoundReward);
+                    AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveFoundReward);
                 }
                 else
                 {
@@ -253,7 +253,7 @@ namespace Entities
                         visibleObjectives.Remove(detectedObjective);
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to look at and pick up the objectives
-                    AddReward(objectiveLostReward);
+                    AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveLostReward);
                 }
                 else
                 {
