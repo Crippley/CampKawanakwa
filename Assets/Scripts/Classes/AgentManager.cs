@@ -170,10 +170,12 @@ namespace Core
 
                 if (killerWins)
                 {
+                    Debug.Log("Killer wins!");
                     killerReward = Instance.winReward;
                 }
                 else if (campersWin)
                 {
+                    Debug.Log("Campers win!");
                     killerReward = Instance.lossReward;
                     float camperReward = Instance.winReward;
 
