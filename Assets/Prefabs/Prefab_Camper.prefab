@@ -303,8 +303,8 @@ MonoBehaviour:
   rotationSpeed: 8
   objectiveFoundReward: 0.1
   objectiveLostReward: -0.1
-  objectivePickupReward: 0.1
-  objectiveDropOffReward: 0.25
+  objectivePickupReward: 0.2
+  objectiveDropOffReward: 0.5
   seeingKillerReward: -0.05
   loosingKillerReward: 0.05
   deathReward: -0.5

@@ -60,7 +60,7 @@ engine_settings:
     time_scale: 30
     target_frame_rate: -1
     capture_frame_rate: 60
-    no_graphics: true
+    no_graphics: false
 environment_parameters: null
 checkpoint_settings:
     run_id: run_results

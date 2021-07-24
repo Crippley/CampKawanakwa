@@ -301,7 +301,7 @@ MonoBehaviour:
   rb: {fileID: 4239802997170723171}
   movementSpeed: 4
   rotationSpeed: 8
-  killCamperReward: 0.25
+  killCamperReward: 0.5
   findCamperReward: 0.1
   loseCamperReward: -0.1
   timeReward: -0.001
