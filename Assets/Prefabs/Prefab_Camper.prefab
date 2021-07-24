@@ -189,6 +189,7 @@ Transform:
   - {fileID: 3291073325178428427}
   - {fileID: 10189610845022802}
   - {fileID: 945967710620837056}
+  - {fileID: 5971778690166104080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -447,3 +448,73 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4608
   debugRaycastColor: {r: 0.13171947, g: 0.5517615, b: 0.754717, a: 1}
+--- !u!1001 &7271131944811607917
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6634587654486433759}
+    m_Modifications:
+    - target: {fileID: 2214018251746971385, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_SensorName
+      value: Camper_Back_RayPerceptionSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458164324244360275, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_SensorName
+      value: Camper_Forward_RayPerceptionSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8966074232360349067, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_Name
+      value: Prefab_EnvironmentPerceptionRays
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+--- !u!4 &5971778690166104080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+  m_PrefabInstance: {fileID: 7271131944811607917}
+  m_PrefabAsset: {fileID: 0}

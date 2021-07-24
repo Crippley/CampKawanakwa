@@ -68,7 +68,7 @@ MonoBehaviour:
   useRaycastingToMaintainDetection: 0
   ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 4608
+    m_Bits: 7680
   debugRaycastColor: {r: 0.7924528, g: 0.09344961, b: 0.09344961, a: 1}
 --- !u!1 &4908901568801718905
 GameObject:
@@ -150,7 +150,7 @@ MonoBehaviour:
   useRaycastingToMaintainDetection: 1
   ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 4608
+    m_Bits: 7680
   debugRaycastColor: {r: 0.7924528, g: 0.09344961, b: 0.09344961, a: 1}
 --- !u!1 &5642323442029293954
 GameObject:
@@ -187,8 +187,9 @@ Transform:
   m_Children:
   - {fileID: 7403050953026869194}
   - {fileID: 431030549133822994}
-  - {fileID: 3091920874719801500}
   - {fileID: 2795387021898725204}
+  - {fileID: 6284543620537913363}
+  - {fileID: 3091920874719801500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -378,7 +379,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 269943122591233816}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6645398566250392472
 SpriteRenderer:
@@ -441,7 +442,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1864968762120882492, guid: b69ab9d9bce82c149b0438a7b03b0cb1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1864968762120882492, guid: b69ab9d9bce82c149b0438a7b03b0cb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,4 +495,74 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1864968762120882492, guid: b69ab9d9bce82c149b0438a7b03b0cb1, type: 3}
   m_PrefabInstance: {fileID: 3677477795466033568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7007343522948351854
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 269943122591233816}
+    m_Modifications:
+    - target: {fileID: 2214018251746971385, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_SensorName
+      value: Killer_Back_RayPerceptionSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458164324244360275, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_SensorName
+      value: Killer_Forward_RayPerceptionSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8966074232360349067, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_Name
+      value: Prefab_EnvironmentPerceptionRays
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+--- !u!4 &6284543620537913363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+  m_PrefabInstance: {fileID: 7007343522948351854}
   m_PrefabAsset: {fileID: 0}

@@ -1172,8 +1172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winReward: 1
   lossReward: 1
-  maxStepCountPerEpisode: 20000
-  maxEpisodes: 1000
+  maxStepCountPerEpisode: 10000
+  maxEpisodes: 0
   killer: {fileID: 290203831}
   dropOffZone: {fileID: 1964423607}
   campers:
