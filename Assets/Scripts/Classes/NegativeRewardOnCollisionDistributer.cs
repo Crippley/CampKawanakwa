@@ -16,7 +16,7 @@ namespace Environment.Training
         {
             Agent agent = other.gameObject.GetComponent<Agent>();
 
-            if (agent)
+            if (agent && !collidingAgentsToCoroutines.ContainsKey(agent))
             {
                 Coroutine collisionCoroutine = StartCoroutine(CollisionCoroutine(agent));
                 collidingAgentsToCoroutines.Add(agent, collisionCoroutine);
