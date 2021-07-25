@@ -127,19 +127,19 @@ namespace Entities
             foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingObjectiveDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1)));
             }
 
             if (visibleKiller != null)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleKiller.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingKillerDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleKiller.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleKiller.transform.position), 0, maxSeeingDistance - 1)));
             }
 
             if (visibleDropOffZone != null)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleDropOffZone.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingDropOffZoneDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleDropOffZone.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleDropOffZone.transform.position), 0, maxSeeingDistance - 1)));
             }
         }
 
