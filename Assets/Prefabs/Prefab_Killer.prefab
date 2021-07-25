@@ -301,10 +301,10 @@ MonoBehaviour:
   rb: {fileID: 4239802997170723171}
   movementSpeed: 4
   rotationSpeed: 8
+  maxSeeingDistance: 10
   killCamperReward: 0.75
   findCamperReward: 0.2
-  maxSeeingDistance: 10
-  seeingCamperDistanceBasedReward: 0.01
+  seeingCamperDistanceBasedReward: 0.001
   loseCamperReward: -0.2
   timeReward: -0.001
   behaviorType: 0
