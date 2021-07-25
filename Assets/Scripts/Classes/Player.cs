@@ -5,6 +5,7 @@ using Unity.MLAgents.Sensors;
 using UnityEngine;
 using Core;
 using Unity.MLAgents.Policies;
+using System;
 
 namespace Entities
 {
@@ -33,7 +34,7 @@ namespace Entities
         private Vector3 movementVector;
         private Quaternion turningRotation;
 
-        private float killedCamperCount;
+        [NonSerialized] public float killedCamperCount;
         private int lastEpisodeCount = -1;
         #endregion
 
@@ -89,7 +90,7 @@ namespace Entities
             }
         }
 
-        public override void Heuristic(in ActionBuffers actionsOut)
+        /*public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
 
@@ -102,7 +103,7 @@ namespace Entities
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
 
             continuousActions[2] = -angle / 180f;
-        }
+        }*/
 
         public override void OnActionReceived(ActionBuffers actions)
         {

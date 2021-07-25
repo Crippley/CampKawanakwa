@@ -30,8 +30,6 @@ namespace Core
         public List<SpawnZone> camperSpawnZones = new List<SpawnZone>();
         public List<SpawnZone> objectiveSpawnZones = new List<SpawnZone>();
 
-        [NonSerialized] public bool IsKillerConditionMet = Instance && !Instance.IsCamperConditionMet && Instance.campers.Find(x => !x.gameObject.activeInHierarchy) == null;
-        [NonSerialized] public bool IsCamperConditionMet = Instance && Instance.objectives.Find(x => !x.IsCompleted) == null;
         [NonSerialized] public bool IsResetConditionMet = false; // TODO: Replace when a reset condition has been found (camper/killer getting stuck, items becoming inaccessible, anything that breaks the game)
 
         [NonSerialized] public int currentEpisodeCount = 0;
@@ -138,8 +136,8 @@ namespace Core
 
         public static void InvokeEpisodeEnd()
         {
-            bool killerWins = Instance.IsKillerConditionMet;
-            bool campersWin = Instance.IsCamperConditionMet;
+            bool campersWin = Instance.objectives.Find(x => !x.IsCompleted) == null;
+            bool killerWins = Instance.campers.Find(x => x.gameObject.activeInHierarchy) == null;
 
             float killerReward = 0f;
 
