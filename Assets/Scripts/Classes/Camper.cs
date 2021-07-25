@@ -69,11 +69,13 @@ namespace Entities
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterPickup, 2);
             AgentManager.Instance.camperAgentGroup.AddGroupReward(objectivePickupReward);
             visionZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
+            visibleObjectives.Remove(item);
         }
 
         public void RemoveItem(bool success)
         {
             visionZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
+            visibleDropOffZone = null;
 
             if (heldItem)
                 heldItem.transform.parent = heldItem.initialParent;
