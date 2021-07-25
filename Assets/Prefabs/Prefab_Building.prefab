@@ -189,8 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: 0.001
-  negativeCollisionRewardRepetitionInterval: 0.001
+  negativeCollisionReward: -0.01
+  negativeCollisionRewardRepetitionInterval: -0.01
 --- !u!1 &2678505405026571588
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,8 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: 0.001
-  negativeCollisionRewardRepetitionInterval: 0.001
+  negativeCollisionReward: -0.01
+  negativeCollisionRewardRepetitionInterval: -0.01
 --- !u!1 &3014552237143766830
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,8 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: 0.001
-  negativeCollisionRewardRepetitionInterval: 0.001
+  negativeCollisionReward: -0.01
+  negativeCollisionRewardRepetitionInterval: -0.01
 --- !u!1 &6801430679750989910
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: 0.001
-  negativeCollisionRewardRepetitionInterval: 0.001
+  negativeCollisionReward: -0.01
+  negativeCollisionRewardRepetitionInterval: -0.01
 --- !u!1 &7276043426046700717
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: 0.001
-  negativeCollisionRewardRepetitionInterval: 0.001
+  negativeCollisionReward: -0.01
+  negativeCollisionRewardRepetitionInterval: -0.01
 --- !u!1 &7440386957430665733
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,5 +846,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: 0.001
-  negativeCollisionRewardRepetitionInterval: 0.001
+  negativeCollisionReward: -0.01
+  negativeCollisionRewardRepetitionInterval: -0.01

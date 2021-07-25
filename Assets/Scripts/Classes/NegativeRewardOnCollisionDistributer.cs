@@ -41,8 +41,11 @@ namespace Environment.Training
 
         IEnumerator CollisionCoroutine(Agent agent)
         {
-            agent.AddReward(negativeCollisionReward);
-            yield return new WaitForSeconds(negativeCollisionRewardRepetitionInterval);
+            while (true)
+            {
+                agent.AddReward(negativeCollisionReward);
+                yield return new WaitForSeconds(negativeCollisionRewardRepetitionInterval);
+            }
         }
     }
 }
