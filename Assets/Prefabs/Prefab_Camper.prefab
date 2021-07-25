@@ -302,6 +302,7 @@ MonoBehaviour:
   movementSpeed: 6
   rotationSpeed: 8
   maxSeeingDistance: 10
+  seeingCamperDistanceBasedReward: -0.001
   objectiveFoundReward: 0.2
   seeingObjectiveDistanceBasedReward: 0.001
   objectiveLostReward: -0.1

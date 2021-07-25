@@ -18,6 +18,7 @@ namespace Entities
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float maxSeeingDistance;
 
+        [SerializeField] private float seeingCamperDistanceBasedReward;
         [SerializeField] private float objectiveFoundReward;
         [SerializeField] private float seeingObjectiveDistanceBasedReward;
         [SerializeField] private float objectiveLostReward;
@@ -132,7 +133,12 @@ namespace Entities
             sensor.AddObservation(rb.velocity.normalized);
 
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
+            {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
+
+                float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(reward);
+            }
 
             foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
             {
