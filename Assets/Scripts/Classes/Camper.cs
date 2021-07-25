@@ -235,8 +235,8 @@ namespace Entities
                     visibleObjectives[detectedObjective].Add(detectingCollider);
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to turn towards the objective after finding it
-                    AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveFoundReward);
-                    AgentManager.Instance.currentObjectiveFoundRewards += objectiveFoundReward;
+                    //AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveFoundReward);
+                    //AgentManager.Instance.currentObjectiveFoundRewards += objectiveFoundReward;
                 }
                 else
                 {
@@ -250,8 +250,8 @@ namespace Entities
                         visibleDropOffZone = dropOffZone;
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                        AddReward(dropOffZoneFoundReward);
-                        AgentManager.Instance.currentDropOffZoneFoundRewards += dropOffZoneFoundReward;
+                        //AddReward(dropOffZoneFoundReward);
+                        //AgentManager.Instance.currentDropOffZoneFoundRewards += dropOffZoneFoundReward;
                     }
                     else
                     {
@@ -263,8 +263,8 @@ namespace Entities
                         visibleKiller = detectedKiller;
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                        AddReward(seeingKillerReward);
-                        AgentManager.Instance.currentKillerFoundRewards += seeingKillerReward;
+                        //AddReward(seeingKillerReward);
+                        //AgentManager.Instance.currentKillerFoundRewards += seeingKillerReward;
                     }
                 }
             }
@@ -306,11 +306,11 @@ namespace Entities
                         visibleObjectives.Remove(detectedObjective);
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to look at and pick up the objectives
-                    if (!detectedObjective.IsCompleted || detectedObjective.IsActive)
+                    /*if (!detectedObjective.IsCompleted || detectedObjective.IsActive)
                     {
                         AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveLostReward);
                         AgentManager.Instance.currentObjectiveLostRewards += objectiveLostReward;
-                    }
+                    }*/
                 }
                 else
                 {
@@ -324,8 +324,8 @@ namespace Entities
                         visibleDropOffZone = null;
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                        AddReward(dropOffZoneLostReward);
-                        AgentManager.Instance.currentDropOffZoneLostRewards += dropOffZoneLostReward;
+                        //AddReward(dropOffZoneLostReward);
+                        //AgentManager.Instance.currentDropOffZoneLostRewards += dropOffZoneLostReward;
                     }
                     else
                     {
@@ -337,8 +337,8 @@ namespace Entities
                         visibleKiller = null;
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers to run away from the killer
-                        AddReward(loosingKillerReward);
-                        AgentManager.Instance.totalKillerLostRewards += loosingKillerReward;
+                        //AddReward(loosingKillerReward);
+                        //AgentManager.Instance.totalKillerLostRewards += loosingKillerReward;
                     }
                 }
             }   

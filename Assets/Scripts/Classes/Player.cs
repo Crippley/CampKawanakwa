@@ -152,8 +152,8 @@ namespace Entities
             visibleCampers[detectedCamper].Add(detectingCollider);
 
             // NOTE: Reason why we double-up on the reward is because we want the killer to turn towards the camper if he detects him via proximity or to catch up to him if he detects with via vision
-            AddReward(findCamperReward);
-            AgentManager.Instance.currentFindCamperRewards += findCamperReward;
+            //AddReward(findCamperReward);
+            //AgentManager.Instance.currentFindCamperRewards += findCamperReward;
         }
 
         public void OnLeaveDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
@@ -174,11 +174,11 @@ namespace Entities
                 visibleCampers.Remove(detectedCamper);
 
             // NOTE: Reason why we double-up on the punishment is because we want the killer to turn try to catch up to the camper AND keep them in their vision
-            if (detectedCamper.gameObject.activeInHierarchy)
+            /*if (detectedCamper.gameObject.activeInHierarchy)
             {
                 AddReward(loseCamperReward);
                 AgentManager.Instance.currentLoseCamperRewards += loseCamperReward;
-            }
+            }*/
         }
         #endregion
     }
