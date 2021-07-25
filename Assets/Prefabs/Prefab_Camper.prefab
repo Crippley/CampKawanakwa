@@ -302,15 +302,15 @@ MonoBehaviour:
   movementSpeed: 6
   rotationSpeed: 8
   maxSeeingDistance: 10
-  objectiveFoundReward: 0.1
+  objectiveFoundReward: 0.2
   seeingObjectiveDistanceBasedReward: 0.001
   objectiveLostReward: -0.1
   objectivePickupReward: 0.2
   objectiveDropOffReward: 0.5
-  dropOffZoneFoundReward: 0.1
+  dropOffZoneFoundReward: 0.2
   seeingDropOffZoneDistanceBasedReward: 0.001
   dropOffZoneLostReward: -0.1
-  seeingKillerReward: -0.05
+  seeingKillerReward: -0.1
   seeingKillerDistanceBasedReward: -0.0005
   loosingKillerReward: 0.05
   deathReward: -0.5
