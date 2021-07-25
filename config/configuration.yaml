@@ -2,8 +2,8 @@ behaviors:
     KillerBehaviour:
         trainer_type: ppo
         hyperparameters:
-            batch_size: 32000
-            buffer_size: 128000
+            batch_size: 16000
+            buffer_size: 64000
             learning_rate: 0.0003
             beta: 0.01
             epsilon: 0.2
@@ -20,7 +20,7 @@ behaviors:
                 gamma: 0.99
                 strength: 1.0
             curiosity:
-                strength: 0.1
+                strength: 0.01
                 gamma: 0.99
                 encoding_size: 256
                 learning_rate: 3.0e-4
@@ -31,8 +31,8 @@ behaviors:
     CamperBehaviour:
         trainer_type: poca
         hyperparameters:
-            batch_size: 32000
-            buffer_size: 128000
+            batch_size: 16000
+            buffer_size: 64000
             learning_rate: 0.0003
             beta: 0.01
             epsilon: 0.2
@@ -49,7 +49,7 @@ behaviors:
                 gamma: 0.99
                 strength: 1.0
             curiosity:
-                strength: 0.1
+                strength: 0.01
                 gamma: 0.99
                 encoding_size: 256
                 learning_rate: 3.0e-4
