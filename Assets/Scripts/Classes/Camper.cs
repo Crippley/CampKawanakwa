@@ -67,7 +67,10 @@ namespace Entities
         {
             heldItem = item;
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterPickup, 2);
+
             AgentManager.Instance.camperAgentGroup.AddGroupReward(objectivePickupReward);
+            AgentManager.Instance.currentObjectivePickedUpRewards += objectivePickupReward;
+
             visionZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
             visibleObjectives.Remove(item);
         }
@@ -83,9 +86,14 @@ namespace Entities
                 return;
 
             if (success)
+            {
                 AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveDropOffReward);
+                AgentManager.Instance.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
+            }
             else
+            {
                 heldItem.IsActive = true;
+            }
 
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterDropoff, 2);
             heldItem = null;
@@ -94,6 +102,7 @@ namespace Entities
         public void GetKilled()
         {
             AddReward(deathReward);
+            AgentManager.Instance.currentDeathRewards += deathReward;
 
             if (heldItem)
                 RemoveItem(false);
@@ -129,19 +138,28 @@ namespace Entities
             foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1)));
+
+                float reward = seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(reward);
+                AgentManager.Instance.currentObjectiveMaintainedVisionRewards += reward;
             }
 
             if (visibleKiller != null)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleKiller.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleKiller.transform.position), 0, maxSeeingDistance - 1)));
+
+                float reward = seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleKiller.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(reward);
+                AgentManager.Instance.currentKillerMaintainedVisionRewards += reward;
             }
 
             if (visibleDropOffZone != null)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleDropOffZone.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleDropOffZone.transform.position), 0, maxSeeingDistance - 1)));
+
+                float reward = seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleDropOffZone.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(reward);
+                AgentManager.Instance.currentDropOffZoneMaintainedVisionRewards += reward;
             }
         }
 
@@ -219,6 +237,7 @@ namespace Entities
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to turn towards the objective after finding it
                     AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveFoundReward);
+                    AgentManager.Instance.currentObjectiveFoundRewards += objectiveFoundReward;
                 }
                 else
                 {
@@ -233,6 +252,7 @@ namespace Entities
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
                         AddReward(dropOffZoneFoundReward);
+                        AgentManager.Instance.currentDropOffZoneFoundRewards += dropOffZoneFoundReward;
                     }
                     else
                     {
@@ -245,6 +265,7 @@ namespace Entities
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
                         AddReward(seeingKillerReward);
+                        AgentManager.Instance.currentKillerFoundRewards += seeingKillerReward;
                     }
                 }
             }
@@ -287,7 +308,10 @@ namespace Entities
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to look at and pick up the objectives
                     if (!detectedObjective.IsCompleted || detectedObjective.IsActive)
+                    {
                         AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveLostReward);
+                        AgentManager.Instance.currentObjectiveLostRewards += objectiveLostReward;
+                    }
                 }
                 else
                 {
@@ -302,6 +326,7 @@ namespace Entities
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
                         AddReward(dropOffZoneLostReward);
+                        AgentManager.Instance.currentDropOffZoneLostRewards += dropOffZoneLostReward;
                     }
                     else
                     {
@@ -314,6 +339,7 @@ namespace Entities
 
                         // NOTE: Reason why we double-up on the reward is because we want the campers to run away from the killer
                         AddReward(loosingKillerReward);
+                        AgentManager.Instance.totalKillerLostRewards += loosingKillerReward;
                     }
                 }
             }   

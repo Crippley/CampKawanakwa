@@ -54,7 +54,10 @@ namespace Entities
             {
                 visibleCampers.Remove(collidingCamper);
                 collidingCamper.GetKilled();
+
                 AddReward(killCamperReward);
+                AgentManager.Instance.currentKillRewards += killCamperReward;
+
                 killedCamperCount++;
 
                 if (AgentManager.Instance.campers.Count == killedCamperCount)
@@ -86,7 +89,10 @@ namespace Entities
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
-                AddReward(seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1)));
+
+                float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                AddReward(reward);
+                AgentManager.Instance.currentMaintainCamperVisionRewards += reward;
             }
         }
 
@@ -147,6 +153,7 @@ namespace Entities
 
             // NOTE: Reason why we double-up on the reward is because we want the killer to turn towards the camper if he detects him via proximity or to catch up to him if he detects with via vision
             AddReward(findCamperReward);
+            AgentManager.Instance.currentFindCamperRewards += findCamperReward;
         }
 
         public void OnLeaveDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
@@ -168,7 +175,10 @@ namespace Entities
 
             // NOTE: Reason why we double-up on the punishment is because we want the killer to turn try to catch up to the camper AND keep them in their vision
             if (detectedCamper.gameObject.activeInHierarchy)
+            {
                 AddReward(loseCamperReward);
+                AgentManager.Instance.currentLoseCamperRewards += loseCamperReward;
+            }
         }
         #endregion
     }

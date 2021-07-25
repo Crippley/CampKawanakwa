@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Unity.MLAgents;
 using UnityEngine;
 
@@ -19,7 +20,9 @@ namespace Environment.Training
             if (agent && !collidingAgentsToCoroutines.ContainsKey(agent))
             {
                 Coroutine collisionCoroutine = StartCoroutine(CollisionCoroutine(agent));
+
                 collidingAgentsToCoroutines.Add(agent, collisionCoroutine);
+                AgentManager.Instance.currentCollisionRewards += negativeCollisionReward;
             }
         }
 
@@ -44,6 +47,8 @@ namespace Environment.Training
             while (true)
             {
                 agent.AddReward(negativeCollisionReward);
+                AgentManager.Instance.currentCollisionRewards += negativeCollisionReward;
+
                 yield return new WaitForSeconds(negativeCollisionRewardRepetitionInterval);
             }
         }

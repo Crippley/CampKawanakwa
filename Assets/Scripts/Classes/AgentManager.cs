@@ -38,6 +38,79 @@ namespace Core
 
         public bool continueLooping;
 
+        [Header("Read only training values")]
+        [Header("Win counters")]
+        public int killerWins;
+        public int camperWins;
+
+        [Header("Current episode rewards")]
+        [Header("Misc rewards")]
+        public float currentCollisionRewards;
+
+        [Header("Killer rewards")]
+        public float currentKillerWinRewards;
+        public float currentKillerLossRewards;
+
+        public float currentKillRewards;
+
+        public float currentFindCamperRewards;
+        public float currentLoseCamperRewards;
+        public float currentMaintainCamperVisionRewards;
+
+        [Header("Camper rewards")]
+        public float currentCamperWinRewards;
+        public float currentCamperLossRewards;
+
+        public float currentObjectiveFoundRewards;
+        public float currentObjectiveLostRewards;
+        public float currentObjectivePickedUpRewards;
+        public float currentObjectiveDroppedOffRewards;
+        public float currentObjectiveMaintainedVisionRewards;
+
+        public float currentDropOffZoneFoundRewards;
+        public float currentDropOffZoneLostRewards;
+        public float currentDropOffZoneMaintainedVisionRewards;
+
+        public float currentKillerFoundRewards;
+        public float currentKillerLostRewards;
+        public float currentKillerMaintainedVisionRewards;
+
+        public float currentDeathRewards;
+
+        [Header("Total rewards")]
+        [Header("Misc rewards")]
+        public float totalCollisionRewards;
+
+        [Header("Killer rewards")]
+        public float totalKillerWinRewards;
+        public float totalKillerLossRewards;
+
+        public float totalKillRewards;
+
+        public float totalFindCamperRewards;
+        public float totalLoseCamperRewards;
+        public float totalMaintainCamperVisionRewards;
+
+        [Header("Camper rewards")]
+        public float totalCamperWinRewards;
+        public float totalCamperLossRewards;
+
+        public float totalObjectiveFoundRewards;
+        public float totalObjectiveLostRewards;
+        public float totalObjectivePickedUpRewards;
+        public float totalObjectiveDroppedOffRewards;
+        public float totalObjectiveMaintainedVisionRewards;
+
+        public float totalDropOffZoneFoundRewards;
+        public float totalDropOffZoneLostRewards;
+        public float totalDropOffZoneMaintainedVisionRewards;
+
+        public float totalKillerFoundRewards;
+        public float totalKillerLostRewards;
+        public float totalKillerMaintainedVisionRewards;
+
+        public float totalDeathRewards;
+
         private int currentMaxStepCountPerEpisode = 0;
         #endregion
         
@@ -76,6 +149,60 @@ namespace Core
 
             InvokeEpisodeBegin();
         }
+
+        private void ResetEpisodeValues()
+        {
+            totalCollisionRewards += currentCollisionRewards;
+            currentCollisionRewards = 0f;
+            
+            totalKillerWinRewards += currentKillerWinRewards;
+            currentKillerWinRewards = 0f;
+            totalKillerLossRewards += currentKillerLossRewards;
+            currentKillerLossRewards = 0f;
+
+            totalKillRewards += currentKillRewards;
+            currentKillRewards = 0f;
+
+            totalFindCamperRewards += currentFindCamperRewards;
+            currentFindCamperRewards = 0f;
+            totalLoseCamperRewards += currentLoseCamperRewards;
+            currentLoseCamperRewards = 0f;
+            totalMaintainCamperVisionRewards += currentMaintainCamperVisionRewards;
+            currentMaintainCamperVisionRewards = 0f;
+
+            totalCamperWinRewards += currentCamperWinRewards;
+            currentCamperWinRewards = 0f;
+            totalCamperLossRewards += currentCamperLossRewards;
+            currentCamperLossRewards = 0f;
+
+            totalObjectiveFoundRewards += currentObjectiveFoundRewards;
+            currentObjectiveFoundRewards = 0f;
+            totalObjectiveLostRewards += currentObjectiveLostRewards;
+            currentObjectiveLostRewards = 0f;
+            totalObjectivePickedUpRewards += currentObjectivePickedUpRewards;
+            currentObjectivePickedUpRewards = 0f;
+            totalObjectiveDroppedOffRewards += currentObjectiveDroppedOffRewards;
+            currentObjectiveDroppedOffRewards = 0f;
+            totalObjectiveMaintainedVisionRewards += currentObjectiveMaintainedVisionRewards;
+            currentObjectiveMaintainedVisionRewards = 0f;
+
+            totalDropOffZoneFoundRewards += currentDropOffZoneFoundRewards;
+            currentDropOffZoneFoundRewards = 0f;
+            totalDropOffZoneLostRewards += currentDropOffZoneLostRewards;
+            currentDropOffZoneLostRewards = 0f;
+            totalDropOffZoneMaintainedVisionRewards += currentDropOffZoneMaintainedVisionRewards;
+            currentDropOffZoneMaintainedVisionRewards = 0f;
+
+            totalKillerFoundRewards += currentKillerFoundRewards;
+            currentKillerFoundRewards = 0f;
+            totalKillerLostRewards += currentKillerLostRewards;
+            currentKillerLostRewards = 0f;
+            totalKillerMaintainedVisionRewards += currentKillerMaintainedVisionRewards;
+            currentKillerMaintainedVisionRewards = 0f;
+
+            totalDeathRewards += currentDeathRewards;
+            currentDeathRewards = 0f;
+        }
         #endregion
 
         #region Agent
@@ -104,6 +231,7 @@ namespace Core
         public static void InvokeEpisodeBegin()
         {
             Debug.Log("Episode started");
+            Instance.ResetEpisodeValues();
 
             if (Instance.continueLooping || Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
             {
@@ -140,6 +268,7 @@ namespace Core
             bool killerWins = Instance.campers.Find(x => x.gameObject.activeInHierarchy) == null;
 
             float killerReward = 0f;
+            float camperReward = 0f;
 
             if (killerWins || campersWin || Instance.IsResetConditionMet)
             {
@@ -170,29 +299,42 @@ namespace Core
                 {
                     Debug.Log("Killer wins!");
                     killerReward = Instance.winReward;
+                    camperReward = Instance.lossReward;
                 }
                 else if (campersWin)
                 {
                     Debug.Log("Campers win!");
                     killerReward = Instance.lossReward;
-                    float camperReward = Instance.winReward;
+                    camperReward = Instance.winReward;
+                }
 
-                    Instance.camperAgentGroup.AddGroupReward(camperReward);
-                    Instance.camperAgentGroup.EndGroupEpisode();
+                Instance.camperAgentGroup.AddGroupReward(camperReward);
 
-                    for(int i = 0; i < Instance.campers.Count; i++)
+                if (camperReward > 0f)
+                    Instance.currentCamperWinRewards += camperReward;
+                else
+                    Instance.currentCamperLossRewards += camperReward;
+
+                Instance.camperAgentGroup.EndGroupEpisode();
+
+                for(int i = 0; i < Instance.campers.Count; i++)
+                {
+                    if (Instance.campers[i].isActiveAndEnabled)
                     {
-                        if (Instance.campers[i].isActiveAndEnabled)
-                        {
-                            Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            Instance.campers[i].RemoveItem(false);
-                            Instance.campers[i].gameObject.SetActive(false);
-                        }
+                        Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
+                        Instance.campers[i].RemoveItem(false);
+                        Instance.campers[i].gameObject.SetActive(false);
                     }
                 }
 
                 Debug.Log("Killer's episode ended");
                 Instance.killer.AddReward(killerReward);
+
+                if (killerReward > 0f)
+                    Instance.currentKillerWinRewards += killerReward;
+                else
+                    Instance.currentKillerLossRewards += killerReward;
+
                 Instance.killer.gameObject.SetActive(false);
 
                 Debug.Log("Episode ended");
