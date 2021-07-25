@@ -15,9 +15,11 @@ namespace Entities
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private float maxSeeingDistance;
 
         [SerializeField] private float killCamperReward;
         [SerializeField] private float findCamperReward;
+        [SerializeField] private float seeingCamperDistanceBasedReward;
         [SerializeField] private float loseCamperReward;
         [SerializeField] private float timeReward;
 
@@ -81,10 +83,13 @@ namespace Entities
             sensor.AddObservation(rb.velocity.normalized);
 
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
+            {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
+                AddReward(seeingCamperDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+            }
         }
 
-        /*public override void Heuristic(in ActionBuffers actionsOut)
+        public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
 
@@ -97,7 +102,7 @@ namespace Entities
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
 
             continuousActions[2] = -angle / 180f;
-        }*/
+        }
 
         public override void OnActionReceived(ActionBuffers actions)
         {
@@ -161,7 +166,8 @@ namespace Entities
                 visibleCampers.Remove(detectedCamper);
 
             // NOTE: Reason why we double-up on the punishment is because we want the killer to turn try to catch up to the camper AND keep them in their vision
-            AddReward(loseCamperReward);
+            if (detectedCamper.gameObject.activeInHierarchy)
+                AddReward(loseCamperReward);
         }
         #endregion
     }

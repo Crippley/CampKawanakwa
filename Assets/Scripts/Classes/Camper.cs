@@ -5,6 +5,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using Zones;
 
 namespace Entities
 {
@@ -15,12 +16,18 @@ namespace Entities
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private float maxSeeingDistance;
 
         [SerializeField] private float objectiveFoundReward;
+        [SerializeField] private float seeingObjectiveDistanceBasedReward;
         [SerializeField] private float objectiveLostReward;
         [SerializeField] private float objectivePickupReward;
         [SerializeField] private float objectiveDropOffReward;
+        [SerializeField] private float dropOffZoneFoundReward;
+        [SerializeField] private float seeingDropOffZoneDistanceBasedReward;
+        [SerializeField] private float dropOffZoneLostReward;
         [SerializeField] private float seeingKillerReward;
+        [SerializeField] private float seeingKillerDistanceBasedReward;
         [SerializeField] private float loosingKillerReward;
         [SerializeField] private float deathReward;
         [SerializeField] private float timeReward;
@@ -36,7 +43,7 @@ namespace Entities
         private Dictionary<Camper, List<Collider2D>> visibleCampers = new Dictionary<Camper, List<Collider2D>>();
         private Dictionary<Objective, List<Collider2D>> visibleObjectives = new Dictionary<Objective, List<Collider2D>>();
         private Player visibleKiller;
-        private Player visibleDropOffZone;
+        private DropOffZone visibleDropOffZone;
         private Vector3 startingPosition;
 
         private Vector3 movementVector;
@@ -118,13 +125,22 @@ namespace Entities
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
             foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
+            {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
+                AddReward(seeingObjectiveDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+            }
 
             if (visibleKiller != null)
+            {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleKiller.transform.position - transform.position, Vector3.forward) / 180f);
+                AddReward(seeingKillerDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleKiller.transform.position), 0, maxSeeingDistance - 1));
+            }
 
             if (visibleDropOffZone != null)
+            {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleDropOffZone.transform.position - transform.position, Vector3.forward) / 180f);
+                AddReward(seeingDropOffZoneDistanceBasedReward * maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleDropOffZone.transform.position), 0, maxSeeingDistance - 1));
+            }
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)
@@ -204,15 +220,30 @@ namespace Entities
                 }
                 else
                 {
-                    Player detectedKiller = detectedObject.GetComponent<Player>();
+                    DropOffZone dropOffZone = detectedObject.GetComponent<DropOffZone>();
 
-                    if (detectedKiller == null || visibleKiller != null)
-                        return;
+                    if (dropOffZone != null)
+                    {
+                        if (visibleDropOffZone != null)
+                            return;
 
-                    visibleKiller = detectedKiller;
+                        visibleDropOffZone = dropOffZone;
 
-                    // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                    AddReward(seeingKillerReward);
+                        // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
+                        AddReward(dropOffZoneFoundReward);
+                    }
+                    else
+                    {
+                        Player detectedKiller = detectedObject.GetComponent<Player>();
+
+                        if (detectedKiller == null || visibleKiller != null)
+                            return;
+
+                        visibleKiller = detectedKiller;
+
+                        // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
+                        AddReward(seeingKillerReward);
+                    }
                 }
             }
         }
@@ -253,19 +284,35 @@ namespace Entities
                         visibleObjectives.Remove(detectedObjective);
 
                     // NOTE: Reason why we double-up on the reward is because we want the campers to look at and pick up the objectives
-                    AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveLostReward);
+                    if (!detectedObjective.IsCompleted || detectedObjective.IsActive)
+                        AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveLostReward);
                 }
                 else
                 {
-                    Player detectedKiller = detectedObject.GetComponent<Player>();
+                    DropOffZone dropOffZone = detectedObject.GetComponent<DropOffZone>();
 
-                    if (detectedKiller == null || visibleKiller == null)
-                        return;
+                    if (dropOffZone != null)
+                    {
+                        if (visibleDropOffZone == null)
+                            return;
 
-                    visibleKiller = null;
+                        visibleDropOffZone = null;
 
-                    // NOTE: Reason why we double-up on the reward is because we want the campers to run away from the killer
-                    AddReward(loosingKillerReward);
+                        // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
+                        AddReward(dropOffZoneLostReward);
+                    }
+                    else
+                    {
+                        Player detectedKiller = detectedObject.GetComponent<Player>();
+
+                        if (detectedKiller == null || visibleKiller == null)
+                            return;
+
+                        visibleKiller = null;
+
+                        // NOTE: Reason why we double-up on the reward is because we want the campers to run away from the killer
+                        AddReward(loosingKillerReward);
+                    }
                 }
             }   
         }

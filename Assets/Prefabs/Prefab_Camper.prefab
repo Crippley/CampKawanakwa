@@ -301,11 +301,17 @@ MonoBehaviour:
   rb: {fileID: 6611187521747357997}
   movementSpeed: 6
   rotationSpeed: 8
+  maxSeeingDistance: 10
   objectiveFoundReward: 0.1
+  seeingObjectiveDistanceBasedReward: 0.01
   objectiveLostReward: -0.1
   objectivePickupReward: 0.2
   objectiveDropOffReward: 0.5
+  dropOffZoneFoundReward: 0.1
+  seeingDropOffZoneDistanceBasedReward: 0.01
+  dropOffZoneLostReward: -0.1
   seeingKillerReward: -0.05
+  seeingKillerDistanceBasedReward: -0.005
   loosingKillerReward: 0.05
   deathReward: -0.5
   timeReward: -0.001
