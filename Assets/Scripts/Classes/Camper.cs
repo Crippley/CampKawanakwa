@@ -108,7 +108,6 @@ namespace Entities
                 RemoveItem(false);
 
             Debug.Log("Camper " + name + "'s episode ended");
-            //EndEpisode();
             gameObject.SetActive(false);
         }
         #endregion
@@ -191,7 +190,7 @@ namespace Entities
             turningRotation = Quaternion.identity;
             turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);
 
-            //AddReward(timeReward);
+            AddReward(timeReward);
         }
 
         private void FixedUpdate() 
