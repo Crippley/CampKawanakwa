@@ -303,19 +303,19 @@ MonoBehaviour:
   rotationSpeed: 8
   maxSeeingDistance: 10
   seeingCamperDistanceBasedReward: -0.001
-  objectiveFoundReward: 0.2
   seeingObjectiveDistanceBasedReward: 0.001
-  objectiveLostReward: -0.1
-  objectivePickupReward: 0.2
-  objectiveDropOffReward: 0.5
-  dropOffZoneFoundReward: 0.2
+  objectivePickupReward: 0.5
+  objectiveDropOffReward: 0.75
   seeingDropOffZoneDistanceBasedReward: 0.001
-  dropOffZoneLostReward: -0.1
-  seeingKillerReward: -0.1
-  seeingKillerDistanceBasedReward: -0.0005
-  loosingKillerReward: 0.05
+  seeingKillerDistanceBasedReward: -0.001
   deathReward: -0.5
   timeReward: -0.001
+  objectiveFoundReward: 0.2
+  objectiveLostReward: -0.1
+  dropOffZoneFoundReward: 0.2
+  dropOffZoneLostReward: -0.1
+  seeingKillerReward: -0.1
+  loosingKillerReward: 0.05
   noHeldItemIgnoreLayerMask:
     serializedVersion: 2
     m_Bits: 4608

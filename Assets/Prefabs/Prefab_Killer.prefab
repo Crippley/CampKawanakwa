@@ -302,11 +302,11 @@ MonoBehaviour:
   movementSpeed: 4
   rotationSpeed: 8
   maxSeeingDistance: 10
-  killCamperReward: 0.75
-  findCamperReward: 0.3
+  killCamperReward: 1
   seeingCamperDistanceBasedReward: 0.001
-  loseCamperReward: -0.15
   timeReward: -0.001
+  findCamperReward: 0.3
+  loseCamperReward: -0.15
   behaviorType: 0
 --- !u!114 &2116270808707389165
 MonoBehaviour:
