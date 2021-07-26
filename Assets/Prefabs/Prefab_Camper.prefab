@@ -341,6 +341,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   visionZone: {fileID: 2285601926518422728}
+  closeProximityZone: {fileID: 1083997345336558201}
 --- !u!114 &9208926796268904186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 12
+    VectorObservationSize: 13
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3

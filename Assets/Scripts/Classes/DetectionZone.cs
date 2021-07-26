@@ -16,7 +16,8 @@ namespace Entities
         private IDetectionTriggerHandler detectionTriggerHandler;
 
         private RaycastHit2D[] raycastResults = new RaycastHit2D[5];
-        private Dictionary<Collider2D, bool> detectedColliders = new Dictionary<Collider2D, bool>();
+        private Dictionary<Collider2D, bool> raycastableDetectedColliders = new Dictionary<Collider2D, bool>();
+        private List<Collider2D> nonraycastableDetectedColliders = new List<Collider2D>();
 
         private void Awake() 
         {
@@ -37,10 +38,19 @@ namespace Entities
             {
                 if (detectionLayerMask == (detectionLayerMask | (1 << detectedObject.layer)))
                 {
-                    if (useRaycastingToMaintainDetection && !detectedColliders.ContainsKey(other))
-                        detectedColliders.Add(other, false);
+                    if (useRaycastingToMaintainDetection)
+                    {
+                        if (!raycastableDetectedColliders.ContainsKey(other))
+                            raycastableDetectedColliders.Add(other, false);
+                    }
                     else
-                        detectionTriggerHandler.OnEnterDetectionZone(other.gameObject, detectionCollider);
+                    {
+                        if (ignoreLayerMask != (ignoreLayerMask | (1 << detectedObject.layer)) && !nonraycastableDetectedColliders.Contains(other))
+                        {
+                            detectionTriggerHandler.OnEnterDetectionZone(other.gameObject, detectionCollider);
+                            nonraycastableDetectedColliders.Add(other);
+                        }
+                    }
                 }
             }
         }
@@ -59,8 +69,16 @@ namespace Entities
             {
                 if (detectionLayerMask == (detectionLayerMask | (1 << detectedObject.layer)))
                 {
-                    if (useRaycastingToMaintainDetection && detectedColliders.ContainsKey(other))
-                        detectedColliders.Remove(other);
+                    if (useRaycastingToMaintainDetection)
+                    {
+                        if (raycastableDetectedColliders.ContainsKey(other))
+                            raycastableDetectedColliders.Remove(other);
+                    }
+                    else
+                    {
+                        if (nonraycastableDetectedColliders.Contains(other))
+                            nonraycastableDetectedColliders.Remove(other);
+                    }
 
                     detectionTriggerHandler.OnLeaveDetectionZone(other.gameObject, detectionCollider);
                 }
@@ -74,7 +92,7 @@ namespace Entities
             {
                 Dictionary<Collider2D, bool> collidersToModify = new Dictionary<Collider2D, bool>();
 
-                foreach(KeyValuePair<Collider2D, bool> pair in detectedColliders)
+                foreach(KeyValuePair<Collider2D, bool> pair in raycastableDetectedColliders)
                 {
                     int length = Physics2D.RaycastNonAlloc(transform.position, pair.Key.transform.position - transform.position, raycastResults,  Vector2.Distance(transform.position, pair.Key.transform.position), ~ignoreLayerMask);
 
@@ -105,8 +123,8 @@ namespace Entities
 
                 foreach(KeyValuePair<Collider2D, bool> pair in collidersToModify)
                 {
-                    detectedColliders.Remove(pair.Key);
-                    detectedColliders.Add(pair.Key, pair.Value);
+                    raycastableDetectedColliders.Remove(pair.Key);
+                    raycastableDetectedColliders.Add(pair.Key, pair.Value);
                 }
             }
         }
@@ -114,6 +132,43 @@ namespace Entities
         public void SetIgnoreLayerMask(LayerMask mask)
         {
             ignoreLayerMask = mask;
+
+            if (useRaycastingToMaintainDetection)
+            {
+                Dictionary<Collider2D, bool> collidersToModify = new Dictionary<Collider2D, bool>();
+
+                foreach(KeyValuePair<Collider2D, bool> pair in raycastableDetectedColliders)
+                {
+                    if (ignoreLayerMask == (ignoreLayerMask | (1 << pair.Key.gameObject.layer)))
+                    {
+                        collidersToModify.Add(pair.Key, pair.Value);
+                    }
+                }
+
+                foreach(KeyValuePair<Collider2D, bool> pair in collidersToModify)
+                {
+                    raycastableDetectedColliders.Remove(pair.Key);
+                    detectionTriggerHandler.OnLeaveDetectionZone(pair.Key.gameObject, detectionCollider);
+                }
+            }
+            else
+            {
+                List<Collider2D> collidersToModify = new List<Collider2D>();
+
+                for (int i = 0; i < nonraycastableDetectedColliders.Count; i++)
+                {
+                    if (ignoreLayerMask == (ignoreLayerMask | (1 << nonraycastableDetectedColliders[i].gameObject.layer)))
+                    {
+                        collidersToModify.Add(nonraycastableDetectedColliders[i]);
+                    }
+                }
+
+                for (int i = 0; i < collidersToModify.Count; i++)
+                {
+                    nonraycastableDetectedColliders.Remove(collidersToModify[i]);
+                    detectionTriggerHandler.OnLeaveDetectionZone(collidersToModify[i].gameObject, detectionCollider);
+                }
+            }
         }
     }
 }
