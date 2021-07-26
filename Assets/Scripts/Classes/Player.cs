@@ -18,11 +18,14 @@ namespace Entities
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float maxSeeingDistance;
 
+        [Header("Currently active rewards")]
         [SerializeField] private float killCamperReward;
-        [SerializeField] private float findCamperReward;
         [SerializeField] private float seeingCamperDistanceBasedReward;
-        [SerializeField] private float loseCamperReward;
         [SerializeField] private float timeReward;
+
+        [Header("Currently inactive rewards")]
+        [SerializeField] private float findCamperReward;
+        [SerializeField] private float loseCamperReward;
 
         [SerializeField] private BehaviorType behaviorType;
 

@@ -18,20 +18,23 @@ namespace Entities
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float maxSeeingDistance;
 
+        [Header("Currently active rewards")]
         [SerializeField] private float seeingCamperDistanceBasedReward;
-        [SerializeField] private float objectiveFoundReward;
         [SerializeField] private float seeingObjectiveDistanceBasedReward;
-        [SerializeField] private float objectiveLostReward;
         [SerializeField] private float objectivePickupReward;
         [SerializeField] private float objectiveDropOffReward;
-        [SerializeField] private float dropOffZoneFoundReward;
         [SerializeField] private float seeingDropOffZoneDistanceBasedReward;
-        [SerializeField] private float dropOffZoneLostReward;
-        [SerializeField] private float seeingKillerReward;
         [SerializeField] private float seeingKillerDistanceBasedReward;
-        [SerializeField] private float loosingKillerReward;
         [SerializeField] private float deathReward;
         [SerializeField] private float timeReward;
+
+        [Header("Currently inactive rewards")]
+        [SerializeField] private float objectiveFoundReward;
+        [SerializeField] private float objectiveLostReward;
+        [SerializeField] private float dropOffZoneFoundReward;
+        [SerializeField] private float dropOffZoneLostReward;
+        [SerializeField] private float seeingKillerReward;
+        [SerializeField] private float loosingKillerReward;
 
         [SerializeField] private LayerMask noHeldItemIgnoreLayerMask;
         [SerializeField] private LayerMask heldItemIgnoreLayerMask;
