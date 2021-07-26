@@ -258,7 +258,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 25
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -299,9 +299,21 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   rb: {fileID: 6611187521747357997}
-  movementSpeed: 6
+  movementSpeed: 7
   rotationSpeed: 8
   maxSeeingDistance: 10
+  maxXPosition: 11
+  minXPosition: -11
+  maxYPosition: 18
+  minYPosition: -18
+  maxXVelocity: 14
+  minXVelocity: -14
+  maxYVelocity: 14
+  minYVelocity: -14
+  killerMaxXVelocity: 12
+  killerMinXVelocity: -12
+  killerMaxYVelocity: 12
+  killerMinYVelocity: -12
   seeingCamperDistanceBasedReward: -0.001
   seeingObjectiveDistanceBasedReward: 0.001
   objectivePickupReward: 0.5
@@ -342,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 27
+    VectorObservationSize: 12
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3

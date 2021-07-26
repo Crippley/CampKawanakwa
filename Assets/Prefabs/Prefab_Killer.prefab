@@ -258,7 +258,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 25
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -302,6 +302,14 @@ MonoBehaviour:
   movementSpeed: 4
   rotationSpeed: 8
   maxSeeingDistance: 10
+  maxXPosition: 11
+  minXPosition: -11
+  maxYPosition: 18
+  minYPosition: -18
+  maxXVelocity: 12
+  minXVelocity: -12
+  maxYVelocity: 12
+  minYVelocity: -12
   killCamperReward: 1
   seeingCamperDistanceBasedReward: 0.001
   timeReward: -0.001
@@ -321,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 15
+    VectorObservationSize: 7
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3

@@ -12,11 +12,32 @@ namespace Entities
     public class Camper : Agent, IDetectionTriggerHandler
     {
         #region Vars
-        [SerializeField] private Rigidbody2D rb;
+        public Rigidbody2D rb;
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float maxSeeingDistance;
+
+        [Header("Position min/max")]
+        [SerializeField] private float maxXPosition = 11f;
+        [SerializeField] private float minXPosition = -11f;
+
+        [SerializeField] private float maxYPosition = 18f;
+        [SerializeField] private float minYPosition = -18f;
+
+        [Header("Velocity min/max")]
+        [SerializeField] private float maxXVelocity = 14f;
+        [SerializeField] private float minXVelocity = -14f;
+
+        [SerializeField] private float maxYVelocity = 14f;
+        [SerializeField] private float minYVelocity = -14f;
+
+        [Header("Killer velocity min/max")]
+        [SerializeField] private float killerMaxXVelocity = 12f;
+        [SerializeField] private float killerMinXVelocity = -12f;
+
+        [SerializeField] private float killerMaxYVelocity = 12f;
+        [SerializeField] private float killerMinYVelocity = -12f;
 
         [Header("Currently active rewards")]
         [SerializeField] private float seeingCamperDistanceBasedReward;
@@ -131,13 +152,20 @@ namespace Entities
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(transform.position.normalized);
+            sensor.AddObservation((Mathf.Clamp(transform.position.x, minXPosition, maxXPosition) - minXPosition) / (maxXPosition - minXPosition));
+            sensor.AddObservation((Mathf.Clamp(transform.position.y, minYPosition, maxYPosition) - minYPosition) / (maxYPosition - minYPosition));
 
-            sensor.AddObservation(rb.velocity.normalized);
+            sensor.AddObservation((rb.velocity.x - minXVelocity) / (maxXVelocity - minXVelocity));
+            sensor.AddObservation((rb.velocity.y - minYVelocity) / (maxYVelocity - minYVelocity));
 
             foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
+
+                Vector3 camperVelocity = value.Key.rb.velocity;
+
+                sensor.AddObservation((camperVelocity.x - minXVelocity) / (maxXVelocity - minXVelocity));
+                sensor.AddObservation((camperVelocity.y - minYVelocity) / (maxYVelocity - minYVelocity));
 
                 float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
                 AddReward(reward);
@@ -155,6 +183,11 @@ namespace Entities
             if (visibleKiller != null)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, visibleKiller.transform.position - transform.position, Vector3.forward) / 180f);
+
+                Vector3 killerVelocity = visibleKiller.rb.velocity;
+
+                sensor.AddObservation((killerVelocity.x - killerMinXVelocity) / (killerMaxXVelocity - killerMinXVelocity));
+                sensor.AddObservation((killerVelocity.y - killerMinYVelocity) / (killerMaxYVelocity - killerMinYVelocity));
 
                 float reward = seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, visibleKiller.transform.position), 0, maxSeeingDistance - 1));
                 AddReward(reward);
@@ -192,7 +225,7 @@ namespace Entities
             float moveY = actions.ContinuousActions[1];
             
             movementVector = new Vector3(moveX, moveY, 0f);
-            movementVector = Vector3.ClampMagnitude(movementVector, 1f);
+            movementVector = movementVector.normalized;
 
             float rotateZ = actions.ContinuousActions[2] * 180f;
 
@@ -204,7 +237,7 @@ namespace Entities
 
         private void FixedUpdate() 
         {
-            transform.position += movementVector * movementSpeed * Time.fixedDeltaTime;
+            rb.AddForce(movementVector * movementSpeed, ForceMode2D.Impulse);
             transform.rotation = Quaternion.Slerp(transform.rotation, turningRotation, rotationSpeed * Time.fixedDeltaTime);
         }
         #endregion
