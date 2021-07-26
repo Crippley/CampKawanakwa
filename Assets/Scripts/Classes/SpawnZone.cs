@@ -8,6 +8,7 @@ namespace Entities
     {
         [SerializeField] private float spawnRadius;
         [SerializeField] private LayerMask spawnZoneLayerMask;
+        [SerializeField] private Color sphereColor;
 
         public Vector3 GetRandomPoint()
         {
@@ -25,6 +26,7 @@ namespace Entities
 
         private void OnDrawGizmosSelected() 
         {
+            Gizmos.color = sphereColor;
             Gizmos.DrawSphere(transform.position, spawnRadius);
         }
     }

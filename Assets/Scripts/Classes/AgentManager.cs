@@ -27,8 +27,12 @@ namespace Core
         public DropOffZone dropOffZone;
         public List<Camper> campers = new List<Camper>();
         public List<Objective> objectives = new List<Objective>();
+        public List<GameObject> environmentPieces = new List<GameObject>();
         public List<SpawnZone> camperSpawnZones = new List<SpawnZone>();
+        public List<SpawnZone> killerSpawnZones = new List<SpawnZone>();
         public List<SpawnZone> objectiveSpawnZones = new List<SpawnZone>();
+        public List<SpawnZone> dropOffZoneSpawnZones = new List<SpawnZone>();
+        public List<SpawnZone> environmentSpawnZones = new List<SpawnZone>();
 
         [NonSerialized] public bool IsResetConditionMet = false; // TODO: Replace when a reset condition has been found (camper/killer getting stuck, items becoming inaccessible, anything that breaks the game)
 
@@ -222,10 +226,28 @@ namespace Core
             return camperSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
+        public Vector3 GetRandomKillerSpawnPosition()
+        {
+            int randomSpawnZone = UnityEngine.Random.Range(0, killerSpawnZones.Count);
+            return killerSpawnZones[randomSpawnZone].GetRandomPoint();
+        }
+
         public Vector3 GetRandomObjectiveSpawnPosition()
         {
             int randomSpawnZone = UnityEngine.Random.Range(0, objectiveSpawnZones.Count);
             return objectiveSpawnZones[randomSpawnZone].GetRandomPoint();
+        }
+
+        public Vector3 GetRandomDropOffZoneSpawnPosition()
+        {
+            int randomSpawnZone = UnityEngine.Random.Range(0, dropOffZoneSpawnZones.Count);
+            return dropOffZoneSpawnZones[randomSpawnZone].GetRandomPoint();
+        }
+
+        public Vector3 GetRandomEnvironmentSpawnPosition()
+        {
+            int randomSpawnZone = UnityEngine.Random.Range(0, environmentSpawnZones.Count);
+            return environmentSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
         public static void InvokeEpisodeBegin()
@@ -236,6 +258,11 @@ namespace Core
             if (Instance.continueLooping || Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
             {
                 Instance.currentEpisodeCount++;
+
+                for (int i = 0; i < Instance.environmentPieces.Count; i++)
+                {
+                    Instance.environmentPieces[i].transform.position = Instance.GetRandomEnvironmentSpawnPosition();
+                }
 
                 Instance.dropOffZone.Reset();
 

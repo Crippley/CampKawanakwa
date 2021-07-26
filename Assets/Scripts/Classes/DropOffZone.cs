@@ -10,9 +10,15 @@ namespace Zones
     {
         private List<Objective> droppedOffObjectives = new List<Objective>();
 
+        private void Start() 
+        {
+            transform.position = AgentManager.Instance.GetRandomDropOffZoneSpawnPosition();
+        }
+
         public void Reset()
         {
             droppedOffObjectives = new List<Objective>();
+            transform.position = AgentManager.Instance.GetRandomDropOffZoneSpawnPosition();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

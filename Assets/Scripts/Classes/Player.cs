@@ -53,20 +53,12 @@ namespace Entities
         public BehaviorType BehaviorType => behaviorType;
 
         private Dictionary<Camper, List<Collider2D>> visibleCampers = new Dictionary<Camper, List<Collider2D>>();
-        private Vector3 startingPosition;
 
         private Vector3 movementVector;
         private Quaternion turningRotation;
 
         [NonSerialized] public float killedCamperCount;
         private int lastEpisodeCount = -1;
-        #endregion
-
-        #region Initialization
-        private void Start() 
-        {
-            startingPosition = transform.position;
-        }
         #endregion
 
         #region Camper detection
@@ -98,7 +90,7 @@ namespace Entities
 
             Debug.Log("Killer's episode started");
             
-            transform.position = startingPosition;
+            transform.position = AgentManager.Instance.GetRandomKillerSpawnPosition();
             visibleCampers = new Dictionary<Camper, List<Collider2D>>();
             killedCamperCount = 0;
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;

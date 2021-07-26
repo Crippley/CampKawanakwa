@@ -70,18 +70,10 @@ namespace Entities
         private Dictionary<Objective, List<Collider2D>> visibleObjectives = new Dictionary<Objective, List<Collider2D>>();
         private Dictionary<DropOffZone, List<Collider2D>> visibleDropOffZones = new Dictionary<DropOffZone, List<Collider2D>>();
         private Dictionary<Player, List<Collider2D>> visibleKillers = new Dictionary<Player, List<Collider2D>>();
-        private Vector3 startingPosition;
 
         private Vector3 movementVector;
         private Quaternion turningRotation;
         private int lastEpisodeCount = -1;
-        #endregion
-
-        #region Initialization
-        private void Start() 
-        {
-            startingPosition = transform.position;
-        }
         #endregion
 
         #region Item holding
