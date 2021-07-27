@@ -1,0 +1,123 @@
+{
+    "CamperBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 3499949,
+                "file_path": "results\\Test\\CamperBehaviour\\CamperBehaviour-3499949.onnx",
+                "reward": -10.719900022045923,
+                "creation_time": 1627374420.994535,
+                "auxillary_file_paths": [
+                    "results\\Test\\CamperBehaviour\\CamperBehaviour-3499949.pt"
+                ]
+            },
+            {
+                "steps": 3999966,
+                "file_path": "results\\Test\\CamperBehaviour\\CamperBehaviour-3999966.onnx",
+                "reward": -11.09722347382237,
+                "creation_time": 1627378926.155671,
+                "auxillary_file_paths": [
+                    "results\\Test\\CamperBehaviour\\CamperBehaviour-3999966.pt"
+                ]
+            },
+            {
+                "steps": 4499996,
+                "file_path": "results\\Test\\CamperBehaviour\\CamperBehaviour-4499996.onnx",
+                "reward": -9.859060926569832,
+                "creation_time": 1627383795.6699896,
+                "auxillary_file_paths": [
+                    "results\\Test\\CamperBehaviour\\CamperBehaviour-4499996.pt"
+                ]
+            },
+            {
+                "steps": 4999943,
+                "file_path": "results\\Test\\CamperBehaviour\\CamperBehaviour-4999943.onnx",
+                "reward": -11.664882957935333,
+                "creation_time": 1627388399.633005,
+                "auxillary_file_paths": [
+                    "results\\Test\\CamperBehaviour\\CamperBehaviour-4999943.pt"
+                ]
+            },
+            {
+                "steps": 5445590,
+                "file_path": "results\\Test\\CamperBehaviour\\CamperBehaviour-5445590.onnx",
+                "reward": null,
+                "creation_time": 1627392585.5486465,
+                "auxillary_file_paths": [
+                    "results\\Test\\CamperBehaviour\\CamperBehaviour-5445590.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5445590,
+            "file_path": "results\\Test\\CamperBehaviour.onnx",
+            "reward": null,
+            "creation_time": 1627392585.5486465,
+            "auxillary_file_paths": [
+                "results\\Test\\CamperBehaviour\\CamperBehaviour-5445590.pt"
+            ]
+        }
+    },
+    "KillerBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 999959,
+                "file_path": "results\\Test\\KillerBehaviour\\KillerBehaviour-999959.onnx",
+                "reward": -4.458132034788529,
+                "creation_time": 1627360139.0402205,
+                "auxillary_file_paths": [
+                    "results\\Test\\KillerBehaviour\\KillerBehaviour-999959.pt"
+                ]
+            },
+            {
+                "steps": 1499996,
+                "file_path": "results\\Test\\KillerBehaviour\\KillerBehaviour-1499996.onnx",
+                "reward": -15.459742387587374,
+                "creation_time": 1627369034.1174395,
+                "auxillary_file_paths": [
+                    "results\\Test\\KillerBehaviour\\KillerBehaviour-1499996.pt"
+                ]
+            },
+            {
+                "steps": 1999990,
+                "file_path": "results\\Test\\KillerBehaviour\\KillerBehaviour-1999990.onnx",
+                "reward": -14.592906940728426,
+                "creation_time": 1627379040.237303,
+                "auxillary_file_paths": [
+                    "results\\Test\\KillerBehaviour\\KillerBehaviour-1999990.pt"
+                ]
+            },
+            {
+                "steps": 2499992,
+                "file_path": "results\\Test\\KillerBehaviour\\KillerBehaviour-2499992.onnx",
+                "reward": -4.2945489175617695,
+                "creation_time": 1627391018.1806962,
+                "auxillary_file_paths": [
+                    "results\\Test\\KillerBehaviour\\KillerBehaviour-2499992.pt"
+                ]
+            },
+            {
+                "steps": 2560108,
+                "file_path": "results\\Test\\KillerBehaviour\\KillerBehaviour-2560108.onnx",
+                "reward": -13.4086397148824,
+                "creation_time": 1627392578.0274277,
+                "auxillary_file_paths": [
+                    "results\\Test\\KillerBehaviour\\KillerBehaviour-2560108.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2560108,
+            "file_path": "results\\Test\\KillerBehaviour.onnx",
+            "reward": -13.4086397148824,
+            "creation_time": 1627392578.0274277,
+            "auxillary_file_paths": [
+                "results\\Test\\KillerBehaviour\\KillerBehaviour-2560108.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
