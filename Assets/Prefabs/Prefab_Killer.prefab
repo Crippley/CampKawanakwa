@@ -315,10 +315,10 @@ MonoBehaviour:
   camperMaxYVelocity: 14
   camperMinYVelocity: -14
   killCamperReward: 1
-  seeingCamperDistanceBasedReward: 0.001
-  timeReward: -0.001
+  timeReward: -0.0001
   findCamperReward: 0.3
   loseCamperReward: -0.15
+  seeingCamperDistanceBasedReward: 0.001
   behaviorType: 0
 --- !u!114 &2116270808707389165
 MonoBehaviour:

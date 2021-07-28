@@ -41,12 +41,12 @@ namespace Entities
 
         [Header("Currently active rewards")]
         [SerializeField] private float killCamperReward;
-        [SerializeField] private float seeingCamperDistanceBasedReward;
         [SerializeField] private float timeReward;
 
         [Header("Currently inactive rewards")]
         [SerializeField] private float findCamperReward;
         [SerializeField] private float loseCamperReward;
+        [SerializeField] private float seeingCamperDistanceBasedReward;
 
         [SerializeField] private BehaviorType behaviorType;
 
@@ -113,9 +113,9 @@ namespace Entities
                 sensor.AddObservation((camperVelocity.x - camperMinXVelocity) / (camperMaxXVelocity - camperMinXVelocity));
                 sensor.AddObservation((camperVelocity.y - camperMinYVelocity) / (camperMaxYVelocity - camperMinYVelocity));
 
-                float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentMaintainCamperVisionRewards += reward;
+                //float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                //AddReward(reward);
+                //AgentManager.Instance.currentMaintainCamperVisionRewards += reward;
             }
         }
 

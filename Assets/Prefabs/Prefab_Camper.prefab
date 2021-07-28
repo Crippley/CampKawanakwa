@@ -314,14 +314,14 @@ MonoBehaviour:
   killerMinXVelocity: -12
   killerMaxYVelocity: 12
   killerMinYVelocity: -12
+  objectivePickupReward: 0.5
+  objectiveDropOffReward: 0.5
+  deathReward: -0.5
+  timeReward: -0.0001
   seeingCamperDistanceBasedReward: -0.001
   seeingObjectiveDistanceBasedReward: 0.001
-  objectivePickupReward: 0.5
-  objectiveDropOffReward: 0.75
   seeingDropOffZoneDistanceBasedReward: 0.001
   seeingKillerDistanceBasedReward: -0.001
-  deathReward: -0.5
-  timeReward: -0.001
   objectiveFoundReward: 0.2
   objectiveLostReward: -0.1
   dropOffZoneFoundReward: 0.2

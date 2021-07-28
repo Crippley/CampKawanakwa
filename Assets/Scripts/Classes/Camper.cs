@@ -40,16 +40,16 @@ namespace Entities
         [SerializeField] private float killerMinYVelocity = -12f;
 
         [Header("Currently active rewards")]
-        [SerializeField] private float seeingCamperDistanceBasedReward;
-        [SerializeField] private float seeingObjectiveDistanceBasedReward;
         [SerializeField] private float objectivePickupReward;
         [SerializeField] private float objectiveDropOffReward;
-        [SerializeField] private float seeingDropOffZoneDistanceBasedReward;
-        [SerializeField] private float seeingKillerDistanceBasedReward;
         [SerializeField] private float deathReward;
         [SerializeField] private float timeReward;
 
         [Header("Currently inactive rewards")]
+        [SerializeField] private float seeingCamperDistanceBasedReward;
+        [SerializeField] private float seeingObjectiveDistanceBasedReward;
+        [SerializeField] private float seeingDropOffZoneDistanceBasedReward;
+        [SerializeField] private float seeingKillerDistanceBasedReward;
         [SerializeField] private float objectiveFoundReward;
         [SerializeField] private float objectiveLostReward;
         [SerializeField] private float dropOffZoneFoundReward;
@@ -174,26 +174,26 @@ namespace Entities
                 sensor.AddObservation((camperVelocity.x - minXVelocity) / (maxXVelocity - minXVelocity));
                 sensor.AddObservation((camperVelocity.y - minYVelocity) / (maxYVelocity - minYVelocity));
 
-                float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
+                //float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                //AddReward(reward);
             }
 
             foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
-                float reward = seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentObjectiveMaintainedVisionRewards += reward;
+                //float reward = seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                //AddReward(reward);
+                //AgentManager.Instance.currentObjectiveMaintainedVisionRewards += reward;
             }
 
             foreach (KeyValuePair<DropOffZone, List<Collider2D>> value in visibleDropOffZones)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
-                float reward = seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentDropOffZoneMaintainedVisionRewards += reward;
+                //float reward = seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                //AddReward(reward);
+                //AgentManager.Instance.currentDropOffZoneMaintainedVisionRewards += reward;
             }
 
             foreach (KeyValuePair<Player, List<Collider2D>> value in visibleKillers)
@@ -205,9 +205,9 @@ namespace Entities
                 sensor.AddObservation((killerVelocity.x - killerMinXVelocity) / (killerMaxXVelocity - killerMinXVelocity));
                 sensor.AddObservation((killerVelocity.y - killerMinYVelocity) / (killerMaxYVelocity - killerMinYVelocity));
 
-                float reward = seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentKillerMaintainedVisionRewards += reward;
+                //float reward = seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                //AddReward(reward);
+                //AgentManager.Instance.currentKillerMaintainedVisionRewards += reward;
             }
 
             sensor.AddObservation(heldItem != null);
