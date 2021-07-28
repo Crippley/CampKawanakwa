@@ -152,7 +152,7 @@ namespace Entities
 
         private void FixedUpdate() 
         {
-            rb.AddForce(movementVector * movementSpeed, ForceMode2D.Impulse);
+            rb.AddRelativeForce(movementVector * movementSpeed, ForceMode2D.Impulse);
             transform.rotation = Quaternion.Slerp(transform.rotation, turningRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
