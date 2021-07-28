@@ -310,6 +310,10 @@ MonoBehaviour:
   minXVelocity: -12
   maxYVelocity: 12
   minYVelocity: -12
+  camperMaxXVelocity: 14
+  camperMinXVelocity: -14
+  camperMaxYVelocity: 14
+  camperMinYVelocity: -14
   killCamperReward: 1
   seeingCamperDistanceBasedReward: 0.001
   timeReward: -0.001
@@ -329,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 7
+    VectorObservationSize: 13
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3
