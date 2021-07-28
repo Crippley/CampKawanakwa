@@ -41,6 +41,7 @@ namespace Entities
 
         [Header("Currently active rewards")]
         [SerializeField] private float killCamperReward;
+        [SerializeField] private float killCamperWithItemReward;
         [SerializeField] private float seeingCamperDistanceBasedReward;
         [SerializeField] private float timeReward;
 
@@ -68,10 +69,16 @@ namespace Entities
 
             if (collidingCamper)
             {
+                float reward;
+                if (collidingCamper.HeldItem != null)
+                    reward = killCamperWithItemReward;
+                else
+                    reward = killCamperReward;
+
                 visibleCampers.Remove(collidingCamper);
                 collidingCamper.GetKilled();
 
-                AddReward(killCamperReward);
+                AddReward(reward);
                 AgentManager.Instance.currentKillRewards += killCamperReward;
 
                 killedCamperCount++;
