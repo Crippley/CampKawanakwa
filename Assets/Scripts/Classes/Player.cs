@@ -9,14 +9,13 @@ using System;
 
 namespace Entities
 {
-    public class Player : Agent, IDetectionTriggerHandler
+    public class Player : Agent
     {
         #region Vars
         public Rigidbody2D rb;
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
-        [SerializeField] private float maxSeeingDistance;
 
         [Header("Position min/max")]
         [SerializeField] private float maxXPosition = 11f;
@@ -32,22 +31,9 @@ namespace Entities
         [SerializeField] private float maxYVelocity = 12f;
         [SerializeField] private float minYVelocity = -12f;
 
-        [Header("Camper velocity min/max")]
-        [SerializeField] private float camperMaxXVelocity = 14f;
-        [SerializeField] private float camperMinXVelocity = -14f;
-
-        [SerializeField] private float camperMaxYVelocity = 14f;
-        [SerializeField] private float camperMinYVelocity = -14f;
-
         [Header("Currently active rewards")]
         [SerializeField] private float killCamperReward;
-        [SerializeField] private float killCamperWithItemReward;
         [SerializeField] private float timeReward;
-
-        [Header("Currently inactive rewards")]
-        [SerializeField] private float findCamperReward;
-        [SerializeField] private float loseCamperReward;
-        [SerializeField] private float seeingCamperDistanceBasedReward;
 
         [SerializeField] private BehaviorType behaviorType;
 
@@ -69,16 +55,10 @@ namespace Entities
 
             if (collidingCamper)
             {
-                float reward;
-                if (collidingCamper.HeldItem != null)
-                    reward = killCamperWithItemReward;
-                else
-                    reward = killCamperReward;
-
                 visibleCampers.Remove(collidingCamper);
                 collidingCamper.GetKilled();
 
-                AddReward(reward);
+                AddReward(killCamperReward);
                 AgentManager.Instance.currentKillRewards += killCamperReward;
 
                 killedCamperCount++;
@@ -110,22 +90,6 @@ namespace Entities
 
             sensor.AddObservation((rb.velocity.x - minXVelocity) / (maxXVelocity - minXVelocity));
             sensor.AddObservation((rb.velocity.y - minYVelocity) / (maxYVelocity - minYVelocity));
-
-            foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
-            {
-                sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
-
-                Vector3 camperVelocity = value.Key.rb.velocity;
-
-                sensor.AddObservation((camperVelocity.x - camperMinXVelocity) / (camperMaxXVelocity - camperMinXVelocity));
-                sensor.AddObservation((camperVelocity.y - camperMinYVelocity) / (camperMaxYVelocity - camperMinYVelocity));
-
-                sensor.AddObservation(value.Key.HeldItem != null);
-
-                //float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                //AddReward(reward);
-                //AgentManager.Instance.currentMaintainCamperVisionRewards += reward;
-            }
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)
@@ -165,53 +129,6 @@ namespace Entities
             transform.rotation = Quaternion.Slerp(transform.rotation, turningRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
-        #endregion
-
-        #region IDetectionTriggerHandler methods
-        public void OnEnterDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
-        {
-            Camper detectedCamper = detectedObject.GetComponent<Camper>();
-
-            if(detectedCamper == null)
-                return;
-
-            if (!visibleCampers.ContainsKey(detectedCamper))
-                visibleCampers.Add(detectedCamper, new List<Collider2D>());
-
-            if (visibleCampers[detectedCamper].Contains(detectingCollider))
-                return;
-
-            visibleCampers[detectedCamper].Add(detectingCollider);
-
-            // NOTE: Reason why we double-up on the reward is because we want the killer to turn towards the camper if he detects him via proximity or to catch up to him if he detects with via vision
-            //AddReward(findCamperReward);
-            //AgentManager.Instance.currentFindCamperRewards += findCamperReward;
-        }
-
-        public void OnLeaveDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
-        {
-            Camper detectedCamper = detectedObject.GetComponent<Camper>();
-
-            if(detectedCamper == null)
-                return;
-
-            List<Collider2D> colliders;
-
-            if (!visibleCampers.TryGetValue(detectedCamper, out colliders))
-                return;
-                
-            if (colliders.Count > 1)
-                visibleCampers[detectedCamper].Remove(detectingCollider);
-            else
-                visibleCampers.Remove(detectedCamper);
-
-            // NOTE: Reason why we double-up on the punishment is because we want the killer to turn try to catch up to the camper AND keep them in their vision
-            /*if (detectedCamper.gameObject.activeInHierarchy)
-            {
-                AddReward(loseCamperReward);
-                AgentManager.Instance.currentLoseCamperRewards += loseCamperReward;
-            }*/
-        }
         #endregion
     }
 }

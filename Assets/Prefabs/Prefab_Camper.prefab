@@ -1,75 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1475659537105624902
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3291073325178428427}
-  - component: {fileID: 6771181336024925786}
-  - component: {fileID: 1083997345336558201}
-  m_Layer: 12
-  m_Name: ProximityDetector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3291073325178428427
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475659537105624902}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6634587654486433759}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &6771181336024925786
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475659537105624902}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
---- !u!114 &1083997345336558201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475659537105624902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d839f75ce9f7694ab6971d96e54655e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionTriggerHandlerHolder: {fileID: 3858710207979766044}
-  detectionCollider: {fileID: 6771181336024925786}
-  detectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 1920
-  useRaycastingToMaintainDetection: 0
-  ignoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 4608
-  debugRaycastColor: {r: 0.13171947, g: 0.5517615, b: 0.754717, a: 1}
 --- !u!1 &3161028760992507153
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +29,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 6634587654486433759}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3051190165666267645
 SpriteRenderer:
@@ -186,8 +116,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3291073325178428427}
-  - {fileID: 10189610845022802}
   - {fileID: 945967710620837056}
   - {fileID: 5971778690166104080}
   m_Father: {fileID: 0}
@@ -301,7 +229,6 @@ MonoBehaviour:
   rb: {fileID: 6611187521747357997}
   movementSpeed: 7
   rotationSpeed: 8
-  maxSeeingDistance: 10
   maxXPosition: 11
   minXPosition: -11
   maxYPosition: 18
@@ -310,38 +237,11 @@ MonoBehaviour:
   minXVelocity: -14
   maxYVelocity: 14
   minYVelocity: -14
-  killerMaxXVelocity: 12
-  killerMinXVelocity: -12
-  killerMaxYVelocity: 12
-  killerMinYVelocity: -12
   objectivePickupReward: 0.5
   objectiveDropOffReward: 0.5
   deathReward: -0.5
+  deathTeamReward: -0.25
   timeReward: -0.0001
-  seeingCamperDistanceBasedReward: -0.001
-  seeingObjectiveDistanceBasedReward: 0.001
-  seeingDropOffZoneDistanceBasedReward: 0.001
-  seeingKillerDistanceBasedReward: -0.001
-  objectiveFoundReward: 0.2
-  objectiveLostReward: -0.1
-  dropOffZoneFoundReward: 0.2
-  dropOffZoneLostReward: -0.1
-  seeingKillerReward: -0.1
-  loosingKillerReward: 0.05
-  noHeldItemIgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 4608
-  heldItemIgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 5120
-  heldItemLayerMaskAfterPickup:
-    serializedVersion: 2
-    m_Bits: 4096
-  heldItemLayerMaskAfterDropoff:
-    serializedVersion: 2
-    m_Bits: 1024
-  visionZone: {fileID: 2285601926518422728}
-  closeProximityZone: {fileID: 1083997345336558201}
 --- !u!114 &9208926796268904186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,8 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 18
-    NumStackedVectorObservations: 3
+    VectorObservationSize: 5
+    NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
       BranchSizes: 
@@ -384,90 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 3
+  DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!1 &4551331404267890149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10189610845022802}
-  - component: {fileID: 6166970194341569901}
-  - component: {fileID: 2285601926518422728}
-  m_Layer: 12
-  m_Name: VisionDetector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &10189610845022802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4551331404267890149}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6634587654486433759}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &6166970194341569901
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4551331404267890149}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0}
-      - {x: 3, y: 10}
-      - {x: -3, y: 10}
---- !u!114 &2285601926518422728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4551331404267890149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d839f75ce9f7694ab6971d96e54655e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionTriggerHandlerHolder: {fileID: 3858710207979766044}
-  detectionCollider: {fileID: 6166970194341569901}
-  detectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 1920
-  useRaycastingToMaintainDetection: 1
-  ignoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 4608
-  debugRaycastColor: {r: 0.13171947, g: 0.5517615, b: 0.754717, a: 1}
 --- !u!1001 &7271131944811607917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -481,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
       propertyPath: m_LocalPosition.x

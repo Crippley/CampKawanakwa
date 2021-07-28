@@ -1776,8 +1776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0cc70b9d8acf444b500588818af709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winReward: 1
-  lossReward: 1
+  winReward: 5
+  lossReward: -2
   maxStepCountPerEpisode: 30000
   maxEpisodes: 0
   killer: {fileID: 290203831}
