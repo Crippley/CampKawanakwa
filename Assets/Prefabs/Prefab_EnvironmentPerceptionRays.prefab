@@ -51,7 +51,7 @@ MonoBehaviour:
   m_RayLength: 10
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1928
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_RayLength: 10
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1928
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
