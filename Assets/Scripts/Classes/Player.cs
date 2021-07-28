@@ -120,6 +120,8 @@ namespace Entities
                 sensor.AddObservation((camperVelocity.x - camperMinXVelocity) / (camperMaxXVelocity - camperMinXVelocity));
                 sensor.AddObservation((camperVelocity.y - camperMinYVelocity) / (camperMaxYVelocity - camperMinYVelocity));
 
+                sensor.AddObservation(value.Key.HeldItem != null);
+
                 //float reward = seeingCamperDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
                 //AddReward(reward);
                 //AgentManager.Instance.currentMaintainCamperVisionRewards += reward;
