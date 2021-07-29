@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7.5
 --- !u!114 &1036356768785301955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,8 +128,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0}
-      - {x: 3, y: 10}
-      - {x: -3, y: 10}
+      - {x: 7, y: 14}
+      - {x: -7, y: 14}
 --- !u!114 &3532999369571206687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,10 +314,10 @@ MonoBehaviour:
   camperMinXVelocity: -14
   camperMaxYVelocity: 14
   camperMinYVelocity: -14
-  killCamperReward: 1
-  killCamperWithItemReward: 1.5
-  seeingCamperDistanceBasedReward: 0.001
-  timeReward: -0.001
+  killCamperReward: 0.3
+  killCamperWithItemReward: 0.4
+  seeingCamperDistanceBasedReward: 0.0001
+  timeReward: -0.00001
   findCamperReward: 0.3
   loseCamperReward: -0.15
   behaviorType: 0

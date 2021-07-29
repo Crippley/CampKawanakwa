@@ -123,5 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f501750b10ef4c64788a6ec5daf293f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeCollisionReward: -0.01
-  negativeCollisionRewardRepetitionInterval: -0.01
+  negativeCollisionReward: -0.1
+  negativeCollisionRewardRepetitionInterval: -0.1

@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7.5
 --- !u!114 &1083997345336558201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,14 +314,14 @@ MonoBehaviour:
   killerMinXVelocity: -12
   killerMaxYVelocity: 12
   killerMinYVelocity: -12
-  seeingCamperDistanceBasedReward: -0.001
-  seeingObjectiveDistanceBasedReward: 0.001
-  objectivePickupReward: 0.5
-  objectiveDropOffReward: 0.75
-  seeingDropOffZoneDistanceBasedReward: 0.001
-  seeingKillerDistanceBasedReward: -0.001
-  deathReward: -0.5
-  timeReward: -0.001
+  seeingCamperDistanceBasedReward: -0.0001
+  seeingObjectiveDistanceBasedReward: 0.0001
+  objectivePickupReward: 0.15
+  objectiveDropOffReward: 0.15
+  seeingDropOffZoneDistanceBasedReward: 0.0001
+  seeingKillerDistanceBasedReward: -0.0001
+  deathReward: -0.3
+  timeReward: -0.00001
   objectiveFoundReward: 0.2
   objectiveLostReward: -0.1
   dropOffZoneFoundReward: 0.2
@@ -444,8 +444,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0}
-      - {x: 3, y: 10}
-      - {x: -3, y: 10}
+      - {x: 7, y: 14}
+      - {x: -7, y: 14}
 --- !u!114 &2285601926518422728
 MonoBehaviour:
   m_ObjectHideFlags: 0
