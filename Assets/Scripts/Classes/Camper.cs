@@ -67,8 +67,6 @@ namespace Entities
         [SerializeField] private DetectionZone closeProximityZone;
 
         private Dictionary<Camper, List<Collider2D>> visibleCampers = new Dictionary<Camper, List<Collider2D>>();
-        private Dictionary<Objective, List<Collider2D>> visibleObjectives = new Dictionary<Objective, List<Collider2D>>();
-        private Dictionary<DropOffZone, List<Collider2D>> visibleDropOffZones = new Dictionary<DropOffZone, List<Collider2D>>();
         private Dictionary<Player, List<Collider2D>> visibleKillers = new Dictionary<Player, List<Collider2D>>();
 
         private Vector3 movementVector;
@@ -97,7 +95,8 @@ namespace Entities
             closeProximityZone.gameObject.SetActive(false);
             closeProximityZone.gameObject.SetActive(true);
 
-            visibleObjectives.Remove(item);
+            if (AgentManager.Instance.knownObjectives.ContainsKey(item))
+                AgentManager.Instance.knownObjectives.Remove(item);
         }
 
         public void RemoveItem(bool success)
@@ -109,8 +108,6 @@ namespace Entities
             closeProximityZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
             closeProximityZone.gameObject.SetActive(false);
             closeProximityZone.gameObject.SetActive(true);
-            
-            visibleDropOffZones.Clear();
 
             if (heldItem)
                 heldItem.transform.parent = heldItem.initialParent;
@@ -152,6 +149,8 @@ namespace Entities
             
             Debug.Log("Camper " + name + "'s episode started");
 
+            visibleKillers.Clear();
+            visibleCampers.Clear();
             transform.position = AgentManager.Instance.GetRandomCamperSpawnPosition();
             heldItem = null;
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
@@ -178,25 +177,31 @@ namespace Entities
                 AddReward(reward);
             }
 
-            foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
+            foreach (KeyValuePair<Objective, Vector2> value in AgentManager.Instance.knownObjectives)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
-                float reward = seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentObjectiveMaintainedVisionRewards += reward;
+                if (Vector2.Distance(transform.position, value.Value) < maxSeeingDistance)
+                {
+                    float reward = seeingObjectiveDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                    AddReward(reward);
+                    AgentManager.Instance.currentObjectiveMaintainedVisionRewards += reward;
+                }
             }
 
-            foreach (KeyValuePair<DropOffZone, List<Collider2D>> value in visibleDropOffZones)
+            foreach (KeyValuePair<DropOffZone, Vector2> value in AgentManager.Instance.knownZones)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
-                float reward = seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentDropOffZoneMaintainedVisionRewards += reward;
+                if (Vector2.Distance(transform.position, value.Value) < maxSeeingDistance)
+                {
+                    float reward = seeingDropOffZoneDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                    AddReward(reward);
+                    AgentManager.Instance.currentDropOffZoneMaintainedVisionRewards += reward;
+                }
             }
 
-            foreach (KeyValuePair<Player, List<Collider2D>> value in visibleKillers)
+            foreach (KeyValuePair<Player, Vector2> value in AgentManager.Instance.visibleKillers)
             {
                 sensor.AddObservation(Vector3.SignedAngle(transform.forward, value.Key.transform.position - transform.position, Vector3.forward) / 180f);
 
@@ -205,9 +210,12 @@ namespace Entities
                 sensor.AddObservation((killerVelocity.x - killerMinXVelocity) / (killerMaxXVelocity - killerMinXVelocity));
                 sensor.AddObservation((killerVelocity.y - killerMinYVelocity) / (killerMaxYVelocity - killerMinYVelocity));
 
-                float reward = seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
-                AddReward(reward);
-                AgentManager.Instance.currentKillerMaintainedVisionRewards += reward;
+                if (Vector2.Distance(transform.position, value.Value) < maxSeeingDistance)
+                {
+                    float reward = seeingKillerDistanceBasedReward * (maxSeeingDistance - Mathf.Clamp(Vector3.Distance(transform.position, value.Key.transform.position), 0, maxSeeingDistance - 1));
+                    AddReward(reward);
+                    AgentManager.Instance.currentKillerMaintainedVisionRewards += reward;
+                }
             }
 
             sensor.AddObservation(heldItem != null);
@@ -278,16 +286,10 @@ namespace Entities
                     if (detectedObjective.IsCompleted || !detectedObjective.IsActive)
                         return;
 
-                    if (!visibleObjectives.ContainsKey(detectedObjective))
-                        visibleObjectives.Add(detectedObjective, new List<Collider2D>());
-                    else if (visibleObjectives[detectedObjective].Contains(detectingCollider))
-                        return;
-
-                    visibleObjectives[detectedObjective].Add(detectingCollider);
-
-                    // NOTE: Reason why we double-up on the reward is because we want the campers to turn towards the objective after finding it
-                    //AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveFoundReward);
-                    //AgentManager.Instance.currentObjectiveFoundRewards += objectiveFoundReward;
+                    if (!AgentManager.Instance.knownObjectives.ContainsKey(detectedObjective))
+                        AgentManager.Instance.knownObjectives.Add(detectedObjective, detectedObjective.transform.position);
+                    else
+                        AgentManager.Instance.knownObjectives[detectedObjective] = detectedObjective.transform.position;
                 }
                 else
                 {
@@ -295,16 +297,10 @@ namespace Entities
 
                     if (detectedDropOffZone != null)
                     {
-                        if (!visibleDropOffZones.ContainsKey(detectedDropOffZone))
-                            visibleDropOffZones.Add(detectedDropOffZone, new List<Collider2D>());
-                        else if (visibleDropOffZones[detectedDropOffZone].Contains(detectingCollider))
-                            return;
-
-                        visibleDropOffZones[detectedDropOffZone].Add(detectingCollider);
-
-                        // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                        //AddReward(dropOffZoneFoundReward);
-                        //AgentManager.Instance.currentDropOffZoneFoundRewards += dropOffZoneFoundReward;
+                        if (!AgentManager.Instance.knownZones.ContainsKey(detectedDropOffZone))
+                            AgentManager.Instance.knownZones.Add(detectedDropOffZone, detectedDropOffZone.transform.position);
+                        else
+                            AgentManager.Instance.knownZones[detectedDropOffZone] = detectedDropOffZone.transform.position;
                     }
                     else
                     {
@@ -320,9 +316,10 @@ namespace Entities
 
                         visibleKillers[detectedKiller].Add(detectingCollider);
 
-                        // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                        //AddReward(seeingKillerReward);
-                        //AgentManager.Instance.currentKillerFoundRewards += seeingKillerReward;
+                        if (!AgentManager.Instance.visibleKillers.ContainsKey(detectedKiller))
+                            AgentManager.Instance.visibleKillers.Add(detectedKiller, detectedKiller.transform.position);
+                        else
+                            AgentManager.Instance.visibleKillers[detectedKiller] = detectedKiller.transform.position;
                     }
                 }
             }
@@ -349,71 +346,42 @@ namespace Entities
             }
             else
             {
-                Objective detectedObjective = detectedObject.GetComponent<Objective>();
+                Player detectedKiller = detectedObject.GetComponent<Player>();
 
-                if (detectedObjective != null)
+                if (detectedKiller == null)
+                    return;
+
+                List<Collider2D> colliders;
+
+                if (!visibleKillers.TryGetValue(detectedKiller, out colliders))
+                    return;
+                    
+                if (colliders.Count > 1)
                 {
-                    List<Collider2D> colliders;
-
-                    if (!visibleObjectives.TryGetValue(detectedObjective, out colliders))
-                        return;
-                
-                    if (colliders.Count > 1)
-                        visibleObjectives[detectedObjective].Remove(detectingCollider);
-                    else
-                        visibleObjectives.Remove(detectedObjective);
-
-                    // NOTE: Reason why we double-up on the reward is because we want the campers to look at and pick up the objectives
-                    /*if (!detectedObjective.IsCompleted || detectedObjective.IsActive)
-                    {
-                        AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveLostReward);
-                        AgentManager.Instance.currentObjectiveLostRewards += objectiveLostReward;
-                    }*/
+                    visibleKillers[detectedKiller].Remove(detectingCollider);
                 }
                 else
                 {
-                    DropOffZone detectedDropOffZone = detectedObject.GetComponent<DropOffZone>();
+                    visibleKillers.Remove(detectedKiller);
+                    List<Camper> allCampers = AgentManager.Instance.campers;
 
-                    if (detectedDropOffZone != null)
+                    bool keepGlobalKillerReference = false;
+                    for (int i = 0; i < allCampers.Count; i++)
                     {
-                        List<Collider2D> colliders;
-
-                        if (!visibleDropOffZones.TryGetValue(detectedDropOffZone, out colliders))
-                            return;
-                    
-                        if (colliders.Count > 1)
-                            visibleDropOffZones[detectedDropOffZone].Remove(detectingCollider);
-                        else
-                            visibleDropOffZones.Remove(detectedDropOffZone);
-
-                        // NOTE: Reason why we double-up on the reward is because we want the campers not let the killer approach them
-                        //AddReward(dropOffZoneLostReward);
-                        //AgentManager.Instance.currentDropOffZoneLostRewards += dropOffZoneLostReward;
+                        if (allCampers[i].CanSeeKiller(detectedKiller))
+                            keepGlobalKillerReference = true;
                     }
-                    else
-                    {
-                        Player detectedKiller = detectedObject.GetComponent<Player>();
 
-                        if (detectedKiller == null)
-                            return;
-
-                        List<Collider2D> colliders;
-
-                        if (!visibleKillers.TryGetValue(detectedKiller, out colliders))
-                            return;
-                    
-                        if (colliders.Count > 1)
-                            visibleKillers[detectedKiller].Remove(detectingCollider);
-                        else
-                            visibleKillers.Remove(detectedKiller);
-
-                        // NOTE: Reason why we double-up on the reward is because we want the campers to run away from the killer
-                        //AddReward(loosingKillerReward);
-                        //AgentManager.Instance.totalKillerLostRewards += loosingKillerReward;
-                    }
+                    if (!keepGlobalKillerReference)
+                        AgentManager.Instance.visibleKillers.Remove(detectedKiller);
                 }
             }   
         }
         #endregion
+
+        public bool CanSeeKiller(Player killer)
+        {
+            return visibleKillers.ContainsKey(killer);
+        }
     }
 }

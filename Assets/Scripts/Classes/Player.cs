@@ -97,8 +97,8 @@ namespace Entities
 
             Debug.Log("Killer's episode started");
             
+            visibleCampers.Clear();
             transform.position = AgentManager.Instance.GetRandomKillerSpawnPosition();
-            visibleCampers = new Dictionary<Camper, List<Collider2D>>();
             killedCamperCount = 0;
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
         }

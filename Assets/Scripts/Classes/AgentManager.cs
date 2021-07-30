@@ -39,6 +39,9 @@ namespace Core
         [NonSerialized] public int currentEpisodeCount = 0;
 
         [NonSerialized] public SimpleMultiAgentGroup camperAgentGroup;
+        [NonSerialized] public Dictionary<Objective, Vector2> knownObjectives = new Dictionary<Objective, Vector2>();
+        [NonSerialized] public Dictionary<DropOffZone, Vector2> knownZones = new Dictionary<DropOffZone, Vector2>();
+        [NonSerialized] public Dictionary<Player, Vector2> visibleKillers = new Dictionary<Player, Vector2>();
 
         public bool continueLooping;
 
@@ -156,6 +159,10 @@ namespace Core
 
         private void ResetEpisodeValues()
         {
+            knownObjectives.Clear();
+            knownZones.Clear();
+            visibleKillers.Clear();
+
             totalCollisionRewards += currentCollisionRewards;
             currentCollisionRewards = 0f;
             
