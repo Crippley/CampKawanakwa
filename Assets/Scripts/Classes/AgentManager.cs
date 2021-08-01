@@ -53,18 +53,10 @@ namespace Core
 
         [Header("Current episode rewards")]
         [Header("Misc rewards")]
-        public float currentTimeoutRewards;
         public float currentCollisionRewards;
 
         [Header("Killer rewards")]
-        public float currentKillerWinRewards;
-        public float currentKillerLossRewards;
-
         public float currentKillRewards;
-
-        public float currentFindCamperRewards;
-        public float currentLoseCamperRewards;
-        public float currentMaintainCamperVisionRewards;
 
         [Header("Camper rewards")]
         public float currentObjectivePickedUpRewards;
@@ -72,19 +64,16 @@ namespace Core
 
         public float currentDeathRewards;
 
-        public float currentCamperWinRewards;
-        public float currentCamperLossRewards;
-
         [Header("Total rewards")]
         [Header("Misc rewards")]
-        public float totalTimeoutRewards;
+        public float totalTimeouts;
         public float totalCollisionRewards;
 
         [Header("Killer rewards")]
         public float totalKillRewards;
 
-        public float totalKillerWinRewards;
-        public float totalKillerLossRewards;
+        public float totalKillerWins;
+        public float totalKillerLosses;
 
         [Header("Camper rewards")]
         public float totalObjectivePickedUpRewards;
@@ -92,8 +81,8 @@ namespace Core
 
         public float totalDeathRewards;
 
-        public float totalCamperWinRewards;
-        public float totalCamperLossRewards;
+        public float totalCamperWins;
+        public float totalCamperLosses;
 
         private int currentMaxStepCountPerEpisode = 0;
         #endregion
@@ -141,9 +130,7 @@ namespace Core
         private void ResetEpisodeValues()
         {
             #region Misc rewards
-            totalTimeoutRewards += currentTimeoutRewards;
-            statsRecorder.Add("TimeOutRewards", totalTimeoutRewards, StatAggregationMethod.MostRecent);
-            currentTimeoutRewards = 0f;
+            statsRecorder.Add("TimeOutRewards", totalTimeouts, StatAggregationMethod.MostRecent);
 
             totalCollisionRewards += currentCollisionRewards;
             statsRecorder.Add("CollisionRewards", totalCollisionRewards, StatAggregationMethod.MostRecent);
@@ -155,13 +142,9 @@ namespace Core
             statsRecorder.Add("Agent/Killer/KillRewards", totalKillRewards, StatAggregationMethod.MostRecent);
             currentKillRewards = 0f;
 
-            totalKillerWinRewards += currentKillerWinRewards;
-            statsRecorder.Add("Agent/Killer/VictoryRewards", totalKillerWinRewards, StatAggregationMethod.MostRecent);
-            currentKillerWinRewards = 0f;
+            statsRecorder.Add("Agent/Killer/VictoryRewards", totalKillerWins, StatAggregationMethod.MostRecent);
 
-            totalKillerLossRewards += currentKillerLossRewards;
-            statsRecorder.Add("Agent/Killer/DefeatRewards", totalKillerLossRewards, StatAggregationMethod.MostRecent);
-            currentKillerLossRewards = 0f;
+            statsRecorder.Add("Agent/Killer/DefeatRewards", totalKillerLosses, StatAggregationMethod.MostRecent);
             #endregion
 
             #region Camper rewards
@@ -177,13 +160,9 @@ namespace Core
             statsRecorder.Add("Agent/Camper/DeathRewards", totalDeathRewards, StatAggregationMethod.MostRecent);
             currentDeathRewards = 0f;
 
-            totalCamperWinRewards += currentCamperWinRewards;
-            statsRecorder.Add("Agent/Camper/VictoryRewards", totalCamperWinRewards, StatAggregationMethod.MostRecent);
-            currentCamperWinRewards = 0f;
+            statsRecorder.Add("Agent/Camper/VictoryRewards", totalCamperWins, StatAggregationMethod.MostRecent);
 
-            totalCamperLossRewards += currentCamperLossRewards;
-            statsRecorder.Add("Agent/Camper/DefeatRewards", totalCamperLossRewards, StatAggregationMethod.MostRecent);
-            currentCamperLossRewards = 0f;
+            statsRecorder.Add("Agent/Camper/DefeatRewards", totalCamperLosses, StatAggregationMethod.MostRecent);
             #endregion
         }
         #endregion
@@ -326,19 +305,19 @@ namespace Core
 
                 if (IsResetConditionMet)
                 {
-                    currentTimeoutRewards += timeoutReward;
+                    totalTimeouts++;
                 }
                 else
                 {
                     if (camperReward > 0f)
                     {
-                        currentCamperWinRewards += camperReward;
-                        currentKillerLossRewards += killerReward;
+                        totalCamperWins++;
+                        totalKillerLosses++;
                     }
                     else
                     {
-                        currentCamperLossRewards += camperReward;
-                        currentKillerWinRewards += killerReward;
+                        totalCamperLosses++;
+                        totalKillerWins++;
                     }
                 }
 
