@@ -75,6 +75,7 @@ namespace Entities
             heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterPickup, 2);
 
             AgentManager.Instance.camperAgentGroup.AddGroupReward(objectivePickupReward);
+            AddReward(objectivePickupReward);
             AgentManager.Instance.currentObjectivePickedUpRewards += objectivePickupReward;
 
             visionZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
@@ -107,6 +108,7 @@ namespace Entities
                 if (success)
                 {
                     AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveDropOffReward);
+                    AddReward(objectiveDropOffReward);
                     AgentManager.Instance.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
                 }
                 else
@@ -123,6 +125,7 @@ namespace Entities
 
         public void GetKilled()
         {
+            AgentManager.Instance.camperAgentGroup.AddGroupReward(deathReward);
             AddReward(deathReward);
             AgentManager.Instance.currentDeathRewards += deathReward;
             RemoveItem(false);
