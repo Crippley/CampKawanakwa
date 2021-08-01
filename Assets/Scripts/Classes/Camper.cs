@@ -156,9 +156,6 @@ namespace Entities
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(2f * (Mathf.Clamp(transform.position.x, minXPosition, maxXPosition) - minXPosition) / (maxXPosition - minXPosition) - 1f);
-            sensor.AddObservation(2f * (Mathf.Clamp(transform.position.y, minYPosition, maxYPosition) - minYPosition) / (maxYPosition - minYPosition) - 1f);
-
             sensor.AddObservation(2f * (rb.velocity.x - minXVelocity) / (maxXVelocity - minXVelocity) - 1f);
             sensor.AddObservation(2f * (rb.velocity.y - minYVelocity) / (maxYVelocity - minYVelocity) - 1f);
 

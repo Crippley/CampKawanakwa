@@ -317,17 +317,6 @@ MonoBehaviour:
   objectivePickupReward: 0.5
   objectiveDropOffReward: 0.5
   deathReward: -0.5
-  timeReward: -0.0001
-  seeingCamperDistanceBasedReward: -0.001
-  seeingObjectiveDistanceBasedReward: 0.001
-  seeingDropOffZoneDistanceBasedReward: 0.001
-  seeingKillerDistanceBasedReward: -0.001
-  objectiveFoundReward: 0.2
-  objectiveLostReward: -0.1
-  dropOffZoneFoundReward: 0.2
-  dropOffZoneLostReward: -0.1
-  seeingKillerReward: -0.1
-  loosingKillerReward: 0.05
   noHeldItemIgnoreLayerMask:
     serializedVersion: 2
     m_Bits: 4608
@@ -355,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 25
+    VectorObservationSize: 23
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -384,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 3
+  DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
 --- !u!1 &4551331404267890149
 GameObject:
