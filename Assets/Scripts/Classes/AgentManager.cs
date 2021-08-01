@@ -164,6 +164,8 @@ namespace Core
 
             statsRecorder.Add("Agent/Camper/DefeatRewards", totalCamperLosses, StatAggregationMethod.MostRecent);
             #endregion
+
+            currentMaxStepCountPerEpisode += maxStepCountPerEpisode;
         }
         #endregion
 
@@ -175,7 +177,6 @@ namespace Core
         {
             if (Academy.Instance.StepCount > currentMaxStepCountPerEpisode)
             {
-                currentMaxStepCountPerEpisode += maxStepCountPerEpisode;
                 IsResetConditionMet = true;
                 InvokeEpisodeEnd();
             }
