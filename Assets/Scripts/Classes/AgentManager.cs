@@ -6,6 +6,7 @@ using Items;
 using System;
 using Unity.MLAgents;
 using Zones;
+using Environment.Training;
 
 #if UNITY_EDITOR
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Core
 
         public float winReward;
         public float lossReward;
+        public float timeoutReward;
         public int maxStepCountPerEpisode;
         public int maxEpisodes;
 
@@ -40,6 +42,8 @@ namespace Core
 
         [NonSerialized] public SimpleMultiAgentGroup camperAgentGroup;
 
+        [NonSerialized] public StatsRecorder statsRecorder;
+
         public bool continueLooping;
 
         [Header("Read only training values")]
@@ -49,6 +53,7 @@ namespace Core
 
         [Header("Current episode rewards")]
         [Header("Misc rewards")]
+        public float currentTimeoutRewards;
         public float currentCollisionRewards;
 
         [Header("Killer rewards")]
@@ -62,58 +67,33 @@ namespace Core
         public float currentMaintainCamperVisionRewards;
 
         [Header("Camper rewards")]
-        public float currentCamperWinRewards;
-        public float currentCamperLossRewards;
-
-        public float currentObjectiveFoundRewards;
-        public float currentObjectiveLostRewards;
         public float currentObjectivePickedUpRewards;
         public float currentObjectiveDroppedOffRewards;
-        public float currentObjectiveMaintainedVisionRewards;
-
-        public float currentDropOffZoneFoundRewards;
-        public float currentDropOffZoneLostRewards;
-        public float currentDropOffZoneMaintainedVisionRewards;
-
-        public float currentKillerFoundRewards;
-        public float currentKillerLostRewards;
-        public float currentKillerMaintainedVisionRewards;
 
         public float currentDeathRewards;
 
+        public float currentCamperWinRewards;
+        public float currentCamperLossRewards;
+
         [Header("Total rewards")]
         [Header("Misc rewards")]
+        public float totalTimeoutRewards;
         public float totalCollisionRewards;
 
         [Header("Killer rewards")]
+        public float totalKillRewards;
+
         public float totalKillerWinRewards;
         public float totalKillerLossRewards;
 
-        public float totalKillRewards;
-
-        public float totalFindCamperRewards;
-        public float totalLoseCamperRewards;
-        public float totalMaintainCamperVisionRewards;
-
         [Header("Camper rewards")]
-        public float totalCamperWinRewards;
-        public float totalCamperLossRewards;
-
-        public float totalObjectiveFoundRewards;
-        public float totalObjectiveLostRewards;
         public float totalObjectivePickedUpRewards;
         public float totalObjectiveDroppedOffRewards;
-        public float totalObjectiveMaintainedVisionRewards;
-
-        public float totalDropOffZoneFoundRewards;
-        public float totalDropOffZoneLostRewards;
-        public float totalDropOffZoneMaintainedVisionRewards;
-
-        public float totalKillerFoundRewards;
-        public float totalKillerLostRewards;
-        public float totalKillerMaintainedVisionRewards;
 
         public float totalDeathRewards;
+
+        public float totalCamperWinRewards;
+        public float totalCamperLossRewards;
 
         private int currentMaxStepCountPerEpisode = 0;
         #endregion
@@ -150,66 +130,68 @@ namespace Core
 
             Instance = this;
             camperAgentGroup = new SimpleMultiAgentGroup();
+            statsRecorder = Academy.Instance.StatsRecorder;
 
             InvokeEpisodeBegin();
         }
 
+        /// <summary>
+        /// Resets all tracked rewards values of the episode after adding them up to the total values and adding them to the tensorboard file.
+        /// </summary>
         private void ResetEpisodeValues()
         {
-            totalCollisionRewards += currentCollisionRewards;
-            currentCollisionRewards = 0f;
-            
-            totalKillerWinRewards += currentKillerWinRewards;
-            currentKillerWinRewards = 0f;
-            totalKillerLossRewards += currentKillerLossRewards;
-            currentKillerLossRewards = 0f;
+            #region Misc rewards
+            totalTimeoutRewards += currentTimeoutRewards;
+            statsRecorder.Add("TimeOutRewards", totalTimeoutRewards, StatAggregationMethod.MostRecent);
+            currentTimeoutRewards = 0f;
 
+            totalCollisionRewards += currentCollisionRewards;
+            statsRecorder.Add("CollisionRewards", totalCollisionRewards, StatAggregationMethod.MostRecent);
+            currentCollisionRewards = 0f;
+            #endregion
+
+            #region Killer rewards
             totalKillRewards += currentKillRewards;
+            statsRecorder.Add("Agent/Killer/KillRewards", totalKillRewards, StatAggregationMethod.MostRecent);
             currentKillRewards = 0f;
 
-            totalFindCamperRewards += currentFindCamperRewards;
-            currentFindCamperRewards = 0f;
-            totalLoseCamperRewards += currentLoseCamperRewards;
-            currentLoseCamperRewards = 0f;
-            totalMaintainCamperVisionRewards += currentMaintainCamperVisionRewards;
-            currentMaintainCamperVisionRewards = 0f;
+            totalKillerWinRewards += currentKillerWinRewards;
+            statsRecorder.Add("Agent/Killer/VictoryRewards", totalKillerWinRewards, StatAggregationMethod.MostRecent);
+            currentKillerWinRewards = 0f;
 
-            totalCamperWinRewards += currentCamperWinRewards;
-            currentCamperWinRewards = 0f;
-            totalCamperLossRewards += currentCamperLossRewards;
-            currentCamperLossRewards = 0f;
+            totalKillerLossRewards += currentKillerLossRewards;
+            statsRecorder.Add("Agent/Killer/DefeatRewards", totalKillerLossRewards, StatAggregationMethod.MostRecent);
+            currentKillerLossRewards = 0f;
+            #endregion
 
-            totalObjectiveFoundRewards += currentObjectiveFoundRewards;
-            currentObjectiveFoundRewards = 0f;
-            totalObjectiveLostRewards += currentObjectiveLostRewards;
-            currentObjectiveLostRewards = 0f;
+            #region Camper rewards
             totalObjectivePickedUpRewards += currentObjectivePickedUpRewards;
+            statsRecorder.Add("Agent/Camper/ObjectivePickUpRewards", totalObjectivePickedUpRewards, StatAggregationMethod.MostRecent);
             currentObjectivePickedUpRewards = 0f;
+
             totalObjectiveDroppedOffRewards += currentObjectiveDroppedOffRewards;
+            statsRecorder.Add("Agent/Camper/ObjectiveDropOffRewards", totalObjectiveDroppedOffRewards, StatAggregationMethod.MostRecent);
             currentObjectiveDroppedOffRewards = 0f;
-            totalObjectiveMaintainedVisionRewards += currentObjectiveMaintainedVisionRewards;
-            currentObjectiveMaintainedVisionRewards = 0f;
-
-            totalDropOffZoneFoundRewards += currentDropOffZoneFoundRewards;
-            currentDropOffZoneFoundRewards = 0f;
-            totalDropOffZoneLostRewards += currentDropOffZoneLostRewards;
-            currentDropOffZoneLostRewards = 0f;
-            totalDropOffZoneMaintainedVisionRewards += currentDropOffZoneMaintainedVisionRewards;
-            currentDropOffZoneMaintainedVisionRewards = 0f;
-
-            totalKillerFoundRewards += currentKillerFoundRewards;
-            currentKillerFoundRewards = 0f;
-            totalKillerLostRewards += currentKillerLostRewards;
-            currentKillerLostRewards = 0f;
-            totalKillerMaintainedVisionRewards += currentKillerMaintainedVisionRewards;
-            currentKillerMaintainedVisionRewards = 0f;
 
             totalDeathRewards += currentDeathRewards;
+            statsRecorder.Add("Agent/Camper/DeathRewards", totalDeathRewards, StatAggregationMethod.MostRecent);
             currentDeathRewards = 0f;
+
+            totalCamperWinRewards += currentCamperWinRewards;
+            statsRecorder.Add("Agent/Camper/VictoryRewards", totalCamperWinRewards, StatAggregationMethod.MostRecent);
+            currentCamperWinRewards = 0f;
+
+            totalCamperLossRewards += currentCamperLossRewards;
+            statsRecorder.Add("Agent/Camper/DefeatRewards", totalCamperLossRewards, StatAggregationMethod.MostRecent);
+            currentCamperLossRewards = 0f;
+            #endregion
         }
         #endregion
 
         #region Agent
+        /// <summary>
+        /// Ends the current episode if the environment's max step count has been reached.
+        /// </summary>
         private void FixedUpdate() 
         {
             if (Academy.Instance.StepCount > currentMaxStepCountPerEpisode)
@@ -220,64 +202,85 @@ namespace Core
             }
         }
 
+        // TODO: ADD UNCHOSEN SPAWN POINT PREFERENCE WHEN CHOOSING SPAWN ZONES
+        /// <summary>
+        /// Provides a random camper spawn position in a random camper spawn zone.
+        /// </summary>
         public Vector3 GetRandomCamperSpawnPosition()
         {
             int randomSpawnZone = UnityEngine.Random.Range(0, camperSpawnZones.Count);
             return camperSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
+        // TODO: ADD UNCHOSEN SPAWN POINT PREFERENCE WHEN CHOOSING SPAWN ZONES
+        /// <summary>
+        /// Provides a random killer spawn position in a random killer spawn zone.
+        /// </summary>
         public Vector3 GetRandomKillerSpawnPosition()
         {
             int randomSpawnZone = UnityEngine.Random.Range(0, killerSpawnZones.Count);
             return killerSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
+        // TODO: ADD UNCHOSEN SPAWN POINT PREFERENCE WHEN CHOOSING SPAWN ZONES
+        /// <summary>
+        /// Provides a random objective spawn position in a random objective spawn zone.
+        /// </summary>
         public Vector3 GetRandomObjectiveSpawnPosition()
         {
             int randomSpawnZone = UnityEngine.Random.Range(0, objectiveSpawnZones.Count);
             return objectiveSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
+        // TODO: ADD UNCHOSEN SPAWN POINT PREFERENCE WHEN CHOOSING SPAWN ZONES
+        /// <summary>
+        /// Provides a random drop off zone spawn position in a random drop off zone spawn zone.
+        /// </summary>
         public Vector3 GetRandomDropOffZoneSpawnPosition()
         {
             int randomSpawnZone = UnityEngine.Random.Range(0, dropOffZoneSpawnZones.Count);
             return dropOffZoneSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
+        // TODO: ADD UNCHOSEN SPAWN POINT PREFERENCE WHEN CHOOSING SPAWN ZONES
+        /// <summary>
+        /// Provides a random environment element spawn position in a random evironment element spawn zone.
+        /// </summary>
         public Vector3 GetRandomEnvironmentSpawnPosition()
         {
             int randomSpawnZone = UnityEngine.Random.Range(0, environmentSpawnZones.Count);
             return environmentSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
-        public static void InvokeEpisodeBegin()
+        /// <summary>
+        /// Invoked when an episode is supposed to begin. Either prepares the environment for a new episode or ends training.
+        /// </summary>
+        public void InvokeEpisodeBegin()
         {
             Debug.Log("Episode started");
-            Instance.ResetEpisodeValues();
+            ResetEpisodeValues();
 
-            if (Instance.continueLooping || Instance.currentMaxStepCountPerEpisode / Instance.maxStepCountPerEpisode < Instance.maxEpisodes)
+            if (continueLooping || currentMaxStepCountPerEpisode / maxStepCountPerEpisode < maxEpisodes)
             {
-                Instance.currentEpisodeCount++;
+                currentEpisodeCount++;
 
-                for (int i = 0; i < Instance.environmentPieces.Count; i++)
+                for (int i = 0; i < environmentPieces.Count; i++)
                 {
-                    Instance.environmentPieces[i].transform.position = Instance.GetRandomEnvironmentSpawnPosition();
+                    environmentPieces[i].transform.position = GetRandomEnvironmentSpawnPosition();
+                    environmentPieces[i].GetComponentInChildren<NegativeRewardOnCollisionDistributer>()?.Reset();
                 }
 
-                Instance.dropOffZone.Reset();
+                dropOffZone.Reset();
 
-                for(int i = 0; i < Instance.objectives.Count; i++)
+                for(int i = 0; i < objectives.Count; i++)
+                    objectives[i].Reset();
+
+                killer.gameObject.SetActive(true);
+
+                for(int i = 0; i < campers.Count; i++)
                 {
-                    Instance.objectives[i].Reset();
-                }
-
-                Instance.killer.gameObject.SetActive(true);
-
-                for(int i = 0; i < Instance.campers.Count; i++)
-                {
-                    Instance.campers[i].gameObject.SetActive(true);
-                    Instance.camperAgentGroup.RegisterAgent(Instance.campers[i]);
-                    Instance.campers[i].RemoveItem(false);
+                    campers[i].gameObject.SetActive(true);
+                    camperAgentGroup.RegisterAgent(campers[i]);
                 }
 
                 Debug.Log("Environment reset");
@@ -289,80 +292,76 @@ namespace Core
             }
         }
 
-        public static void InvokeEpisodeEnd()
+        /// <summary>
+        /// Invoked when an episode is supposed to end for whatever reason. The reason is concluded and the episode is terminated if any reason is found, after giving the proper rewards to all agents.
+        /// </summary>
+        public void InvokeEpisodeEnd()
         {
-            bool campersWin = Instance.objectives.Find(x => !x.IsCompleted) == null;
-            bool killerWins = Instance.campers.Find(x => x.gameObject.activeInHierarchy) == null;
+            bool campersWin = objectives.Find(x => !x.IsCompleted) == null;
+            bool killerWins = campers.Find(x => x.gameObject.activeInHierarchy) == null;
 
             float killerReward = 0f;
             float camperReward = 0f;
 
-            if (killerWins || campersWin || Instance.IsResetConditionMet)
+            if (killerWins || campersWin || IsResetConditionMet)
             {
-                if (Instance.IsResetConditionMet)
+                if (IsResetConditionMet)
                 {
-                    Instance.camperAgentGroup.GroupEpisodeInterrupted();
-
-                    for(int i = 0; i < Instance.campers.Count; i++)
-                    {
-                        if (Instance.campers[i].isActiveAndEnabled)
-                        {
-                            Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                            Instance.campers[i].RemoveItem(false);
-                            Instance.campers[i].gameObject.SetActive(false);
-                        }
-                    }
-
-                    Debug.Log("Killer's episode ended");
-                    Instance.killer.gameObject.SetActive(false);
-
-                    Debug.Log("Episode ended");
-                    InvokeEpisodeBegin();
-
-                    return;
+                    Debug.Log("Episode timedout.");
+                    killerReward = timeoutReward;
+                    camperReward = timeoutReward;
                 }
-
                 if (killerWins)
                 {
                     Debug.Log("Killer wins!");
-                    killerReward = Instance.winReward;
-                    camperReward = Instance.lossReward;
+                    killerReward = winReward;
+                    camperReward = lossReward;
                 }
                 else if (campersWin)
                 {
                     Debug.Log("Campers win!");
-                    killerReward = Instance.lossReward;
-                    camperReward = Instance.winReward;
+                    killerReward = lossReward;
+                    camperReward = winReward;
                 }
 
-                Instance.camperAgentGroup.AddGroupReward(camperReward);
-
-                if (camperReward > 0f)
-                    Instance.currentCamperWinRewards += camperReward;
-                else
-                    Instance.currentCamperLossRewards += camperReward;
-
-                Instance.camperAgentGroup.EndGroupEpisode();
-
-                for(int i = 0; i < Instance.campers.Count; i++)
+                if (IsResetConditionMet)
                 {
-                    if (Instance.campers[i].isActiveAndEnabled)
+                    currentTimeoutRewards += timeoutReward;
+                }
+                else
+                {
+                    if (camperReward > 0f)
                     {
-                        Debug.Log("Camper " + Instance.campers[i].name + "'s episode ended");
-                        Instance.campers[i].RemoveItem(false);
-                        Instance.campers[i].gameObject.SetActive(false);
+                        currentCamperWinRewards += camperReward;
+                        currentKillerLossRewards += killerReward;
+                    }
+                    else
+                    {
+                        currentCamperLossRewards += camperReward;
+                        currentKillerWinRewards += killerReward;
+                    }
+                }
+
+                camperAgentGroup.AddGroupReward(camperReward);
+                killer.AddReward(killerReward);
+
+                if (IsResetConditionMet)
+                    camperAgentGroup.EndGroupEpisode();
+                else
+                    camperAgentGroup.GroupEpisodeInterrupted();
+
+                for(int i = 0; i < campers.Count; i++)
+                {
+                    if (campers[i].isActiveAndEnabled)
+                    {
+                        Debug.Log("Camper " + campers[i].name + "'s episode ended");
+                        campers[i].RemoveItem(false);
+                        campers[i].gameObject.SetActive(false);
                     }
                 }
 
                 Debug.Log("Killer's episode ended");
-                Instance.killer.AddReward(killerReward);
-
-                if (killerReward > 0f)
-                    Instance.currentKillerWinRewards += killerReward;
-                else
-                    Instance.currentKillerLossRewards += killerReward;
-
-                Instance.killer.gameObject.SetActive(false);
+                killer.gameObject.SetActive(false);
 
                 Debug.Log("Episode ended");
                 InvokeEpisodeBegin();

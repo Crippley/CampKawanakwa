@@ -1776,8 +1776,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0cc70b9d8acf444b500588818af709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winReward: 1
-  lossReward: 1
+  winReward: 5
+  lossReward: -5
+  timeoutReward: -2.5
   maxStepCountPerEpisode: 30000
   maxEpisodes: 0
   killer: {fileID: 290203831}
@@ -1832,6 +1833,7 @@ MonoBehaviour:
   continueLooping: 1
   killerWins: 0
   camperWins: 0
+  currentTimeoutRewards: 0
   currentCollisionRewards: 0
   currentKillerWinRewards: 0
   currentKillerLossRewards: 0
@@ -1839,41 +1841,21 @@ MonoBehaviour:
   currentFindCamperRewards: 0
   currentLoseCamperRewards: 0
   currentMaintainCamperVisionRewards: 0
-  currentCamperWinRewards: 0
-  currentCamperLossRewards: 0
-  currentObjectiveFoundRewards: 0
-  currentObjectiveLostRewards: 0
   currentObjectivePickedUpRewards: 0
   currentObjectiveDroppedOffRewards: 0
-  currentObjectiveMaintainedVisionRewards: 0
-  currentDropOffZoneFoundRewards: 0
-  currentDropOffZoneLostRewards: 0
-  currentDropOffZoneMaintainedVisionRewards: 0
-  currentKillerFoundRewards: 0
-  currentKillerLostRewards: 0
-  currentKillerMaintainedVisionRewards: 0
   currentDeathRewards: 0
+  currentCamperWinRewards: 0
+  currentCamperLossRewards: 0
+  totalTimeoutRewards: 0
   totalCollisionRewards: 0
+  totalKillRewards: 0
   totalKillerWinRewards: 0
   totalKillerLossRewards: 0
-  totalKillRewards: 0
-  totalFindCamperRewards: 0
-  totalLoseCamperRewards: 0
-  totalMaintainCamperVisionRewards: 0
-  totalCamperWinRewards: 0
-  totalCamperLossRewards: 0
-  totalObjectiveFoundRewards: 0
-  totalObjectiveLostRewards: 0
   totalObjectivePickedUpRewards: 0
   totalObjectiveDroppedOffRewards: 0
-  totalObjectiveMaintainedVisionRewards: 0
-  totalDropOffZoneFoundRewards: 0
-  totalDropOffZoneLostRewards: 0
-  totalDropOffZoneMaintainedVisionRewards: 0
-  totalKillerFoundRewards: 0
-  totalKillerLostRewards: 0
-  totalKillerMaintainedVisionRewards: 0
   totalDeathRewards: 0
+  totalCamperWinRewards: 0
+  totalCamperLossRewards: 0
 --- !u!1001 &878795338
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -301,25 +301,20 @@ MonoBehaviour:
   rb: {fileID: 4239802997170723171}
   movementSpeed: 4
   rotationSpeed: 8
-  maxSeeingDistance: 10
-  maxXPosition: 11
-  minXPosition: -11
-  maxYPosition: 18
-  minYPosition: -18
-  maxXVelocity: 12
-  minXVelocity: -12
-  maxYVelocity: 12
-  minYVelocity: -12
-  camperMaxXVelocity: 14
-  camperMinXVelocity: -14
-  camperMaxYVelocity: 14
-  camperMinYVelocity: -14
+  maxXPosition: 17.769
+  minXPosition: -18.22
+  maxYPosition: 10.276
+  minYPosition: -11.713
+  maxXVelocity: 8
+  minXVelocity: -8
+  maxYVelocity: 8
+  minYVelocity: -8
+  camperMaxXVelocity: 10
+  camperMinXVelocity: -10
+  camperMaxYVelocity: 10
+  camperMinYVelocity: -10
   killCamperReward: 1
   killCamperWithItemReward: 1.5
-  timeReward: -0.0001
-  findCamperReward: 0.3
-  loseCamperReward: -0.15
-  seeingCamperDistanceBasedReward: 0.001
   behaviorType: 0
 --- !u!114 &2116270808707389165
 MonoBehaviour:
@@ -334,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 16
+    VectorObservationSize: 19
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3

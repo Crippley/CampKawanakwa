@@ -52,5 +52,13 @@ namespace Environment.Training
                 yield return new WaitForSeconds(negativeCollisionRewardRepetitionInterval);
             }
         }
+
+        public void Reset()
+        {
+            foreach(KeyValuePair<Agent, Coroutine> value in collidingAgentsToCoroutines)
+                StopCoroutine(value.Value);
+
+            collidingAgentsToCoroutines.Clear();
+        }
     }
 }

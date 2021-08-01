@@ -13,9 +13,14 @@ namespace UI
 
             if (player)
             {
+                // TODO: ADD DIFFERENT CAMERA POSITION AND CURSOR BEHAVIOUR FOR EVERYTHING BUT HEURISTIC ONLY TO SIMULATE SCENE VIEW
                 if (player.BehaviorType == BehaviorType.HeuristicOnly || player.BehaviorType == BehaviorType.Default)
                 {
                     Cursor.lockState = CursorLockMode.Confined;
+                }
+                else
+                {
+                    
                 }
             }
         }

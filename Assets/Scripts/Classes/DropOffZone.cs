@@ -8,6 +8,9 @@ namespace Zones
 {
     public class DropOffZone : MonoBehaviour
     {
+        [SerializeField] private Vector3[] droppedOffObjectivePositions;
+
+        private int currentObjectiveDropOffPositionIndex;
         private List<Objective> droppedOffObjectives = new List<Objective>();
 
         private void Start() 
@@ -19,6 +22,7 @@ namespace Zones
         {
             droppedOffObjectives = new List<Objective>();
             transform.position = AgentManager.Instance.GetRandomDropOffZoneSpawnPosition();
+            currentObjectiveDropOffPositionIndex = 0;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -34,8 +38,12 @@ namespace Zones
                 droppedOffObjective.transform.SetParent(transform, true);
                 droppedOffObjective.IsCompleted = true;
 
+                droppedOffObjective.transform.rotation = Quaternion.identity;
+                droppedOffObjective.transform.localPosition = droppedOffObjectivePositions[currentObjectiveDropOffPositionIndex];
+                currentObjectiveDropOffPositionIndex++;
+
                 if (droppedOffObjectives.Count >= AgentManager.Instance.objectives.Count)
-                    AgentManager.InvokeEpisodeEnd();
+                    AgentManager.Instance.InvokeEpisodeEnd();
             }
         }
     }

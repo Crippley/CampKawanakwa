@@ -299,21 +299,21 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   rb: {fileID: 6611187521747357997}
-  movementSpeed: 7
+  movementSpeed: 5
   rotationSpeed: 8
   maxSeeingDistance: 10
-  maxXPosition: 11
-  minXPosition: -11
-  maxYPosition: 18
-  minYPosition: -18
-  maxXVelocity: 14
-  minXVelocity: -14
-  maxYVelocity: 14
-  minYVelocity: -14
-  killerMaxXVelocity: 12
-  killerMinXVelocity: -12
-  killerMaxYVelocity: 12
-  killerMinYVelocity: -12
+  maxXPosition: 17.769
+  minXPosition: -18.22
+  maxYPosition: 10.276
+  minYPosition: -11.713
+  maxXVelocity: 10
+  minXVelocity: -10
+  maxYVelocity: 10
+  minYVelocity: -10
+  killerMaxXVelocity: 8
+  killerMinXVelocity: -8
+  killerMaxYVelocity: 8
+  killerMinYVelocity: -8
   objectivePickupReward: 0.5
   objectiveDropOffReward: 0.5
   deathReward: -0.5
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 18
+    VectorObservationSize: 25
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3

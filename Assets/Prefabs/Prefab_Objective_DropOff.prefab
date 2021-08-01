@@ -44,6 +44,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -112,3 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ade51e5d3e9a394faa10579a7fdf36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droppedOffObjectivePositions:
+  - {x: -0.3, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0.3, y: 0, z: 0}
