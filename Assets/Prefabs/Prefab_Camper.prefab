@@ -64,11 +64,11 @@ MonoBehaviour:
   detectionCollider: {fileID: 6771181336024925786}
   detectionLayerMask:
     serializedVersion: 2
-    m_Bits: 1920
+    m_Bits: 384
   useRaycastingToMaintainDetection: 0
   ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 4608
+    m_Bits: 5632
   debugRaycastColor: {r: 0.13171947, g: 0.5517615, b: 0.754717, a: 1}
 --- !u!1 &3161028760992507153
 GameObject:
@@ -451,11 +451,11 @@ MonoBehaviour:
   detectionCollider: {fileID: 6166970194341569901}
   detectionLayerMask:
     serializedVersion: 2
-    m_Bits: 1920
+    m_Bits: 384
   useRaycastingToMaintainDetection: 1
   ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 4608
+    m_Bits: 5632
   debugRaycastColor: {r: 0.13171947, g: 0.5517615, b: 0.754717, a: 1}
 --- !u!1001 &7271131944811607917
 PrefabInstance:

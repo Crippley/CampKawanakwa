@@ -44,19 +44,10 @@ namespace Entities
         [SerializeField] private float objectiveDropOffReward;
         [SerializeField] private float deathReward;
 
-        [Header("Detection zone replacement layer masks")]
-        [SerializeField] private LayerMask noHeldItemIgnoreLayerMask;
-        [SerializeField] private LayerMask heldItemIgnoreLayerMask;
-
-        [SerializeField] private LayerMask heldItemLayerMaskAfterPickup;
-        [SerializeField] private LayerMask heldItemLayerMaskAfterDropoff;
-
         [SerializeField] private DetectionZone visionZone;
         [SerializeField] private DetectionZone closeProximityZone;
 
         private Dictionary<Camper, List<Collider2D>> visibleCampers = new Dictionary<Camper, List<Collider2D>>();
-        private Dictionary<Objective, List<Collider2D>> visibleObjectives = new Dictionary<Objective, List<Collider2D>>();
-        private Dictionary<DropOffZone, List<Collider2D>> visibleDropOffZones = new Dictionary<DropOffZone, List<Collider2D>>();
         private Dictionary<Player, List<Collider2D>> visibleKillers = new Dictionary<Player, List<Collider2D>>();
 
         private Vector3 movementVector;
@@ -72,37 +63,16 @@ namespace Entities
         public void AddItem(Objective item)
         {
             heldItem = item;
-            heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterPickup, 2);
 
             AgentManager.Instance.camperAgentGroup.AddGroupReward(objectivePickupReward);
             AddReward(objectivePickupReward);
             AgentManager.Instance.currentObjectivePickedUpRewards += objectivePickupReward;
-
-            visionZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
-            visionZone.gameObject.SetActive(false);
-            visionZone.gameObject.SetActive(true);
-
-            closeProximityZone.SetIgnoreLayerMask(heldItemIgnoreLayerMask);
-            closeProximityZone.gameObject.SetActive(false);
-            closeProximityZone.gameObject.SetActive(true);
-
-            visibleObjectives.Remove(item);
         }
 
         public void RemoveItem(bool success)
         {
             if (heldItem)
             {
-                visionZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
-                visionZone.gameObject.SetActive(false);
-                visionZone.gameObject.SetActive(true);
-
-                closeProximityZone.SetIgnoreLayerMask(noHeldItemIgnoreLayerMask);
-                closeProximityZone.gameObject.SetActive(false);
-                closeProximityZone.gameObject.SetActive(true);
-                
-                visibleDropOffZones.Clear();
-
                 heldItem.transform.parent = heldItem.initialParent;
 
                 if (success)
@@ -118,7 +88,6 @@ namespace Entities
                     heldItem.transform.rotation = Quaternion.identity;
                 }
 
-                heldItem.gameObject.layer = (int) Mathf.Log(heldItemLayerMaskAfterDropoff, 2);
                 heldItem = null;
             }
         }
@@ -147,8 +116,6 @@ namespace Entities
 
             RemoveItem(false);
             visibleCampers.Clear();
-            visibleObjectives.Clear();
-            visibleDropOffZones.Clear();
             visibleKillers.Clear();
 
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
@@ -173,23 +140,18 @@ namespace Entities
                 }
             }
 
-            foreach (KeyValuePair<Objective, List<Collider2D>> value in visibleObjectives)
+            for (int i = 0; i < AgentManager.Instance.objectives.Count; i++)
             {
-                if (value.Value.Count > 0)
+                Objective objective = AgentManager.Instance.objectives[i];
+                if (objective.IsActive && !objective.IsCompleted)
                 {
-                    sensor.AddObservation(Vector2.Dot(transform.up, (value.Key.transform.position - transform.position).normalized));
-                    sensor.AddObservation(Vector2.Dot(transform.right, (value.Key.transform.position - transform.position).normalized));
+                    sensor.AddObservation(Vector2.Dot(transform.up, (objective.transform.position - transform.position).normalized));
+                    sensor.AddObservation(Vector2.Dot(transform.right, (objective.transform.position - transform.position).normalized));
                 }
             }
 
-            foreach (KeyValuePair<DropOffZone, List<Collider2D>> value in visibleDropOffZones)
-            {
-                if (value.Value.Count > 0)
-                {
-                    sensor.AddObservation(Vector2.Dot(transform.up, (value.Key.transform.position - transform.position).normalized));
-                    sensor.AddObservation(Vector2.Dot(transform.right, (value.Key.transform.position - transform.position).normalized));
-                }
-            }
+            sensor.AddObservation(Vector2.Dot(transform.up, (AgentManager.Instance.dropOffZone.transform.position - transform.position).normalized));
+            sensor.AddObservation(Vector2.Dot(transform.right, (AgentManager.Instance.dropOffZone.transform.position - transform.position).normalized));
 
             foreach (KeyValuePair<Player, List<Collider2D>> value in visibleKillers)
             {
@@ -262,45 +224,16 @@ namespace Entities
             }
             else
             {
-                Objective detectedObjective = detectedObject.GetComponent<Objective>();
+                Player detectedKiller = detectedObject.GetComponent<Player>();
 
-                if (detectedObjective != null)
-                {
-                    if (detectedObjective.IsCompleted || !detectedObjective.IsActive)
-                        return;
+                if (detectedKiller == null)
+                    return;
 
-                    if (!visibleObjectives.ContainsKey(detectedObjective))
-                        visibleObjectives.Add(detectedObjective, new List<Collider2D>());
-                    
-                    if (!visibleObjectives[detectedObjective].Contains(detectingCollider))
-                        visibleObjectives[detectedObjective].Add(detectingCollider);
-                }
-                else
-                {
-                    DropOffZone detectedDropOffZone = detectedObject.GetComponent<DropOffZone>();
-
-                    if (detectedDropOffZone != null)
-                    {
-                        if (!visibleDropOffZones.ContainsKey(detectedDropOffZone))
-                            visibleDropOffZones.Add(detectedDropOffZone, new List<Collider2D>());
+                if (!visibleKillers.ContainsKey(detectedKiller))
+                    visibleKillers.Add(detectedKiller, new List<Collider2D>());
                         
-                        if (!visibleDropOffZones[detectedDropOffZone].Contains(detectingCollider))
-                            visibleDropOffZones[detectedDropOffZone].Add(detectingCollider);
-                    }
-                    else
-                    {
-                        Player detectedKiller = detectedObject.GetComponent<Player>();
-
-                        if (detectedKiller == null)
-                            return;
-
-                        if (!visibleKillers.ContainsKey(detectedKiller))
-                            visibleKillers.Add(detectedKiller, new List<Collider2D>());
-                        
-                        if (!visibleKillers[detectedKiller].Contains(detectingCollider))
-                            visibleKillers[detectedKiller].Add(detectingCollider);
-                    }
-                }
+                if (!visibleKillers[detectedKiller].Contains(detectingCollider))
+                    visibleKillers[detectedKiller].Add(detectingCollider);
             }
         }
 
@@ -323,48 +256,18 @@ namespace Entities
             }
             else
             {
-                Objective detectedObjective = detectedObject.GetComponent<Objective>();
+                Player detectedKiller = detectedObject.GetComponent<Player>();
 
-                if (detectedObjective != null)
-                {
-                    List<Collider2D> colliders;
+                if (detectedKiller == null)
+                    return;
 
-                    if (!visibleObjectives.TryGetValue(detectedObjective, out colliders))
-                        return;
-                
-                    if (visibleObjectives[detectedObjective].Contains(detectingCollider))
-                        visibleObjectives[detectedObjective].Remove(detectingCollider);
-                }
-                else
-                {
-                    DropOffZone detectedDropOffZone = detectedObject.GetComponent<DropOffZone>();
+                List<Collider2D> colliders;
 
-                    if (detectedDropOffZone != null)
-                    {
-                        List<Collider2D> colliders;
+                if (!visibleKillers.TryGetValue(detectedKiller, out colliders))
+                    return;
 
-                        if (!visibleDropOffZones.TryGetValue(detectedDropOffZone, out colliders))
-                            return;
-
-                        if (visibleDropOffZones[detectedDropOffZone].Contains(detectingCollider))
-                            visibleDropOffZones[detectedDropOffZone].Remove(detectingCollider);
-                    }
-                    else
-                    {
-                        Player detectedKiller = detectedObject.GetComponent<Player>();
-
-                        if (detectedKiller == null)
-                            return;
-
-                        List<Collider2D> colliders;
-
-                        if (!visibleKillers.TryGetValue(detectedKiller, out colliders))
-                            return;
-
-                        if (visibleKillers[detectedKiller].Contains(detectingCollider))
-                            visibleKillers[detectedKiller].Remove(detectingCollider);
-                    }
-                }
+                if (visibleKillers[detectedKiller].Contains(detectingCollider))
+                    visibleKillers[detectedKiller].Remove(detectingCollider);
             }   
         }
         #endregion
