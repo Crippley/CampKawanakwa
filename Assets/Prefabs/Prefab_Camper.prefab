@@ -317,18 +317,6 @@ MonoBehaviour:
   objectivePickupReward: 0.5
   objectiveDropOffReward: 0.5
   deathReward: -0.5
-  noHeldItemIgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 4608
-  heldItemIgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 5120
-  heldItemLayerMaskAfterPickup:
-    serializedVersion: 2
-    m_Bits: 4096
-  heldItemLayerMaskAfterDropoff:
-    serializedVersion: 2
-    m_Bits: 1024
   visionZone: {fileID: 2285601926518422728}
   closeProximityZone: {fileID: 1083997345336558201}
 --- !u!114 &9208926796268904186
@@ -344,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 23
+    VectorObservationSize: 16
     NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 3

@@ -105,8 +105,7 @@ namespace Entities
             {
                 if (value.Value.Count > 0)
                 {
-                    sensor.AddObservation(Vector2.Dot(transform.up, (value.Key.transform.position - transform.position).normalized));
-                    sensor.AddObservation(Vector2.Dot(transform.right, (value.Key.transform.position - transform.position).normalized));
+                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (value.Key.transform.position - transform.position), Vector3.forward) / 180f));
 
                     Vector3 camperVelocity = value.Key.rb.velocity;
 

@@ -130,8 +130,7 @@ namespace Entities
             {
                 if (value.Value.Count > 0)
                 {
-                    sensor.AddObservation(Vector2.Dot(transform.up, (value.Key.transform.position - transform.position).normalized));
-                    sensor.AddObservation(Vector2.Dot(transform.right, (value.Key.transform.position - transform.position).normalized));
+                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (value.Key.transform.position - transform.position), Vector3.forward) / 180f));
 
                     Vector3 camperVelocity = value.Key.rb.velocity;
 
@@ -145,20 +144,17 @@ namespace Entities
                 Objective objective = AgentManager.Instance.objectives[i];
                 if (objective.IsActive && !objective.IsCompleted)
                 {
-                    sensor.AddObservation(Vector2.Dot(transform.up, (objective.transform.position - transform.position).normalized));
-                    sensor.AddObservation(Vector2.Dot(transform.right, (objective.transform.position - transform.position).normalized));
+                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (objective.transform.position - transform.position), Vector3.forward) / 180f));
                 }
             }
 
-            sensor.AddObservation(Vector2.Dot(transform.up, (AgentManager.Instance.dropOffZone.transform.position - transform.position).normalized));
-            sensor.AddObservation(Vector2.Dot(transform.right, (AgentManager.Instance.dropOffZone.transform.position - transform.position).normalized));
+            sensor.AddObservation((Vector3.SignedAngle(transform.up, (AgentManager.Instance.dropOffZone.transform.position - transform.position), Vector3.forward) / 180f));
 
             foreach (KeyValuePair<Player, List<Collider2D>> value in visibleKillers)
             {
                 if (value.Value.Count > 0)
                 {
-                    sensor.AddObservation(Vector2.Dot(transform.up, (value.Key.transform.position - transform.position).normalized));
-                    sensor.AddObservation(Vector2.Dot(transform.right, (value.Key.transform.position - transform.position).normalized));
+                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (value.Key.transform.position - transform.position), Vector3.forward) / 180f));
 
                     Vector3 killerVelocity = value.Key.rb.velocity;
 
