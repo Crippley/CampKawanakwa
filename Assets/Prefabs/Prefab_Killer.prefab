@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 14
-    NumStackedVectorObservations: 3
+    NumStackedVectorObservations: 15
     m_ActionSpec:
       m_NumContinuousActions: 3
       BranchSizes: 
@@ -517,6 +517,10 @@ PrefabInstance:
       propertyPath: m_SensorName
       value: Killer_Back_RayPerceptionSensor
       objectReference: {fileID: 0}
+    - target: {fileID: 2214018251746971385, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_ObservationStacks
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3893426675998037885, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -564,6 +568,10 @@ PrefabInstance:
     - target: {fileID: 8458164324244360275, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
       propertyPath: m_SensorName
       value: Killer_Forward_RayPerceptionSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458164324244360275, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
+      propertyPath: m_ObservationStacks
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8966074232360349067, guid: ce1b6beec184c2a48bd1189a42f581ba, type: 3}
       propertyPath: m_Name

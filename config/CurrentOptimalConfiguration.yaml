@@ -15,13 +15,16 @@ behaviors:
             hidden_units: 64
             num_layers: 2
             vis_encode_type: simple
+            memory:
+                memory_size: 256
+                sequence_length: 128
         reward_signals:
             extrinsic:
                 gamma: 0.99
                 strength: 1.0
         keep_checkpoints: 5
         max_steps: 6666666
-        time_horizon: 64
+        time_horizon: 2048
         summary_freq: 20000
     CamperBehaviour:
         trainer_type: poca
@@ -37,15 +40,18 @@ behaviors:
         network_settings:
             normalize: false
             hidden_units: 128
-            num_layers: 3
+            num_layers: 2
             vis_encode_type: simple
+            memory:
+                memory_size: 256
+                sequence_length: 128
         reward_signals:
             extrinsic:
                 gamma: 0.99
                 strength: 1.0
         keep_checkpoints: 5
         max_steps: 20000000
-        time_horizon: 64
+        time_horizon: 2048
         summary_freq: 60000
 env_settings:
     env_path: null
