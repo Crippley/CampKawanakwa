@@ -9,7 +9,7 @@ namespace UI
     {
         private void Start() 
         {
-            Player player = AgentManager.Instance?.killer;
+            /*Player player = AgentManager.Instance?.killer;
 
             if (player)
             {
@@ -22,7 +22,7 @@ namespace UI
                 {
                     
                 }
-            }
+            }*/
         }
     }
 }
