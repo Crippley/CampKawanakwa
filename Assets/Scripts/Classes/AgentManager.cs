@@ -237,7 +237,7 @@ namespace Core
 
         public Vector3? AssignCamperToObjective(Camper camper)
         {
-            if (assignedObjectives.Count >= objectives.Count)   
+            if (assignedObjectives.Count >= objectives.Count || assignedObjectives.ContainsKey(camper))   
                 return null;
             
             Objective freeObjective = null;
@@ -251,7 +251,7 @@ namespace Core
                 }
             }
 
-            if (freeObjective = null)
+            if (freeObjective == null)
                 return null;
 
             assignedObjectives.Add(camper, freeObjective);
@@ -259,22 +259,76 @@ namespace Core
             return freeObjective.transform.position;
         }
 
-        public void ObjectiveDropped(Camper droppingCamper, Objective droppedobjective)
+        public void ObjectiveDropped(Camper droppingCamper, Objective droppedObjective)
         {
-            assignedObjectives.Remove(droppingCamper);
-
-            if (!droppedobjective.IsActive && droppedobjective.IsCompleted)
+            if (!droppedObjective.IsActive && droppedObjective.IsCompleted)
                 return;
+
+            if (assignedObjectives.Remove(droppingCamper))
+            {
+                Debug.LogError("Camper " + droppingCamper.name + " dropped objective at position " + droppedObjective.transform.position);
+            }
 
             for (int i = 0; i < campers.Count; i++)
             {
                 if (!campers[i].isDead && campers[i].currentGoal == null)
                 {
-                    campers[i].currentGoal = droppedobjective.transform.position;
+                    campers[i].currentGoal = droppedObjective.transform.position;
                     return;
                 }
             }
         } 
+        public void ObjectiveFreed(Camper previousObjectiveTracker)
+        {
+            assignedObjectives.Remove(previousObjectiveTracker);
+            
+            for (int i = 0; i < campers.Count; i++)
+            {
+                if (!campers[i].isDead && campers[i].currentGoal == null)
+                {
+                    campers[i].currentGoal = AssignCamperToObjective(campers[i]);
+
+                    if (campers[i].currentGoal != null)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        public void AlertCampersOfPickup(Camper pickingUpCamper, Objective pickedUpObjective)
+        {
+            Camper keyToRemove = null;
+            Camper keyToAddAndRemove = null;
+
+            foreach (KeyValuePair<Camper, Objective> pair in assignedObjectives)
+            {
+                if (pair.Key == pickingUpCamper)
+                {
+                    keyToAddAndRemove = pickingUpCamper;
+                    break;
+                }
+            }
+
+            if (keyToAddAndRemove)
+                assignedObjectives.Remove(keyToAddAndRemove);
+
+            foreach (KeyValuePair<Camper, Objective> pair in assignedObjectives)
+            {
+                if (pair.Value == pickedUpObjective && pair.Key != pickingUpCamper)
+                {
+                    keyToRemove = pair.Key;
+                    break;
+                }
+            }
+
+            if (keyToRemove)
+            {
+                assignedObjectives.Remove(keyToRemove);
+                assignedObjectives.Add(pickingUpCamper, pickedUpObjective);
+                keyToRemove.currentGoal = AssignCamperToObjective(keyToRemove);
+            }
+        }
 
         /// <summary>
         /// Invoked when an episode is supposed to begin. Either prepares the environment for a new episode or ends training.

@@ -74,9 +74,14 @@ namespace Entities
                 if (!isDead)
                 {
                     if (heldItem == null && value != null)
+                    {
+                        AgentManager.Instance.AlertCampersOfPickup(this, value);
                         currentGoal = AgentManager.Instance.dropOffZone.transform.position;
+                    }
                     else if (heldItem != null && value == null)
+                    {
                         currentGoal = AgentManager.Instance.AssignCamperToObjective(this);
+                    }
                 }
                 else
                 {
@@ -126,6 +131,7 @@ namespace Entities
         public void GetKilled()
         {
             isDead = true;
+            AgentManager.Instance.ObjectiveFreed(this);
             AgentManager.Instance.camperAgentGroup.AddGroupReward(deathReward);
             AddReward(deathReward);
             AgentManager.Instance.currentDeathRewards += deathReward;
