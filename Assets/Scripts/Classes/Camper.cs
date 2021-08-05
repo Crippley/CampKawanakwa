@@ -117,31 +117,68 @@ namespace Entities
 
         /*public override void Heuristic(in ActionBuffers actionsOut)
         {
-            ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
+            ActionSegment<int> continuousActions = actionsOut.DiscreteActions;
 
-            continuousActions[0] = Input.GetAxisRaw("Horizontal");
-            continuousActions[1] = Input.GetAxisRaw("Vertical");
-            
-            Vector3 mousePosition = Input.mousePosition;
-            Vector2 onScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            Vector2 offset = new Vector2(mousePosition.x - onScreenPosition.x, mousePosition.y - onScreenPosition.y);
-            float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                continuousActions[0] = 3;
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                continuousActions[0] = 2;
+            }
+            else
+            {
+                continuousActions[0] = 1;
+            }
 
-            continuousActions[2] = -angle / 180f;
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                continuousActions[1] = 3;
+            }
+            else if (Input.GetAxis("Vertical") > 0)
+            {
+                continuousActions[1] = 2;
+            }
+            else
+            {
+                continuousActions[1] = 1;
+            }
         }*/
 
         public override void OnActionReceived(ActionBuffers actions)
         {
-            float moveX = actions.ContinuousActions[0];
-            float moveY = actions.ContinuousActions[1];
+            float moveX;
+            float moveY;
+
+            if (actions.DiscreteActions[0] <= 1)
+            {
+                moveX = 0;
+            }
+            else if (actions.DiscreteActions[0] == 2)
+            {
+                moveX = 1f;
+            }
+            else
+            {
+                moveX = -1f;
+            }
+
+            if (actions.DiscreteActions[1] <= 1)
+            {
+                moveY = 0;
+            }
+            else if (actions.DiscreteActions[1] == 2)
+            {
+                moveY = 1f;
+            }
+            else
+            {
+                moveY = -1f;
+            }
             
             movementVector = new Vector3(moveX, moveY, 0f);
             movementVector = movementVector.normalized;
-
-            float rotateZ = actions.ContinuousActions[2] * 180f;
-
-            turningRotation = Quaternion.identity;
-            turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);
         }
 
         private void FixedUpdate() 

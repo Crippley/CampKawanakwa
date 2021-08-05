@@ -194,7 +194,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1673070050801842494
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,11 +262,11 @@ MonoBehaviour:
     VectorObservationSize: 1
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 3
-      BranchSizes: 
-    VectorActionSize: 03000000
+      m_NumContinuousActions: 0
+      BranchSizes: 0200000002000000
+    VectorActionSize: 0200000002000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 1
+    VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
