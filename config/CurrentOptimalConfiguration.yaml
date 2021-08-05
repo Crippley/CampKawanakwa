@@ -2,8 +2,8 @@ behaviors:
     KillerBehaviour:
         trainer_type: ppo
         hyperparameters:
-            batch_size: 5120
-            buffer_size: 10240
+            batch_size: 2048
+            buffer_size: 20480
             learning_rate: 0.00001
             beta: 0.01
             epsilon: 0.2
@@ -21,12 +21,12 @@ behaviors:
                 strength: 1.0
         keep_checkpoints: 5
         max_steps: 6666666
-        time_horizon: 64
+        time_horizon: 1000
         summary_freq: 20000
     CamperBehaviour:
         trainer_type: poca
         hyperparameters:
-            batch_size: 5120
+            batch_size: 2048
             buffer_size: 20480
             learning_rate: 0.00001
             beta: 0.0001
@@ -36,7 +36,7 @@ behaviors:
             learning_rate_schedule: constant
         network_settings:
             normalize: false
-            hidden_units: 128
+            hidden_units: 64
             num_layers: 3
             vis_encode_type: simple
         reward_signals:
@@ -45,7 +45,7 @@ behaviors:
                 strength: 1.0
         keep_checkpoints: 5
         max_steps: 20000000
-        time_horizon: 64
+        time_horizon: 1000
         summary_freq: 60000
 env_settings:
     env_path: null

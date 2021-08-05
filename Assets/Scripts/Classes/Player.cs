@@ -107,6 +107,20 @@ namespace Entities
             continuousActions[2] = -angle / 180f;
         }*/
 
+        public override void OnActionReceived(ActionBuffers actions)
+        {
+            float moveX = actions.ContinuousActions[0];
+            float moveY = actions.ContinuousActions[1];
+            
+            movementVector = new Vector3(moveX, moveY, 0f);
+            movementVector = movementVector.normalized;
+
+            float rotateZ = actions.ContinuousActions[2] * 180f;
+
+            turningRotation = Quaternion.identity;
+            turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);
+        }
+
         private void FixedUpdate() 
         {
             rb.AddForce(movementVector * movementSpeed, ForceMode2D.Impulse);
