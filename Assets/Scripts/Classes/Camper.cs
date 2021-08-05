@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core;
 using Items;
@@ -53,16 +54,42 @@ namespace Entities
         private Vector3 movementVector;
         private Quaternion turningRotation;
         private int lastEpisodeCount = -1;
+
+        private bool isResetting;
+        [NonSerialized] public bool isDead;
+        [NonSerialized] public Vector3? currentGoal;
         #endregion
 
         #region Item holding
         private Objective heldItem;
+        public Objective HeldItem 
+        { 
+            get
+            {
+                return heldItem;
+            }
 
-        public Objective HeldItem => heldItem;
+            set
+            {
+                if (!isDead)
+                {
+                    if (heldItem == null && value != null)
+                        currentGoal = AgentManager.Instance.dropOffZone.transform.position;
+                    else if (heldItem != null && value == null)
+                        currentGoal = AgentManager.Instance.AssignCamperToObjective(this);
+                }
+                else
+                {
+                    currentGoal = null;
+                }
+                
+                heldItem = value;
+            }
+        }
 
         public void AddItem(Objective item)
         {
-            heldItem = item;
+            HeldItem = item;
 
             AgentManager.Instance.camperAgentGroup.AddGroupReward(objectivePickupReward);
             AddReward(objectivePickupReward);
@@ -77,6 +104,7 @@ namespace Entities
 
                 if (success)
                 {
+                    heldItem.IsCompleted = true;
                     AgentManager.Instance.camperAgentGroup.AddGroupReward(objectiveDropOffReward);
                     AddReward(objectiveDropOffReward);
                     AgentManager.Instance.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
@@ -88,12 +116,16 @@ namespace Entities
                     heldItem.transform.rotation = Quaternion.identity;
                 }
 
-                heldItem = null;
+                if (!isResetting)
+                    AgentManager.Instance.ObjectiveDropped(this, heldItem);
+
+                HeldItem = null;
             }
         }
 
         public void GetKilled()
         {
+            isDead = true;
             AgentManager.Instance.camperAgentGroup.AddGroupReward(deathReward);
             AddReward(deathReward);
             AgentManager.Instance.currentDeathRewards += deathReward;
@@ -112,13 +144,18 @@ namespace Entities
             
             Debug.Log("Camper " + name + "'s episode started");
 
+            isResetting = true;
+            isDead = false;
             transform.position = AgentManager.Instance.GetRandomCamperSpawnPosition();
 
             RemoveItem(false);
             visibleCampers.Clear();
             visibleKillers.Clear();
 
+            currentGoal = AgentManager.Instance.AssignCamperToObjective(this);
+
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
+            isResetting = false;
         }
 
         public override void CollectObservations(VectorSensor sensor)
@@ -139,16 +176,8 @@ namespace Entities
                 }
             }
 
-            for (int i = 0; i < AgentManager.Instance.objectives.Count; i++)
-            {
-                Objective objective = AgentManager.Instance.objectives[i];
-                if (objective.IsActive && !objective.IsCompleted)
-                {
-                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (objective.transform.position - transform.position), Vector3.forward) / 180f));
-                }
-            }
-
-            sensor.AddObservation((Vector3.SignedAngle(transform.up, (AgentManager.Instance.dropOffZone.transform.position - transform.position), Vector3.forward) / 180f));
+            if (currentGoal != null)
+                sensor.AddObservation((Vector3.SignedAngle(transform.up, (currentGoal.Value - transform.position), Vector3.forward) / 180f));
 
             foreach (KeyValuePair<Player, List<Collider2D>> value in visibleKillers)
             {

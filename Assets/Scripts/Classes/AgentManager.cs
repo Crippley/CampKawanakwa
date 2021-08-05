@@ -85,6 +85,8 @@ namespace Core
         public float totalCamperLosses;
 
         private int currentMaxStepCountPerEpisode = 0;
+
+        private Dictionary<Camper, Objective> assignedObjectives = new Dictionary<Camper, Objective>();
         #endregion
         
         #region Editor code
@@ -166,6 +168,7 @@ namespace Core
             #endregion
 
             currentMaxStepCountPerEpisode += maxStepCountPerEpisode;
+            assignedObjectives.Clear();
         }
         #endregion
 
@@ -231,6 +234,47 @@ namespace Core
             int randomSpawnZone = UnityEngine.Random.Range(0, environmentSpawnZones.Count);
             return environmentSpawnZones[randomSpawnZone].GetRandomPoint();
         }
+
+        public Vector3? AssignCamperToObjective(Camper camper)
+        {
+            if (assignedObjectives.Count >= objectives.Count)   
+                return null;
+            
+            Objective freeObjective = null;
+
+            for (int i = 0; i < objectives.Count; i++)
+            {
+                if (objectives[i].IsActive && !objectives[i].IsCompleted && !assignedObjectives.ContainsValue(objectives[i]))
+                {
+                    freeObjective = objectives[i];
+                    break;
+                }
+            }
+
+            if (freeObjective = null)
+                return null;
+
+            assignedObjectives.Add(camper, freeObjective);
+
+            return freeObjective.transform.position;
+        }
+
+        public void ObjectiveDropped(Camper droppingCamper, Objective droppedobjective)
+        {
+            assignedObjectives.Remove(droppingCamper);
+
+            if (!droppedobjective.IsActive && droppedobjective.IsCompleted)
+                return;
+
+            for (int i = 0; i < campers.Count; i++)
+            {
+                if (!campers[i].isDead && campers[i].currentGoal == null)
+                {
+                    campers[i].currentGoal = droppedobjective.transform.position;
+                    return;
+                }
+            }
+        } 
 
         /// <summary>
         /// Invoked when an episode is supposed to begin. Either prepares the environment for a new episode or ends training.
