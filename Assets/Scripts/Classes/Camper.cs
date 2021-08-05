@@ -169,18 +169,7 @@ namespace Entities
             sensor.AddObservation(2f * (rb.velocity.x - minXVelocity) / (maxXVelocity - minXVelocity) - 1f);
             sensor.AddObservation(2f * (rb.velocity.y - minYVelocity) / (maxYVelocity - minYVelocity) - 1f);
 
-            foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
-            {
-                if (value.Value.Count > 0)
-                {
-                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (value.Key.transform.position - transform.position), Vector3.forward) / 180f));
-
-                    Vector3 camperVelocity = value.Key.rb.velocity;
-
-                    sensor.AddObservation(2f * (camperVelocity.x - minXVelocity) / (maxXVelocity - minXVelocity) - 1f);
-                    sensor.AddObservation(2f * (camperVelocity.y - minYVelocity) / (maxYVelocity - minYVelocity) - 1f);
-                }
-            }
+            sensor.AddObservation(heldItem == null ? -1f : 1f);
 
             if (currentGoal != null)
                 sensor.AddObservation((Vector3.SignedAngle(transform.up, (currentGoal.Value - transform.position), Vector3.forward) / 180f));
@@ -197,8 +186,6 @@ namespace Entities
                     sensor.AddObservation(2f * (killerVelocity.y - killerMinYVelocity) / (killerMaxYVelocity - killerMinYVelocity) - 1f);
                 }
             }
-
-            sensor.AddObservation(heldItem == null ? -1f : 1f);
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)

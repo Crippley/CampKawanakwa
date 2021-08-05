@@ -40,7 +40,6 @@ namespace Entities
 
         [Header("Currently active rewards")]
         [SerializeField] private float killCamperReward;
-        [SerializeField] private float killCamperWithItemReward;
 
         [SerializeField] private BehaviorType behaviorType;
 
@@ -62,16 +61,11 @@ namespace Entities
 
             if (collidingCamper)
             {
-                float reward;
-                if (collidingCamper.HeldItem != null)
-                    reward = killCamperWithItemReward;
-                else
-                    reward = killCamperReward;
 
                 visibleCampers.Remove(collidingCamper);
                 collidingCamper.GetKilled();
 
-                AddReward(reward);
+                AddReward(killCamperReward);
                 AgentManager.Instance.currentKillRewards += killCamperReward;
 
                 killedCamperCount++;
