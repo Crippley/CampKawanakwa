@@ -7,7 +7,7 @@ namespace Items
     public class Objective : MonoBehaviour
     {
         public Transform initialParent;
-        [SerializeField] private SpriteRenderer spriteRenderer;
+        public SpriteRenderer spriteRenderer;
 
         public bool IsActive {get; set;}
         public bool IsCompleted {get; set;}
