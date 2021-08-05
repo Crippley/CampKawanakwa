@@ -36,6 +36,7 @@ namespace Zones
 
                 droppedOffObjectives.Add(droppedOffObjective);
                 droppedOffObjective.transform.SetParent(transform, true);
+                droppedOffObjective.IsCompleted = true;
 
                 droppedOffObjective.transform.rotation = Quaternion.identity;
                 droppedOffObjective.transform.localPosition = droppedOffObjectivePositions[currentObjectiveDropOffPositionIndex];

@@ -40,8 +40,6 @@ namespace Core
 
         [NonSerialized] public int currentEpisodeCount = 0;
 
-        [NonSerialized] public SimpleMultiAgentGroup camperAgentGroup;
-
         [NonSerialized] public StatsRecorder statsRecorder;
 
         public bool continueLooping;
@@ -85,8 +83,6 @@ namespace Core
         public float totalCamperLosses;
 
         private int currentMaxStepCountPerEpisode = 0;
-
-        private Dictionary<Camper, Objective> assignedObjectives = new Dictionary<Camper, Objective>();
         #endregion
         
         #region Editor code
@@ -120,7 +116,6 @@ namespace Core
             }
 
             Instance = this;
-            camperAgentGroup = new SimpleMultiAgentGroup();
             statsRecorder = Academy.Instance.StatsRecorder;
 
             InvokeEpisodeBegin();
@@ -168,7 +163,6 @@ namespace Core
             #endregion
 
             currentMaxStepCountPerEpisode += maxStepCountPerEpisode;
-            assignedObjectives.Clear();
         }
         #endregion
 
@@ -235,101 +229,6 @@ namespace Core
             return environmentSpawnZones[randomSpawnZone].GetRandomPoint();
         }
 
-        public Vector3? AssignCamperToObjective(Camper camper)
-        {
-            if (assignedObjectives.Count >= objectives.Count || assignedObjectives.ContainsKey(camper))   
-                return null;
-            
-            Objective freeObjective = null;
-
-            for (int i = 0; i < objectives.Count; i++)
-            {
-                if (objectives[i].IsActive && !objectives[i].IsCompleted && !assignedObjectives.ContainsValue(objectives[i]))
-                {
-                    freeObjective = objectives[i];
-                    break;
-                }
-            }
-
-            if (freeObjective == null)
-                return null;
-
-            assignedObjectives.Add(camper, freeObjective);
-
-            return freeObjective.transform.position;
-        }
-
-        public void ObjectiveDropped(Camper droppingCamper, Objective droppedObjective)
-        {
-            if (!droppedObjective.IsActive && droppedObjective.IsCompleted)
-                return;
-
-            if (assignedObjectives.Remove(droppingCamper))
-            {
-                Debug.LogError("Camper " + droppingCamper.name + " dropped objective at position " + droppedObjective.transform.position);
-            }
-
-            for (int i = 0; i < campers.Count; i++)
-            {
-                if (!campers[i].isDead && campers[i].currentGoal == null)
-                {
-                    campers[i].currentGoal = droppedObjective.transform.position;
-                    return;
-                }
-            }
-        } 
-        public void ObjectiveFreed(Camper previousObjectiveTracker)
-        {
-            assignedObjectives.Remove(previousObjectiveTracker);
-            
-            for (int i = 0; i < campers.Count; i++)
-            {
-                if (!campers[i].isDead && campers[i].currentGoal == null)
-                {
-                    campers[i].currentGoal = AssignCamperToObjective(campers[i]);
-
-                    if (campers[i].currentGoal != null)
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-
-        public void AlertCampersOfPickup(Camper pickingUpCamper, Objective pickedUpObjective)
-        {
-            Camper keyToRemove = null;
-            Camper keyToAddAndRemove = null;
-
-            foreach (KeyValuePair<Camper, Objective> pair in assignedObjectives)
-            {
-                if (pair.Key == pickingUpCamper)
-                {
-                    keyToAddAndRemove = pickingUpCamper;
-                    break;
-                }
-            }
-
-            if (keyToAddAndRemove)
-                assignedObjectives.Remove(keyToAddAndRemove);
-
-            foreach (KeyValuePair<Camper, Objective> pair in assignedObjectives)
-            {
-                if (pair.Value == pickedUpObjective && pair.Key != pickingUpCamper)
-                {
-                    keyToRemove = pair.Key;
-                    break;
-                }
-            }
-
-            if (keyToRemove)
-            {
-                assignedObjectives.Remove(keyToRemove);
-                assignedObjectives.Add(pickingUpCamper, pickedUpObjective);
-                keyToRemove.currentGoal = AssignCamperToObjective(keyToRemove);
-            }
-        }
-
         /// <summary>
         /// Invoked when an episode is supposed to begin. Either prepares the environment for a new episode or ends training.
         /// </summary>
@@ -358,7 +257,6 @@ namespace Core
                 for(int i = 0; i < campers.Count; i++)
                 {
                     campers[i].gameObject.SetActive(true);
-                    camperAgentGroup.RegisterAgent(campers[i]);
                 }
 
                 Debug.Log("Environment reset");
@@ -420,13 +318,7 @@ namespace Core
                     }
                 }
 
-                camperAgentGroup.AddGroupReward(camperReward);
                 killer.AddReward(killerReward);
-
-                if (IsResetConditionMet)
-                    camperAgentGroup.EndGroupEpisode();
-                else
-                    camperAgentGroup.GroupEpisodeInterrupted();
 
                 for(int i = 0; i < campers.Count; i++)
                 {
@@ -434,6 +326,7 @@ namespace Core
                     {
                         Debug.Log("Camper " + campers[i].name + "'s episode ended");
                         campers[i].RemoveItem(false);
+                        campers[i].AddReward(campers[i].deathReward);
                         campers[i].gameObject.SetActive(false);
                     }
                 }
