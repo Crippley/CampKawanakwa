@@ -9,10 +9,12 @@ using System;
 
 namespace Entities
 {
-    public class Player : Agent
+    public class Player : Agent, IDetectionTriggerHandler
     {
         #region Vars
         public Rigidbody2D rb;
+
+        [SerializeField] private Camera agentCamera;
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
@@ -92,7 +94,7 @@ namespace Entities
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
         }
 
-        /*public override void Heuristic(in ActionBuffers actionsOut)
+        public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> continuousActions = actionsOut.DiscreteActions;
 
@@ -121,7 +123,7 @@ namespace Entities
             {
                 continuousActions[1] = 0;
             }
-        }*/
+        }
 
         public override void OnActionReceived(ActionBuffers actions)
         {
@@ -163,6 +165,26 @@ namespace Entities
             rb.AddForce(movementVector * movementSpeed, ForceMode2D.Impulse);
             transform.rotation = Quaternion.Slerp(transform.rotation, turningRotation, rotationSpeed * Time.fixedDeltaTime);
         }
+        #endregion
+
+        #region Agent detection
+
+        public void OnEnterDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
+        {
+            if (detectedObject.GetComponent<Camper>())
+            {
+                agentCamera.cullingMask |= (1 << detectedObject.layer);
+            }
+        }
+
+        public void OnLeaveDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
+        {
+            if (detectedObject.GetComponent<Camper>())
+            {
+                agentCamera.cullingMask &= ~(1 << detectedObject.layer);
+            }
+        }
+
         #endregion
     }
 }
