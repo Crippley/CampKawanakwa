@@ -121,28 +121,28 @@ namespace Entities
 
             if (Input.GetAxis("Horizontal") < 0)
             {
-                continuousActions[0] = 3;
+                continuousActions[0] = 2;
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
-                continuousActions[0] = 2;
+                continuousActions[0] = 1;
             }
             else
             {
-                continuousActions[0] = 1;
+                continuousActions[0] = 0;
             }
 
             if (Input.GetAxis("Vertical") < 0)
             {
-                continuousActions[1] = 3;
+                continuousActions[1] = 2;
             }
             else if (Input.GetAxis("Vertical") > 0)
             {
-                continuousActions[1] = 2;
+                continuousActions[1] = 1;
             }
             else
             {
-                continuousActions[1] = 1;
+                continuousActions[1] = 0;
             }
         }*/
 
@@ -151,11 +151,11 @@ namespace Entities
             float moveX;
             float moveY;
 
-            if (actions.DiscreteActions[0] <= 1)
+            if (actions.DiscreteActions[0] == 0)
             {
                 moveX = 0;
             }
-            else if (actions.DiscreteActions[0] == 2)
+            else if (actions.DiscreteActions[0] == 1)
             {
                 moveX = 1f;
             }
@@ -164,11 +164,11 @@ namespace Entities
                 moveX = -1f;
             }
 
-            if (actions.DiscreteActions[1] <= 1)
+            if (actions.DiscreteActions[1] == 0)
             {
                 moveY = 0;
             }
-            else if (actions.DiscreteActions[1] == 2)
+            else if (actions.DiscreteActions[1] == 1)
             {
                 moveY = 1f;
             }

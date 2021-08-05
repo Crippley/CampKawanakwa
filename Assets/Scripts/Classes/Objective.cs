@@ -7,6 +7,7 @@ namespace Items
     public class Objective : MonoBehaviour
     {
         public Transform initialParent;
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
         public bool IsActive {get; set;}
         public bool IsCompleted {get; set;}
@@ -23,6 +24,7 @@ namespace Items
             transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
             IsActive = true;
             IsCompleted = false;
+            spriteRenderer.enabled = true;
         }
         #endregion
 
@@ -38,6 +40,7 @@ namespace Items
                 triggeringCamper.AddItem(this);
                 transform.SetParent(triggeringCamper.transform, true);
                 IsActive = false;
+                spriteRenderer.enabled = false;
             }
         }
     }
