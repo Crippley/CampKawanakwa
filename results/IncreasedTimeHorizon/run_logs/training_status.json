@@ -1,0 +1,87 @@
+{
+    "CamperBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 499046,
+                "file_path": "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-499046.onnx",
+                "reward": -1.0366666167974472,
+                "creation_time": 1628088506.034085,
+                "auxillary_file_paths": [
+                    "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-499046.pt"
+                ]
+            },
+            {
+                "steps": 999955,
+                "file_path": "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-999955.onnx",
+                "reward": -0.3528571341718946,
+                "creation_time": 1628091904.4451828,
+                "auxillary_file_paths": [
+                    "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-999955.pt"
+                ]
+            },
+            {
+                "steps": 1499161,
+                "file_path": "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-1499161.onnx",
+                "reward": -0.42148145150255273,
+                "creation_time": 1628095281.4912636,
+                "auxillary_file_paths": [
+                    "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-1499161.pt"
+                ]
+            },
+            {
+                "steps": 1634126,
+                "file_path": "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-1634126.onnx",
+                "reward": -0.4766666392485301,
+                "creation_time": 1628096210.0002055,
+                "auxillary_file_paths": [
+                    "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-1634126.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1634126,
+            "file_path": "results\\IncreasedTimeHorizon\\CamperBehaviour.onnx",
+            "reward": -0.4766666392485301,
+            "creation_time": 1628096210.0002055,
+            "auxillary_file_paths": [
+                "results\\IncreasedTimeHorizon\\CamperBehaviour\\CamperBehaviour-1634126.pt"
+            ]
+        }
+    },
+    "KillerBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 499918,
+                "file_path": "results\\IncreasedTimeHorizon\\KillerBehaviour\\KillerBehaviour-499918.onnx",
+                "reward": 7.644999861717224,
+                "creation_time": 1628090891.5296793,
+                "auxillary_file_paths": [
+                    "results\\IncreasedTimeHorizon\\KillerBehaviour\\KillerBehaviour-499918.pt"
+                ]
+            },
+            {
+                "steps": 945716,
+                "file_path": "results\\IncreasedTimeHorizon\\KillerBehaviour\\KillerBehaviour-945716.onnx",
+                "reward": 5.993333347141743,
+                "creation_time": 1628096212.0542066,
+                "auxillary_file_paths": [
+                    "results\\IncreasedTimeHorizon\\KillerBehaviour\\KillerBehaviour-945716.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 945716,
+            "file_path": "results\\IncreasedTimeHorizon\\KillerBehaviour.onnx",
+            "reward": 5.993333347141743,
+            "creation_time": 1628096212.0542066,
+            "auxillary_file_paths": [
+                "results\\IncreasedTimeHorizon\\KillerBehaviour\\KillerBehaviour-945716.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
