@@ -9,7 +9,7 @@ using System;
 
 namespace Entities
 {
-    public class Player : Agent, IDetectionTriggerHandler
+    public class Player : Agent
     {
         #region Vars
         public Rigidbody2D rb;
@@ -46,8 +46,6 @@ namespace Entities
 
         public BehaviorType BehaviorType => behaviorType;
 
-        private Dictionary<Camper, List<Collider2D>> visibleCampers = new Dictionary<Camper, List<Collider2D>>();
-
         private Vector3 movementVector;
         private Quaternion turningRotation;
 
@@ -68,7 +66,6 @@ namespace Entities
                 else
                     reward = killCamperReward;
 
-                visibleCampers.Remove(collidingCamper);
                 collidingCamper.GetKilled();
 
                 AddReward(reward);
@@ -91,30 +88,8 @@ namespace Entities
             Debug.Log("Killer's episode started");
             
             transform.position = AgentManager.Instance.GetRandomKillerSpawnPosition();
-            visibleCampers.Clear();
             killedCamperCount = 0;
             lastEpisodeCount = AgentManager.Instance.currentEpisodeCount;
-        }
-
-        public override void CollectObservations(VectorSensor sensor)
-        {
-            sensor.AddObservation(2f * (rb.velocity.x - minXVelocity) / (maxXVelocity - minXVelocity) - 1f);
-            sensor.AddObservation(2f * (rb.velocity.y - minYVelocity) / (maxYVelocity - minYVelocity) - 1f);
-
-            foreach (KeyValuePair<Camper, List<Collider2D>> value in visibleCampers)
-            {
-                if (value.Value.Count > 0)
-                {
-                    sensor.AddObservation((Vector3.SignedAngle(transform.up, (value.Key.transform.position - transform.position), Vector3.forward) / 180f));
-
-                    Vector3 camperVelocity = value.Key.rb.velocity;
-
-                    sensor.AddObservation(2f * (camperVelocity.x - camperMinXVelocity) / (camperMaxXVelocity - camperMinXVelocity) - 1f);
-                    sensor.AddObservation(2f * (camperVelocity.y - camperMinYVelocity) / (camperMaxYVelocity - camperMinYVelocity) - 1f);
-
-                    sensor.AddObservation(value.Key.HeldItem == null ? -1f : 1f);
-                }
-            }
         }
 
         /*public override void Heuristic(in ActionBuffers actionsOut)
@@ -132,56 +107,10 @@ namespace Entities
             continuousActions[2] = -angle / 180f;
         }*/
 
-        public override void OnActionReceived(ActionBuffers actions)
-        {
-            float moveX = actions.ContinuousActions[0];
-            float moveY = actions.ContinuousActions[1];
-            
-            movementVector = new Vector3(moveX, moveY, 0f);
-            movementVector = movementVector.normalized;
-
-            float rotateZ = actions.ContinuousActions[2] * 180f;
-
-            turningRotation = Quaternion.identity;
-            turningRotation *= Quaternion.Euler(0f, 0f, rotateZ);
-        }
-
         private void FixedUpdate() 
         {
             rb.AddForce(movementVector * movementSpeed, ForceMode2D.Impulse);
             transform.rotation = Quaternion.Slerp(transform.rotation, turningRotation, rotationSpeed * Time.fixedDeltaTime);
-        }
-
-        #endregion
-
-        #region IDetectionTriggerHandler methods
-        public void OnEnterDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
-        {
-            Camper detectedCamper = detectedObject.GetComponent<Camper>();
-
-            if(detectedCamper == null)
-                return;
-
-            if (!visibleCampers.ContainsKey(detectedCamper))
-                visibleCampers.Add(detectedCamper, new List<Collider2D>());
-            
-            if (!visibleCampers[detectedCamper].Contains(detectingCollider))
-                visibleCampers[detectedCamper].Add(detectingCollider);
-        }
-
-        public void OnLeaveDetectionZone(GameObject detectedObject, Collider2D detectingCollider)
-        {
-            Camper detectedCamper = detectedObject.GetComponent<Camper>();
-
-            if(detectedCamper == null)
-                return;
-
-            List<Collider2D> colliders;
-            if (!visibleCampers.TryGetValue(detectedCamper, out colliders))
-                return;
-
-            if (visibleCampers[detectedCamper].Contains(detectingCollider))
-                visibleCampers[detectedCamper].Remove(detectingCollider);
         }
         #endregion
     }
