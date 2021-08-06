@@ -82,7 +82,8 @@ namespace Entities
                     heldItem.IsActive = true;
                     heldItem.transform.position = transform.position;
                     heldItem.transform.rotation = Quaternion.identity;
-                    heldItem.spriteRenderer.enabled = true;
+                    heldItem.spriteRenderer.color = heldItem.initialColor;
+                    heldItem.gameObject.layer = heldItem.initialLayer;
                 }
 
                 heldItem = null;

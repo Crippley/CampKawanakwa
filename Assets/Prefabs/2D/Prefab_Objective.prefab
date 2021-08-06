@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
-  m_Color: {r: 0.20572266, g: 0.6320754, b: 0.24977775, a: 1}
+  m_Color: {r: 0.8862745, g: 0.40784314, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -115,3 +115,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialParent: {fileID: 0}
   spriteRenderer: {fileID: 2279220121709981164}
+  initialLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  initialColor: {r: 0.8862745, g: 0.40784314, b: 0.078431375, a: 1}
+  heldColor: {r: 0.8862745, g: 0.078431375, b: 0.80784315, a: 1}
+  droppedOffColor: {r: 1, g: 1, b: 1, a: 1}

@@ -9,6 +9,11 @@ namespace Items
         public Transform initialParent;
         public SpriteRenderer spriteRenderer;
 
+        public LayerMask initialLayer;
+        public Color initialColor;
+        public Color heldColor;
+        public Color droppedOffColor;
+
         public bool IsActive {get; set;}
         public bool IsCompleted {get; set;}
 
@@ -24,7 +29,8 @@ namespace Items
             transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
             IsActive = true;
             IsCompleted = false;
-            spriteRenderer.enabled = true;
+            spriteRenderer.color = initialColor;
+            gameObject.layer = initialLayer;
         }
         #endregion
 
@@ -40,7 +46,8 @@ namespace Items
                 triggeringCamper.AddItem(this);
                 transform.SetParent(triggeringCamper.transform, true);
                 IsActive = false;
-                spriteRenderer.enabled = false;
+                spriteRenderer.color = heldColor;
+                gameObject.layer = other.gameObject.layer;
             }
         }
     }

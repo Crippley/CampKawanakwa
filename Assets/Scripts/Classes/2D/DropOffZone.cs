@@ -37,6 +37,7 @@ namespace Zones
                 droppedOffObjectives.Add(droppedOffObjective);
                 droppedOffObjective.transform.SetParent(transform, true);
                 droppedOffObjective.IsCompleted = true;
+                droppedOffObjective.spriteRenderer.color = droppedOffObjective.droppedOffColor;
 
                 droppedOffObjective.transform.rotation = Quaternion.identity;
                 droppedOffObjective.transform.localPosition = droppedOffObjectivePositions[currentObjectiveDropOffPositionIndex];
