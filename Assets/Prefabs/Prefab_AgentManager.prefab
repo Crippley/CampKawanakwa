@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8519317015837702382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8519317015837702383}
+  - component: {fileID: 8519317015837702384}
+  m_Layer: 2
+  m_Name: Prefab_AgentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8519317015837702383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519317015837702382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8519317015837702384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519317015837702382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685bd45714a05ef40b0cd8589c54bb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winReward: 5
+  lossReward: -5
+  timeoutReward: -2.5
+  maxStepCountPerEpisode: 30000
+  maxEpisodes: 0
+  killer: {fileID: 0}
+  dropOffZone: {fileID: 0}
+  campers: []
+  objectives: []
+  environmentElements: []
+  camperSpawnZones: []
+  killerSpawnZones: []
+  objectiveSpawnZones: []
+  dropOffZoneSpawnZones: []
+  environmentElementsSpawnZones: []
+  loopInfinitiely: 1
+  killerWins: 0
+  camperWins: 0
+  currentCollisionRewards: 0
+  currentKillRewards: 0
+  currentObjectivePickedUpRewards: 0
+  currentObjectiveDroppedOffRewards: 0
+  currentDeathRewards: 0
+  totalTimeouts: 0
+  totalCollisionRewards: 0
+  totalKillRewards: 0
+  totalKillerWins: 0
+  totalKillerLosses: 0
+  totalObjectivePickedUpRewards: 0
+  totalObjectiveDroppedOffRewards: 0
+  totalDeathRewards: 0
+  totalCamperWins: 0
+  totalCamperLosses: 0

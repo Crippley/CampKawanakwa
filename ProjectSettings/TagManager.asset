@@ -14,13 +14,13 @@ TagManager:
   - Ground
   - NPC
   - Player
-  - Zone
-  - Item
+  - DropOffZone
+  - Objective
   - 
   - Ignore
-  - Camper
-  - Camper1
-  - Camper2
+  - 
+  - 
+  - 
   - 
   - 
   - 
