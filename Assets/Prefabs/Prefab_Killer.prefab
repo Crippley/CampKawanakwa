@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
-  m_BehaviorName: PlayerBehaviour
+  m_BehaviorName: KillerBehaviour
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
