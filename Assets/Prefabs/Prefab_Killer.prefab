@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1840767590119777060}
   - component: {fileID: 4011576540531726344}
   - component: {fileID: 4729500797567385071}
-  - component: {fileID: 899902709512020736}
   - component: {fileID: 8799207743412206052}
   m_Layer: 8
   m_Name: Prefab_Killer
@@ -34,7 +33,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3877902123335957805}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,32 +167,7 @@ MonoBehaviour:
   movementSpeed: 0.75
   rotationSpeed: 100
   killCamperReward: 1
---- !u!114 &899902709512020736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3074177466371574762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: KillerSensor
-  m_DetectableTags: []
-  m_RaysPerDirection: 7
-  m_MaxRayDegrees: 60
-  m_SphereCastRadius: 0.5
-  m_RayLength: 40
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294963080
-  m_ObservationStacks: 3
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
+  timeReward: -0.001
 --- !u!114 &8799207743412206052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +182,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
+--- !u!1001 &6572264802113193527
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3074177466371574773}
+    m_Modifications:
+    - target: {fileID: 5380701279679642113, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_Name
+      value: Preab_RayPerceptionSensors
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_SensorName
+      value: KillerBackwardSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_SensorName
+      value: KillerFowardSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+--- !u!4 &3877902123335957805 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+  m_PrefabInstance: {fileID: 6572264802113193527}
+  m_PrefabAsset: {fileID: 0}
