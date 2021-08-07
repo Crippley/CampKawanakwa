@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6678016624982118349}
   m_Layer: 3
   m_Name: Prefab_InnerWall
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828ad62f2980f0c40b1b235056b1aee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentManager: {fileID: 0}
   negativeCollisionReward: -0.01

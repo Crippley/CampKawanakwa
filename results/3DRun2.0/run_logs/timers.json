@@ -1,0 +1,752 @@
+{
+    "name": "root",
+    "gauges": {
+        "CamperBehaviour.Policy.Entropy.mean": {
+            "value": 3.1113457679748535,
+            "min": 3.1113457679748535,
+            "max": 3.291412830352783,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.Entropy.sum": {
+            "value": 187268.796875,
+            "min": 186485.953125,
+            "max": 201490.421875,
+            "count": 10
+        },
+        "CamperBehaviour.TimeOutRewards.mean": {
+            "value": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "count": 10
+        },
+        "CamperBehaviour.TimeOutRewards.sum": {
+            "value": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "count": 10
+        },
+        "CamperBehaviour.CollisionRewards.mean": {
+            "value": -665.3720092773438,
+            "min": -665.3720092773438,
+            "max": -46.48013687133789,
+            "count": 10
+        },
+        "CamperBehaviour.CollisionRewards.sum": {
+            "value": -665.3720092773438,
+            "min": -665.3720092773438,
+            "max": -46.48013687133789,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Killer.KillRewards.mean": {
+            "value": 605.0,
+            "min": 37.0,
+            "max": 605.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Killer.KillRewards.sum": {
+            "value": 605.0,
+            "min": 37.0,
+            "max": 605.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Killer.VictoryRewards.mean": {
+            "value": 182.0,
+            "min": 10.0,
+            "max": 182.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Killer.VictoryRewards.sum": {
+            "value": 182.0,
+            "min": 10.0,
+            "max": 182.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Killer.DefeatRewards.mean": {
+            "value": 41.0,
+            "min": 4.0,
+            "max": 41.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Killer.DefeatRewards.sum": {
+            "value": 41.0,
+            "min": 4.0,
+            "max": 41.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.ObjectivePickUpRewards.mean": {
+            "value": 285.0,
+            "min": 17.5,
+            "max": 285.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.ObjectivePickUpRewards.sum": {
+            "value": 285.0,
+            "min": 17.5,
+            "max": 285.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.ObjectiveDropOffRewards.mean": {
+            "value": 294.0,
+            "min": 23.0,
+            "max": 294.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.ObjectiveDropOffRewards.sum": {
+            "value": 294.0,
+            "min": 23.0,
+            "max": 294.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.DeathRewards.mean": {
+            "value": -302.5,
+            "min": -302.5,
+            "max": -18.5,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.DeathRewards.sum": {
+            "value": -302.5,
+            "min": -302.5,
+            "max": -18.5,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.VictoryRewards.mean": {
+            "value": 41.0,
+            "min": 4.0,
+            "max": 41.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.VictoryRewards.sum": {
+            "value": 41.0,
+            "min": 4.0,
+            "max": 41.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.DefeatRewards.mean": {
+            "value": 182.0,
+            "min": 10.0,
+            "max": 182.0,
+            "count": 10
+        },
+        "CamperBehaviour.Agent.Camper.DefeatRewards.sum": {
+            "value": 182.0,
+            "min": 10.0,
+            "max": 182.0,
+            "count": 10
+        },
+        "CamperBehaviour.Environment.EpisodeLength.mean": {
+            "value": 606.969696969697,
+            "min": 606.969696969697,
+            "max": 2161.714285714286,
+            "count": 10
+        },
+        "CamperBehaviour.Environment.EpisodeLength.sum": {
+            "value": 60090.0,
+            "min": 58160.0,
+            "max": 61722.0,
+            "count": 10
+        },
+        "CamperBehaviour.Step.mean": {
+            "value": 599487.0,
+            "min": 59836.0,
+            "max": 599487.0,
+            "count": 10
+        },
+        "CamperBehaviour.Step.sum": {
+            "value": 599487.0,
+            "min": 59836.0,
+            "max": 599487.0,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.ExtrinsicBaselineEstimate.mean": {
+            "value": 0.034587517380714417,
+            "min": 0.00606906833127141,
+            "max": 0.034587517380714417,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.ExtrinsicBaselineEstimate.sum": {
+            "value": 4.1505022048950195,
+            "min": 0.5158708095550537,
+            "max": 4.1505022048950195,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.ExtrinsicValueEstimate.mean": {
+            "value": 0.020575106143951416,
+            "min": 0.006339899264276028,
+            "max": 0.025561856105923653,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.ExtrinsicValueEstimate.sum": {
+            "value": 2.46901273727417,
+            "min": 0.5388914346694946,
+            "max": 2.9651753902435303,
+            "count": 10
+        },
+        "CamperBehaviour.Environment.CumulativeReward.mean": {
+            "value": -0.09999995530027934,
+            "min": -0.88607135388468,
+            "max": -0.09999995530027934,
+            "count": 10
+        },
+        "CamperBehaviour.Environment.CumulativeReward.sum": {
+            "value": -9.899995574727654,
+            "min": -28.779996536672115,
+            "max": -9.189996019005775,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.ExtrinsicReward.mean": {
+            "value": 2.704444611313367,
+            "min": 1.20392878140722,
+            "max": 2.7204653218735095,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.ExtrinsicReward.sum": {
+            "value": 267.74001652002335,
+            "min": 33.71000587940216,
+            "max": 267.74001652002335,
+            "count": 10
+        },
+        "CamperBehaviour.Environment.GroupCumulativeReward.mean": {
+            "value": 4.3108108108108105,
+            "min": 2.6666666666666665,
+            "max": 5.615384615384615,
+            "count": 10
+        },
+        "CamperBehaviour.Environment.GroupCumulativeReward.sum": {
+            "value": 159.5,
+            "min": 24.0,
+            "max": 159.5,
+            "count": 10
+        },
+        "CamperBehaviour.Losses.PolicyLoss.mean": {
+            "value": 0.01735827904736248,
+            "min": 0.015916579373232608,
+            "max": 0.018279317648072415,
+            "count": 10
+        },
+        "CamperBehaviour.Losses.PolicyLoss.sum": {
+            "value": 0.05207483714208744,
+            "min": 0.03482030612649396,
+            "max": 0.05483795294421724,
+            "count": 10
+        },
+        "CamperBehaviour.Losses.ValueLoss.mean": {
+            "value": 0.04231932053549422,
+            "min": 0.013945121562574062,
+            "max": 0.04231932053549422,
+            "count": 10
+        },
+        "CamperBehaviour.Losses.ValueLoss.sum": {
+            "value": 0.12695796160648265,
+            "min": 0.041835364687722185,
+            "max": 0.12695796160648265,
+            "count": 10
+        },
+        "CamperBehaviour.Losses.BaselineLoss.mean": {
+            "value": 0.043746523248652615,
+            "min": 0.013944554375484586,
+            "max": 0.043746523248652615,
+            "count": 10
+        },
+        "CamperBehaviour.Losses.BaselineLoss.sum": {
+            "value": 0.13123956974595785,
+            "min": 0.04183366312645376,
+            "max": 0.13123956974595785,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.LearningRate.mean": {
+            "value": 0.0003,
+            "min": 0.0003,
+            "max": 0.0003,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.LearningRate.sum": {
+            "value": 0.0009,
+            "min": 0.0006,
+            "max": 0.0009,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.Epsilon.mean": {
+            "value": 0.10000000000000003,
+            "min": 0.10000000000000003,
+            "max": 0.10000000000000003,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.Epsilon.sum": {
+            "value": 0.3000000000000001,
+            "min": 0.20000000000000007,
+            "max": 0.3000000000000001,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.Beta.mean": {
+            "value": 0.0010000000000000002,
+            "min": 0.0010000000000000002,
+            "max": 0.0010000000000000002,
+            "count": 10
+        },
+        "CamperBehaviour.Policy.Beta.sum": {
+            "value": 0.003000000000000001,
+            "min": 0.0020000000000000005,
+            "max": 0.003000000000000001,
+            "count": 10
+        },
+        "CamperBehaviour.IsTraining.mean": {
+            "value": 1.0,
+            "min": 1.0,
+            "max": 1.0,
+            "count": 10
+        },
+        "CamperBehaviour.IsTraining.sum": {
+            "value": 1.0,
+            "min": 1.0,
+            "max": 1.0,
+            "count": 10
+        },
+        "KillerBehaviour.Policy.Entropy.mean": {
+            "value": 3.2912557125091553,
+            "min": 3.2889161109924316,
+            "max": 3.295426368713379,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.Entropy.sum": {
+            "value": 198897.171875,
+            "min": 195469.25,
+            "max": 200048.859375,
+            "count": 5
+        },
+        "KillerBehaviour.TimeOutRewards.mean": {
+            "value": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "count": 5
+        },
+        "KillerBehaviour.TimeOutRewards.sum": {
+            "value": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "count": 5
+        },
+        "KillerBehaviour.CollisionRewards.mean": {
+            "value": -569.1820068359375,
+            "min": -569.1820068359375,
+            "max": -88.32064056396484,
+            "count": 5
+        },
+        "KillerBehaviour.CollisionRewards.sum": {
+            "value": -569.1820068359375,
+            "min": -569.1820068359375,
+            "max": -88.32064056396484,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Killer.KillRewards.mean": {
+            "value": 489.0,
+            "min": 52.0,
+            "max": 489.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Killer.KillRewards.sum": {
+            "value": 489.0,
+            "min": 52.0,
+            "max": 489.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Killer.VictoryRewards.mean": {
+            "value": 146.0,
+            "min": 15.0,
+            "max": 146.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Killer.VictoryRewards.sum": {
+            "value": 146.0,
+            "min": 15.0,
+            "max": 146.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Killer.DefeatRewards.mean": {
+            "value": 34.0,
+            "min": 4.0,
+            "max": 34.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Killer.DefeatRewards.sum": {
+            "value": 34.0,
+            "min": 4.0,
+            "max": 34.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.ObjectivePickUpRewards.mean": {
+            "value": 227.0,
+            "min": 24.5,
+            "max": 227.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.ObjectivePickUpRewards.sum": {
+            "value": 227.0,
+            "min": 24.5,
+            "max": 227.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.ObjectiveDropOffRewards.mean": {
+            "value": 236.0,
+            "min": 30.0,
+            "max": 236.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.ObjectiveDropOffRewards.sum": {
+            "value": 236.0,
+            "min": 30.0,
+            "max": 236.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.DeathRewards.mean": {
+            "value": -244.5,
+            "min": -244.5,
+            "max": -26.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.DeathRewards.sum": {
+            "value": -244.5,
+            "min": -244.5,
+            "max": -26.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.VictoryRewards.mean": {
+            "value": 34.0,
+            "min": 4.0,
+            "max": 34.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.VictoryRewards.sum": {
+            "value": 34.0,
+            "min": 4.0,
+            "max": 34.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.DefeatRewards.mean": {
+            "value": 146.0,
+            "min": 15.0,
+            "max": 146.0,
+            "count": 5
+        },
+        "KillerBehaviour.Agent.Camper.DefeatRewards.sum": {
+            "value": 146.0,
+            "min": 15.0,
+            "max": 146.0,
+            "count": 5
+        },
+        "KillerBehaviour.Environment.EpisodeLength.mean": {
+            "value": 1211.8979591836735,
+            "min": 1211.8979591836735,
+            "max": 3141.3684210526317,
+            "count": 5
+        },
+        "KillerBehaviour.Environment.EpisodeLength.sum": {
+            "value": 59383.0,
+            "min": 59383.0,
+            "max": 60382.0,
+            "count": 5
+        },
+        "KillerBehaviour.Step.mean": {
+            "value": 299454.0,
+            "min": 59705.0,
+            "max": 299454.0,
+            "count": 5
+        },
+        "KillerBehaviour.Step.sum": {
+            "value": 299454.0,
+            "min": 59705.0,
+            "max": 299454.0,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.ExtrinsicValueEstimate.mean": {
+            "value": -0.01795988343656063,
+            "min": -0.027851777151226997,
+            "max": 0.02117161825299263,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.ExtrinsicValueEstimate.sum": {
+            "value": -1.4547505378723145,
+            "min": -2.172438621520996,
+            "max": 1.4608416557312012,
+            "count": 5
+        },
+        "KillerBehaviour.Environment.CumulativeReward.mean": {
+            "value": 0.09779956102371216,
+            "min": -11.486369685122842,
+            "max": 0.09779956102371216,
+            "count": 5
+        },
+        "KillerBehaviour.Environment.CumulativeReward.sum": {
+            "value": 4.889978051185608,
+            "min": -218.24102401733398,
+            "max": 4.889978051185608,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.ExtrinsicReward.mean": {
+            "value": 0.09779956102371216,
+            "min": -11.486369685122842,
+            "max": 0.09779956102371216,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.ExtrinsicReward.sum": {
+            "value": 4.889978051185608,
+            "min": -218.24102401733398,
+            "max": 4.889978051185608,
+            "count": 5
+        },
+        "KillerBehaviour.Losses.PolicyLoss.mean": {
+            "value": 0.01750544334516033,
+            "min": 0.016742529113091428,
+            "max": 0.018234385693601023,
+            "count": 5
+        },
+        "KillerBehaviour.Losses.PolicyLoss.sum": {
+            "value": 0.052516330035480986,
+            "min": 0.036468771387202045,
+            "max": 0.052516330035480986,
+            "count": 5
+        },
+        "KillerBehaviour.Losses.ValueLoss.mean": {
+            "value": 0.10826550937361186,
+            "min": 0.05173184544158479,
+            "max": 0.10826550937361186,
+            "count": 5
+        },
+        "KillerBehaviour.Losses.ValueLoss.sum": {
+            "value": 0.3247965281208356,
+            "min": 0.10346369088316958,
+            "max": 0.3247965281208356,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.LearningRate.mean": {
+            "value": 9.999999999999998e-05,
+            "min": 9.999999999999998e-05,
+            "max": 9.999999999999998e-05,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.LearningRate.sum": {
+            "value": 0.0002999999999999999,
+            "min": 0.00019999999999999996,
+            "max": 0.0002999999999999999,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.Epsilon.mean": {
+            "value": 0.10000000000000003,
+            "min": 0.10000000000000003,
+            "max": 0.10000000000000003,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.Epsilon.sum": {
+            "value": 0.3000000000000001,
+            "min": 0.20000000000000007,
+            "max": 0.3000000000000001,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.Beta.mean": {
+            "value": 0.0010000000000000002,
+            "min": 0.0010000000000000002,
+            "max": 0.0010000000000000002,
+            "count": 5
+        },
+        "KillerBehaviour.Policy.Beta.sum": {
+            "value": 0.003000000000000001,
+            "min": 0.0020000000000000005,
+            "max": 0.003000000000000001,
+            "count": 5
+        },
+        "KillerBehaviour.IsTraining.mean": {
+            "value": 1.0,
+            "min": 1.0,
+            "max": 1.0,
+            "count": 5
+        },
+        "KillerBehaviour.IsTraining.sum": {
+            "value": 1.0,
+            "min": 1.0,
+            "max": 1.0,
+            "count": 5
+        }
+    },
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1628335750",
+        "python_version": "3.7.4 (default, Aug  9 2019, 18:34:13) [MSC v.1915 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\Miniconda\\Scripts\\mlagents-learn config/3DConfig.yaml --run-id=3DRun2.0",
+        "mlagents_version": "0.27.0",
+        "mlagents_envs_version": "0.27.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.19.5",
+        "end_time_seconds": "1628341538"
+    },
+    "total": 5787.8516676,
+    "count": 1,
+    "self": 0.007150999999794294,
+    "children": {
+        "run_training.setup": {
+            "total": 0.20593020000000006,
+            "count": 1,
+            "self": 0.20593020000000006
+        },
+        "TrainerController.start_learning": {
+            "total": 5787.6385864,
+            "count": 1,
+            "self": 7.241405300064798,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 9.658681099999999,
+                    "count": 1,
+                    "self": 9.658681099999999
+                },
+                "TrainerController.advance": {
+                    "total": 5770.507191599936,
+                    "count": 355818,
+                    "self": 9.099464799919588,
+                    "children": {
+                        "env_step": {
+                            "total": 5418.248997300208,
+                            "count": 355818,
+                            "self": 3036.7975523998957,
+                            "children": {
+                                "SubprocessEnvManager._take_step": {
+                                    "total": 2377.037929200077,
+                                    "count": 355818,
+                                    "self": 32.69436790011969,
+                                    "children": {
+                                        "TorchPolicy.evaluate": {
+                                            "total": 2344.3435612999574,
+                                            "count": 710738,
+                                            "self": 562.761901900164,
+                                            "children": {
+                                                "TorchPolicy.sample_actions": {
+                                                    "total": 1781.5816593997934,
+                                                    "count": 710738,
+                                                    "self": 1781.5816593997934
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "workers": {
+                                    "total": 4.4135157002355445,
+                                    "count": 355817,
+                                    "self": 0.0,
+                                    "children": {
+                                        "worker_root": {
+                                            "total": 5770.532189500152,
+                                            "count": 355817,
+                                            "is_parallel": true,
+                                            "self": 3142.916273600026,
+                                            "children": {
+                                                "steps_from_proto": {
+                                                    "total": 0.0009288999999998993,
+                                                    "count": 2,
+                                                    "is_parallel": true,
+                                                    "self": 0.0003835999999992623,
+                                                    "children": {
+                                                        "_process_rank_one_or_two_observation": {
+                                                            "total": 0.0005453000000006369,
+                                                            "count": 10,
+                                                            "is_parallel": true,
+                                                            "self": 0.0005453000000006369
+                                                        }
+                                                    }
+                                                },
+                                                "UnityEnvironment.step": {
+                                                    "total": 2627.6149870001254,
+                                                    "count": 355817,
+                                                    "is_parallel": true,
+                                                    "self": 43.184642499878464,
+                                                    "children": {
+                                                        "UnityEnvironment._generate_step_input": {
+                                                            "total": 33.05872809994271,
+                                                            "count": 355817,
+                                                            "is_parallel": true,
+                                                            "self": 33.05872809994271
+                                                        },
+                                                        "communicator.exchange": {
+                                                            "total": 2319.7354929001763,
+                                                            "count": 355817,
+                                                            "is_parallel": true,
+                                                            "self": 2319.7354929001763
+                                                        },
+                                                        "steps_from_proto": {
+                                                            "total": 231.63612350012838,
+                                                            "count": 711634,
+                                                            "is_parallel": true,
+                                                            "self": 103.92071160080448,
+                                                            "children": {
+                                                                "_process_rank_one_or_two_observation": {
+                                                                    "total": 127.7154118993239,
+                                                                    "count": 3558170,
+                                                                    "is_parallel": true,
+                                                                    "self": 127.7154118993239
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "trainer_advance": {
+                            "total": 343.1587294998076,
+                            "count": 711634,
+                            "self": 14.783981899777984,
+                            "children": {
+                                "process_trajectory": {
+                                    "total": 76.8860272000298,
+                                    "count": 711634,
+                                    "self": 76.30251110003026,
+                                    "children": {
+                                        "RLTrainer._checkpoint": {
+                                            "total": 0.5835160999995423,
+                                            "count": 1,
+                                            "self": 0.5835160999995423
+                                        }
+                                    }
+                                },
+                                "_update_policy": {
+                                    "total": 251.4887203999998,
+                                    "count": 46,
+                                    "self": 182.77174059999905,
+                                    "children": {
+                                        "TorchPOCAOptimizer.update": {
+                                            "total": 57.45653300000092,
+                                            "count": 870,
+                                            "self": 57.45653300000092
+                                        },
+                                        "TorchPPOOptimizer.update": {
+                                            "total": 11.26044679999984,
+                                            "count": 510,
+                                            "self": 11.26044679999984
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "trainer_threads": {
+                    "total": 1.2000000424450263e-06,
+                    "count": 1,
+                    "self": 1.2000000424450263e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 0.23130719999971916,
+                    "count": 1,
+                    "self": 0.015356499999143125,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.21595070000057603,
+                            "count": 2,
+                            "self": 0.21595070000057603
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

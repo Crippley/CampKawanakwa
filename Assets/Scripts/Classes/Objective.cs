@@ -7,6 +7,7 @@ namespace Items
     public class Objective : MonoBehaviour
     {
         public Transform initialParent;
+        [SerializeField] private AgentManager agentManager;
 
         public bool IsCompleted { get; set; }
 
@@ -14,7 +15,7 @@ namespace Items
         public void Reset()
         {
             transform.parent = initialParent;
-            transform.position = AgentManager.Instance.GetRandomObjectiveSpawnPosition();
+            transform.position = agentManager.GetRandomObjectiveSpawnPosition();
             IsCompleted = false;
         }
         #endregion

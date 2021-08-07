@@ -17,8 +17,6 @@ namespace Core
     public class AgentManager : MonoBehaviour
     {
         #region Vars
-        public static AgentManager Instance { get; private set; }
-
         public float winReward;
         public float lossReward;
         public float timeoutReward;
@@ -37,6 +35,12 @@ namespace Core
         public SpawnZone[] objectiveSpawnZones;
         public SpawnZone[] dropOffZoneSpawnZones;
         public SpawnZone[] environmentElementsSpawnZones;
+
+        [SerializeField] private MeshRenderer groundRenderer;
+        [SerializeField] private Material defaultGroundMaterial;
+        [SerializeField] private Material camperWinGroundMaterial;
+        [SerializeField] private Material killerWinGroundMaterial;
+
 
         public bool loopInfinitiely;
 
@@ -90,6 +94,7 @@ namespace Core
         public StatsRecorder StatsRecorder => statsRecorder;
 
         private int currentMaxStepCountPerEpisode = 0;
+        public int CurrentMaxStepCountPerEpisode => currentMaxStepCountPerEpisode;
         #endregion
         
         #region Editor code
@@ -116,13 +121,6 @@ namespace Core
         {
             currentMaxStepCountPerEpisode = maxStepCountPerEpisode;
 
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
             camperAgentGroup = new SimpleMultiAgentGroup();
             statsRecorder = Academy.Instance.StatsRecorder;
 
@@ -272,6 +270,7 @@ namespace Core
             {
                 currentEpisodeCount++;
 
+                groundRenderer.material = defaultGroundMaterial;
                 ResetSpawnZones();
 
                 for (int i = 0; i < environmentElements.Length; i++)
@@ -326,12 +325,14 @@ namespace Core
                     Debug.Log("Killer wins!");
                     killerReward = winReward;
                     camperReward = lossReward;
+                    groundRenderer.material = killerWinGroundMaterial;
                 }
                 else if (campersWin)
                 {
                     Debug.Log("Campers win!");
                     killerReward = lossReward;
                     camperReward = winReward;
+                    groundRenderer.material = camperWinGroundMaterial;
                 }
 
                 if (IsResetConditionMet)

@@ -8,6 +8,7 @@ namespace Zones
 {
     public class DropOffZone : MonoBehaviour
     {
+        [SerializeField] private AgentManager agentManager;
         [SerializeField] private Vector3 addedDroppedOffObjectivePosition;
 
         private int currentDroppedOffObjectiveCount;
@@ -16,7 +17,7 @@ namespace Zones
         public void Reset()
         {
             droppedOffObjectives = new List<Objective>();
-            transform.position = AgentManager.Instance.GetRandomDropOffZoneSpawnPosition();
+            transform.position = agentManager.GetRandomDropOffZoneSpawnPosition();
             currentDroppedOffObjectiveCount = 0;
         }
 
@@ -38,8 +39,8 @@ namespace Zones
             droppedOffObjective.transform.localPosition = addedDroppedOffObjectivePosition * currentDroppedOffObjectiveCount;
             droppedOffObjective.transform.rotation = Quaternion.identity;
 
-            if (currentDroppedOffObjectiveCount >= AgentManager.Instance.objectives.Length)
-                AgentManager.Instance.InvokeEpisodeEnd();
+            if (currentDroppedOffObjectiveCount >= agentManager.objectives.Length)
+                agentManager.InvokeEpisodeEnd();
         }
     }
 }

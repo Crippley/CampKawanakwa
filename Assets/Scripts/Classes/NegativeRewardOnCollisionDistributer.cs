@@ -8,6 +8,7 @@ namespace Environment.Training
 {
     public class NegativeRewardOnCollisionDistributer : MonoBehaviour
     {
+        [SerializeField] AgentManager agentManager;
         [SerializeField] private float negativeCollisionReward = 1f;
 
         private Dictionary<Agent, Coroutine> collidingAgentsToCoroutines = new Dictionary<Agent, Coroutine>();
@@ -45,7 +46,7 @@ namespace Environment.Training
             while (true)
             {
                 agent.AddReward(negativeCollisionReward);
-                AgentManager.Instance.currentCollisionRewards += negativeCollisionReward;
+                agentManager.currentCollisionRewards += negativeCollisionReward;
 
                 yield return new WaitForSeconds(negativeCollisionReward);
             }

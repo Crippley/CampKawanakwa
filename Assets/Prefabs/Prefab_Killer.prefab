@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8799207743412206052}
   m_Layer: 8
   m_Name: Prefab_Killer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  agentManager: {fileID: 0}
   rb: {fileID: 1840767590119777060}
   movementSpeed: 0.75
   rotationSpeed: 100
@@ -197,9 +198,33 @@ PrefabInstance:
       propertyPath: m_SensorName
       value: KillerBackwardSensor
       objectReference: {fileID: 0}
+    - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_RayLayerMask.m_Bits
+      value: 4294961544
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_DetectableTags.Array.data[0]
+      value: NPC
+      objectReference: {fileID: 0}
     - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_SensorName
       value: KillerFowardSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_RayLayerMask.m_Bits
+      value: 4294961544
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_DetectableTags.Array.data[0]
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_RootOrder

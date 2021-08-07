@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4828738078809129003}
   m_Layer: 10
   m_Name: Prefab_Objective
-  m_TagString: Untagged
+  m_TagString: Objective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +110,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialParent: {fileID: 0}
+  agentManager: {fileID: 0}

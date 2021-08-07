@@ -10,6 +10,8 @@ namespace Entities
     public class Camper : Agent
     {
         #region Vars
+        [SerializeField] private AgentManager agentManager;
+
         [Header("Movement related values")]
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float movementSpeed;
@@ -25,7 +27,7 @@ namespace Entities
         [SerializeField] private float deathReward;
 
         [Header("Misc values")]
-        [SerializeField] private float deathToTimeRatioMultiplier;
+        [SerializeField] private float timeRatioRewardMultiplier;
 
         private Vector3 movementVector;
         private Vector3 turningRotation;
@@ -42,9 +44,9 @@ namespace Entities
             heldObjective.transform.SetParent(transform);
             heldObjective.transform.position = transform.position + addedHeldObjectivePosition;
 
-            AgentManager.Instance.CamperAgentGroup.AddGroupReward(objectivePickupReward);
-            AddReward(objectivePickupReward);
-            AgentManager.Instance.currentObjectivePickedUpRewards += objectivePickupReward;
+            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward + objectivePickupReward * ((1 - (agentManager.CurrentMaxStepCountPerEpisode - Academy.Instance.StepCount) / agentManager.CurrentMaxStepCountPerEpisode) * timeRatioRewardMultiplier));
+            //AddReward(objectivePickupReward);
+            agentManager.currentObjectivePickedUpRewards += objectivePickupReward;
         }
 
         public void DropHeldObjective(bool success)
@@ -54,9 +56,9 @@ namespace Entities
 
             if (success)
             {
-                AgentManager.Instance.CamperAgentGroup.AddGroupReward(objectiveDropOffReward);
-                AddReward(objectiveDropOffReward);
-                AgentManager.Instance.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
+                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward + objectiveDropOffReward * ((1 - (agentManager.CurrentMaxStepCountPerEpisode - Academy.Instance.StepCount) / agentManager.CurrentMaxStepCountPerEpisode) * timeRatioRewardMultiplier));
+                //AddReward(objectiveDropOffReward);
+                agentManager.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
             }
             else
             {
@@ -70,8 +72,8 @@ namespace Entities
 
         public void GetKilled()
         {
-            AddReward(deathReward * (deathToTimeRatioMultiplier - Academy.Instance.StepCount / AgentManager.Instance.maxStepCountPerEpisode * deathToTimeRatioMultiplier));
-            AgentManager.Instance.currentDeathRewards += deathReward;
+            AddReward(deathReward + deathReward * (agentManager.CurrentMaxStepCountPerEpisode - Academy.Instance.StepCount) / agentManager.CurrentMaxStepCountPerEpisode * timeRatioRewardMultiplier);
+            agentManager.currentDeathRewards += deathReward;
             DropHeldObjective(false);
 
             Debug.Log("Camper " + name + "'s episode ended");
@@ -82,19 +84,19 @@ namespace Entities
         #region Agent code
         public override void OnEpisodeBegin()
         {
-            if (lastEpisodeCount == AgentManager.Instance.CurrentEpisodeCount)
+            if (lastEpisodeCount == agentManager.CurrentEpisodeCount)
                 return;
             
             Debug.Log("Camper " + name + "'s episode started");
 
-            transform.position = AgentManager.Instance.GetRandomCamperSpawnPosition();
+            transform.position = agentManager.GetRandomCamperSpawnPosition();
             DropHeldObjective(false);
-            lastEpisodeCount = AgentManager.Instance.CurrentEpisodeCount;
+            lastEpisodeCount = agentManager.CurrentEpisodeCount;
         }
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(heldObjective == null ? -1f : 1f);
+            sensor.AddObservation(heldObjective == null);
         }
 
         public override void Heuristic(in ActionBuffers actionsOut)

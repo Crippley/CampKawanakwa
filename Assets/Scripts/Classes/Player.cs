@@ -8,6 +8,8 @@ namespace Entities
     public class Player : Agent
     {
         #region Vars
+        [SerializeField] private AgentManager agentManager;
+
         [Header("Movement related values")]
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float movementSpeed;
@@ -35,12 +37,12 @@ namespace Entities
                 collidingCamper.GetKilled();
 
                 AddReward(killCamperReward);
-                AgentManager.Instance.currentKillRewards += killCamperReward;
+                agentManager.currentKillRewards += killCamperReward;
 
                 killedCamperCount++;
 
-                if (AgentManager.Instance.campers.Length == killedCamperCount)
-                    AgentManager.Instance.InvokeEpisodeEnd();
+                if (agentManager.campers.Length == killedCamperCount)
+                    agentManager.InvokeEpisodeEnd();
             }
         }
         #endregion
@@ -48,17 +50,17 @@ namespace Entities
         #region Agent
         public override void OnEpisodeBegin()
         {
-            if (lastEpisodeCount == AgentManager.Instance.CurrentEpisodeCount)
+            if (lastEpisodeCount == agentManager.CurrentEpisodeCount)
                 return;
 
             Debug.Log("Killer's episode started");
             
-            transform.position = AgentManager.Instance.GetRandomKillerSpawnPosition();
+            transform.position = agentManager.GetRandomKillerSpawnPosition();
             killedCamperCount = 0;
-            lastEpisodeCount = AgentManager.Instance.CurrentEpisodeCount;
+            lastEpisodeCount = agentManager.CurrentEpisodeCount;
         }
 
-        /*public override void Heuristic(in ActionBuffers actionsOut)
+        public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
@@ -101,7 +103,7 @@ namespace Entities
             {
                 discreteActions[2] = 0;
             }
-        }*/
+        }
 
         public override void OnActionReceived(ActionBuffers actions)
         {
