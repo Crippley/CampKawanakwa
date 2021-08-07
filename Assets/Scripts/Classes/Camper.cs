@@ -21,7 +21,11 @@ namespace Entities
         [Header("Reward values")]
         [SerializeField] private float objectivePickupReward;
         [SerializeField] private float objectiveDropOffReward;
+        [SerializeField] private float timeReward;
         [SerializeField] private float deathReward;
+
+        [Header("Misc values")]
+        [SerializeField] private float deathToTimeRatioMultiplier;
 
         private Vector3 movementVector;
         private Vector3 turningRotation;
@@ -66,7 +70,7 @@ namespace Entities
 
         public void GetKilled()
         {
-            AddReward(deathReward);
+            AddReward(deathReward * (deathToTimeRatioMultiplier - Academy.Instance.StepCount / AgentManager.Instance.maxStepCountPerEpisode * deathToTimeRatioMultiplier));
             AgentManager.Instance.currentDeathRewards += deathReward;
             DropHeldObjective(false);
 
@@ -184,6 +188,8 @@ namespace Entities
             {
                 turningRotation = -transform.up;
             }
+
+            AddReward(timeReward);
         }
 
         private void FixedUpdate() 

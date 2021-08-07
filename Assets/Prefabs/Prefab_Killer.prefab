@@ -167,7 +167,7 @@ MonoBehaviour:
   movementSpeed: 0.75
   rotationSpeed: 100
   killCamperReward: 1
-  timeReward: -0.001
+  timeReward: -0.00001
 --- !u!114 &8799207743412206052
 MonoBehaviour:
   m_ObjectHideFlags: 0
