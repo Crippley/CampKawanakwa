@@ -92,6 +92,15 @@ namespace Entities
         #endregion
 
         #region Agent code
+        private void Start() 
+        {
+            if (GetComponent<BehaviorParameters>()?.BehaviorType == BehaviorType.HeuristicOnly)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+        
         public override void OnEpisodeBegin()
         {
             if (lastEpisodeCount == agentManager.CurrentEpisodeCount)
