@@ -159,8 +159,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 030000000300000003000000
-    VectorActionSize: 030000000300000003000000
+      BranchSizes: 03000000030000000300000002000000
+    VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -191,10 +191,18 @@ MonoBehaviour:
   agentManager: {fileID: 0}
   agentCamera: {fileID: 1273369009941130741}
   rb: {fileID: 1840767590119777060}
-  movementSpeed: 0.75
+  movementSpeed: 0.8
   rotationSpeed: 300
-  killCamperReward: 0.1
-  timeReward: -0.000001
+  abilityMask:
+    serializedVersion: 2
+    m_Bits: 136
+  abilityRange: 7.5
+  leapSpeed: 45
+  abilityStepCooldown: 100
+  killCamperReward: 1
+  hitTargetWithAbility: 0.25
+  missedTargetWithAbility: -0.25
+  timeReward: -0.00001
 --- !u!114 &8799207743412206052
 MonoBehaviour:
   m_ObjectHideFlags: 0

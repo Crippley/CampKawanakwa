@@ -85,8 +85,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 030000000300000003000000
-    VectorActionSize: 030000000300000003000000
+      BranchSizes: 03000000030000000300000002000000
+    VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -119,11 +119,20 @@ MonoBehaviour:
   rb: {fileID: 1510153807985867380}
   movementSpeed: 1
   rotationSpeed: 300
+  abilityMask:
+    serializedVersion: 2
+    m_Bits: 264
+  abilityRange: 7.5
+  knockbackSpeed: 30
+  abilityStepCooldown: 100
   addedHeldObjectivePosition: {x: 0, y: 1, z: 0}
-  objectivePickupReward: 0.2
-  objectiveDropOffReward: 0.2
-  timeReward: -0.00001
-  deathReward: -0.3
+  objectivePickupReward: 0.5
+  objectiveDropOffReward: 1
+  hitTargetWithAbility: 0.5
+  missedTargetWithAbility: -0.5
+  deathReward: -0.5
+  timeReward: -0.000001
+  timeRatioRewardMultiplier: 5
 --- !u!114 &6606613529142666403
 MonoBehaviour:
   m_ObjectHideFlags: 0
