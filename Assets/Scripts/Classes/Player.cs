@@ -2,6 +2,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using UnityEngine;
 using Core;
+using Unity.MLAgents.Policies;
 
 namespace Entities
 {
@@ -9,6 +10,7 @@ namespace Entities
     {
         #region Vars
         [SerializeField] private AgentManager agentManager;
+        [SerializeField] private Camera agentCamera;
 
         [Header("Movement related values")]
         [SerializeField] private Rigidbody rb;
@@ -60,50 +62,31 @@ namespace Entities
             lastEpisodeCount = agentManager.CurrentEpisodeCount;
         }
 
-        public override void Heuristic(in ActionBuffers actionsOut)
+        /*public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
             if (Input.GetAxis("Horizontal") < 0)
-            {
                 discreteActions[0] = 2;
-            }
             else if (Input.GetAxis("Horizontal") > 0)
-            {
                 discreteActions[0] = 1;
-            }
             else
-            {
                 discreteActions[0] = 0;
-            }
 
             if (Input.GetAxis("Vertical") < 0)
-            {
                 discreteActions[1] = 2;
-            }
             else if (Input.GetAxis("Vertical") > 0)
-            {
                 discreteActions[1] = 1;
-            }
             else
-            {
                 discreteActions[1] = 0;
-            }
 
-            // TODO: Replace with mouse movement
-            if (Input.GetKey(KeyCode.Q))
-            {
+            if (Input.GetAxis("Mouse X") < 0)
                 discreteActions[2] = 2;
-            }
-            else if (Input.GetKey(KeyCode.E))
-            {
+            else if (Input.GetAxis("Mouse X") > 0)
                 discreteActions[2] = 1;
-            }
             else
-            {
                 discreteActions[2] = 0;
-            }
-        }
+        }*/
 
         public override void OnActionReceived(ActionBuffers actions)
         {
@@ -111,46 +94,28 @@ namespace Entities
             Vector3 moveZ;
 
             if (actions.DiscreteActions[0] == 0)
-            {
                 moveX = Vector3.zero;
-            }
             else if (actions.DiscreteActions[0] == 1)
-            {
                 moveX = transform.right;
-            }
             else
-            {
                 moveX = -transform.right;
-            }
 
             if (actions.DiscreteActions[1] == 0)
-            {
                 moveZ = Vector3.zero;
-            }
             else if (actions.DiscreteActions[1] == 1)
-            {
                 moveZ = transform.forward;
-            }
             else
-            {
                 moveZ = -transform.forward;
-            }
             
             movementVector = moveX + moveZ;
             movementVector = movementVector.normalized;
 
             if (actions.DiscreteActions[2] == 0)
-            {
                 turningRotation = Vector3.zero;
-            }
             else if (actions.DiscreteActions[2] == 1)
-            {
                 turningRotation = transform.up;
-            }
             else
-            {
                 turningRotation = -transform.up;
-            }
 
             AddReward(timeReward);
         }
