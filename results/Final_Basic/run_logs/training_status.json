@@ -1,0 +1,105 @@
+{
+    "CamperBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 1499894,
+                "file_path": "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-1499894.onnx",
+                "reward": -1.8724546726205316,
+                "creation_time": 1628459444.235142,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-1499894.pt"
+                ]
+            },
+            {
+                "steps": 1999920,
+                "file_path": "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-1999920.onnx",
+                "reward": -2.0186351310672204,
+                "creation_time": 1628460440.4499223,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-1999920.pt"
+                ]
+            },
+            {
+                "steps": 2499723,
+                "file_path": "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-2499723.onnx",
+                "reward": -1.7616516030272988,
+                "creation_time": 1628461456.7691224,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-2499723.pt"
+                ]
+            },
+            {
+                "steps": 2999922,
+                "file_path": "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-2999922.onnx",
+                "reward": -1.15609164461639,
+                "creation_time": 1628462467.060362,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-2999922.pt"
+                ]
+            },
+            {
+                "steps": 3118086,
+                "file_path": "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-3118086.onnx",
+                "reward": -1.1207636313707763,
+                "creation_time": 1628462695.2374473,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-3118086.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3118086,
+            "file_path": "results\\Final_Basic\\CamperBehaviour.onnx",
+            "reward": -1.1207636313707763,
+            "creation_time": 1628462695.2374473,
+            "auxillary_file_paths": [
+                "results\\Final_Basic\\CamperBehaviour\\CamperBehaviour-3118086.pt"
+            ]
+        }
+    },
+    "KillerBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 499656,
+                "file_path": "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-499656.onnx",
+                "reward": 2.294766459200117,
+                "creation_time": 1628458536.8436341,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-499656.pt"
+                ]
+            },
+            {
+                "steps": 999921,
+                "file_path": "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-999921.onnx",
+                "reward": 0.6329126292712068,
+                "creation_time": 1628460550.875321,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-999921.pt"
+                ]
+            },
+            {
+                "steps": 1477855,
+                "file_path": "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-1477855.onnx",
+                "reward": -2.164527661056929,
+                "creation_time": 1628462695.0738828,
+                "auxillary_file_paths": [
+                    "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-1477855.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1477855,
+            "file_path": "results\\Final_Basic\\KillerBehaviour.onnx",
+            "reward": -2.164527661056929,
+            "creation_time": 1628462695.0738828,
+            "auxillary_file_paths": [
+                "results\\Final_Basic\\KillerBehaviour\\KillerBehaviour-1477855.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
