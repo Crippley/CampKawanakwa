@@ -118,7 +118,7 @@ namespace Entities
             sensor.AddObservation(heldObjective == null);
         }
 
-        public override void Heuristic(in ActionBuffers actionsOut)
+        /*public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
@@ -151,7 +151,7 @@ namespace Entities
                 discreteActions[3] = 1;
             else
                 discreteActions[3] = 0;
-        }
+        }*/
 
         public override void OnActionReceived(ActionBuffers actions)
         {
@@ -185,7 +185,7 @@ namespace Entities
             if (actions.DiscreteActions[3] == 1 && Academy.Instance.StepCount > lastAbilityUseStep)
             {
                 float reward;
-                bool hasHit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, abilityMask);
+                bool hasHit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, ~abilityMask);
 
                 if (hasHit && hit.collider.GetComponent<Player>() != null)
                 {

@@ -122,7 +122,7 @@ MonoBehaviour:
   abilityMask:
     serializedVersion: 2
     m_Bits: 264
-  abilityRange: 7.5
+  abilityRange: 5
   knockbackSpeed: 30
   abilityStepCooldown: 100
   addedHeldObjectivePosition: {x: 0, y: 1, z: 0}
