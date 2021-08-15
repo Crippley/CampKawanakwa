@@ -197,8 +197,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   abilityRange: 5
-  leapSpeed: 30
-  abilityStepCooldown: 100
+  leapSpeed: 25
+  abilityStepCooldown: 250
   killCamperReward: 1
   hitTargetWithAbility: 0.25
   missedTargetWithAbility: -0.25
