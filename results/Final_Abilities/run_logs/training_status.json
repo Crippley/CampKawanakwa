@@ -1,0 +1,123 @@
+{
+    "CamperBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 3999908,
+                "file_path": "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-3999908.onnx",
+                "reward": -2.0726138502649176,
+                "creation_time": 1629048142.9501996,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-3999908.pt"
+                ]
+            },
+            {
+                "steps": 4499943,
+                "file_path": "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-4499943.onnx",
+                "reward": -2.11983721537973,
+                "creation_time": 1629049211.574249,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-4499943.pt"
+                ]
+            },
+            {
+                "steps": 4999950,
+                "file_path": "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-4999950.onnx",
+                "reward": -1.769079959660168,
+                "creation_time": 1629050276.5600235,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-4999950.pt"
+                ]
+            },
+            {
+                "steps": 5499862,
+                "file_path": "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-5499862.onnx",
+                "reward": -1.9983752566896422,
+                "creation_time": 1629051341.1101522,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-5499862.pt"
+                ]
+            },
+            {
+                "steps": 5980861,
+                "file_path": "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-5980861.onnx",
+                "reward": -1.9853077970802078,
+                "creation_time": 1629052367.3875396,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-5980861.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5980861,
+            "file_path": "results\\Final_Abilities\\CamperBehaviour.onnx",
+            "reward": -1.9853077970802078,
+            "creation_time": 1629052367.3875396,
+            "auxillary_file_paths": [
+                "results\\Final_Abilities\\CamperBehaviour\\CamperBehaviour-5980861.pt"
+            ]
+        }
+    },
+    "KillerBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 999947,
+                "file_path": "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-999947.onnx",
+                "reward": 3.2955834941864013,
+                "creation_time": 1629043716.2016652,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-999947.pt"
+                ]
+            },
+            {
+                "steps": 1499966,
+                "file_path": "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-1499966.onnx",
+                "reward": 1.4812752112098362,
+                "creation_time": 1629045943.658729,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-1499966.pt"
+                ]
+            },
+            {
+                "steps": 1999900,
+                "file_path": "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-1999900.onnx",
+                "reward": 1.5227319122284881,
+                "creation_time": 1629048305.6814363,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-1999900.pt"
+                ]
+            },
+            {
+                "steps": 2499845,
+                "file_path": "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-2499845.onnx",
+                "reward": 0.23096428526208757,
+                "creation_time": 1629050721.9771497,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-2499845.pt"
+                ]
+            },
+            {
+                "steps": 2835773,
+                "file_path": "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-2835773.onnx",
+                "reward": -0.9960283426138071,
+                "creation_time": 1629052367.5032296,
+                "auxillary_file_paths": [
+                    "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-2835773.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2835773,
+            "file_path": "results\\Final_Abilities\\KillerBehaviour.onnx",
+            "reward": -0.9960283426138071,
+            "creation_time": 1629052367.5032296,
+            "auxillary_file_paths": [
+                "results\\Final_Abilities\\KillerBehaviour\\KillerBehaviour-2835773.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
