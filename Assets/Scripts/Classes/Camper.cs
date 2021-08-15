@@ -185,7 +185,7 @@ namespace Entities
             if (actions.DiscreteActions[3] == 1 && Academy.Instance.StepCount > lastAbilityUseStep)
             {
                 float reward;
-                bool hasHit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, ~abilityMask);
+                bool hasHit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, abilityMask);
 
                 if (hasHit && hit.collider.GetComponent<Player>() != null)
                 {
