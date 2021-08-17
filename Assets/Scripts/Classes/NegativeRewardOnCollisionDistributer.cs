@@ -9,7 +9,8 @@ namespace Environment.Training
     public class NegativeRewardOnCollisionDistributer : MonoBehaviour
     {
         [SerializeField] AgentManager agentManager;
-        [SerializeField] private float negativeCollisionReward = 1f;
+        [SerializeField] private float negativeCollisionReward = -0.01f;
+        [SerializeField] private float negativeCollisionRewardInterval = 0.1f;
 
         private Dictionary<Agent, Coroutine> collidingAgentsToCoroutines = new Dictionary<Agent, Coroutine>();
 
