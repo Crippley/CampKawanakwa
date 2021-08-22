@@ -1,0 +1,69 @@
+behaviors:
+    MosquitoBehaviour:
+        trainer_type: ppo
+        hyperparameters:
+            batch_size: 2048
+            buffer_size: 20480
+            learning_rate: 0.0001
+            beta: 0.001
+            epsilon: 0.1
+            lambd: 0.95
+            num_epoch: 3
+            learning_rate_schedule: constant
+        network_settings:
+            normalize: false
+            hidden_units: 128
+            num_layers: 2
+            vis_encode_type: simple
+            memory:
+                use_recurrent: true
+                sequence_length: 64
+                memory_size: 128
+        reward_signals:
+            extrinsic:
+                gamma: 0.9
+                strength: 1.0
+            curiosity:
+                gamma: 0.9
+                strength: 0.01
+                network_settings:
+                  hidden_units: 64
+                learning_rate: 0.0001
+        keep_checkpoints: 5
+        max_steps: 20000000
+        time_horizon: 1000
+        summary_freq: 60000
+    CamperBehaviour:
+        trainer_type: poca
+        hyperparameters:
+            batch_size: 2048
+            buffer_size: 20480
+            learning_rate: 0.0003
+            beta: 0.001
+            epsilon: 0.1
+            lambd: 0.9
+            num_epoch: 3
+            learning_rate_schedule: constant
+        network_settings:
+            normalize: false
+            hidden_units: 256
+            num_layers: 3
+            vis_encode_type: simple
+            memory:
+                use_recurrent: true
+                sequence_length: 128
+                memory_size: 256
+        reward_signals:
+            extrinsic:
+                gamma: 0.9
+                strength: 1.0
+            curiosity:
+                gamma: 0.9
+                strength: 0.01
+                network_settings:
+                  hidden_units: 128
+                learning_rate: 0.0003
+        keep_checkpoints: 5
+        max_steps: 20000000
+        time_horizon: 1000
+        summary_freq: 60000
