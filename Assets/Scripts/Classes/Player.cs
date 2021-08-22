@@ -55,9 +55,9 @@ namespace Entities
             if (lastEpisodeCount == agentManager.CurrentEpisodeCount)
                 return;
 
-            Debug.Log("Killer's episode started");
+            Debug.Log("Mosquito's episode started");
             
-            transform.position = agentManager.GetRandomKillerSpawnPosition();
+            transform.position = agentManager.GetRandomMosquitoSpawnPosition();
             killedCamperCount = 0;
             lastEpisodeCount = agentManager.CurrentEpisodeCount;
         }

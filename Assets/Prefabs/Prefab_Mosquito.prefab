@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8799207743412206052}
   - component: {fileID: 1383233680501062763}
   m_Layer: 8
-  m_Name: Prefab_Killer
+  m_Name: Prefab_Mosquito
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
-  m_BehaviorName: KillerBehaviour
+  m_BehaviorName: MosquitoBehaviour
   TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1

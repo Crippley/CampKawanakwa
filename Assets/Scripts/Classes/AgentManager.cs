@@ -7,6 +7,7 @@ using System;
 using Unity.MLAgents;
 using Zones;
 using Environment.Training;
+using UnityEngine.Serialization;
 
 #if UNITY_EDITOR
 using System.Linq;
@@ -23,7 +24,8 @@ namespace Core
         public int maxStepCountPerEpisode;
         public int maxEpisodes;
 
-        public Player killer;
+        [FormerlySerializedAs("killer")]
+        public Player mosquito;
         public DropOffZone dropOffZone;
 
         public Camper[] campers;
@@ -31,29 +33,25 @@ namespace Core
         public GameObject[] environmentElements;
 
         public SpawnZone[] camperSpawnZones;
-        public SpawnZone[] killerSpawnZones;
+        [FormerlySerializedAs("killerSpawnZones")]
+        public SpawnZone[] mosquitoSpawnZones;
         public SpawnZone[] objectiveSpawnZones;
         public SpawnZone[] dropOffZoneSpawnZones;
         public SpawnZone[] environmentElementsSpawnZones;
-
-        [SerializeField] private MeshRenderer groundRenderer;
-        [SerializeField] private Material defaultGroundMaterial;
-        [SerializeField] private Material camperWinGroundMaterial;
-        [SerializeField] private Material killerWinGroundMaterial;
 
 
         public bool loopInfinitiely;
 
         [Header("Read only training values")]
         [Header("Win counters")]
-        public int killerWins;
+        public int mosquitoWins;
         public int camperWins;
 
         [Header("Current episode rewards")]
         [Header("Misc rewards")]
         public float currentCollisionRewards;
 
-        [Header("Killer rewards")]
+        [Header("Mosquito rewards")]
         public float currentKillRewards;
 
         [Header("Camper rewards")]
@@ -67,11 +65,11 @@ namespace Core
         public float totalTimeouts;
         public float totalCollisionRewards;
 
-        [Header("Killer rewards")]
+        [Header("Mosquito rewards")]
         public float totalKillRewards;
 
-        public float totalKillerWins;
-        public float totalKillerLosses;
+        public float totalMosquitoWins;
+        public float totalMosquitoLosses;
 
         [Header("Camper rewards")]
         public float totalObjectivePickedUpRewards;
@@ -99,9 +97,9 @@ namespace Core
         
         #region Editor code
         #if UNITY_EDITOR
-        public void FindKiller()
+        public void FindMosquito()
         {
-            killer = FindObjectOfType<Player>();
+            mosquito = FindObjectOfType<Player>();
         }
 
         public void FindAllCampers()
@@ -140,14 +138,14 @@ namespace Core
             currentCollisionRewards = 0f;
             #endregion
 
-            #region Killer rewards
+            #region Mosquito rewards
             totalKillRewards += currentKillRewards;
-            statsRecorder.Add("Agent/Killer/KillRewards", totalKillRewards, StatAggregationMethod.MostRecent);
+            statsRecorder.Add("Agent/Mosquito/KillRewards", totalKillRewards, StatAggregationMethod.MostRecent);
             currentKillRewards = 0f;
 
-            statsRecorder.Add("Agent/Killer/VictoryRewards", totalKillerWins, StatAggregationMethod.MostRecent);
+            statsRecorder.Add("Agent/Mosquito/VictoryRewards", totalMosquitoWins, StatAggregationMethod.MostRecent);
 
-            statsRecorder.Add("Agent/Killer/DefeatRewards", totalKillerLosses, StatAggregationMethod.MostRecent);
+            statsRecorder.Add("Agent/Mosquito/DefeatRewards", totalMosquitoLosses, StatAggregationMethod.MostRecent);
             #endregion
 
             #region Camper rewards
@@ -176,8 +174,8 @@ namespace Core
             for (int i = 0; i < camperSpawnZones.Length; i++)
                 camperSpawnZones[i].Reset();
 
-            for (int i = 0; i < killerSpawnZones.Length; i++)
-                killerSpawnZones[i].Reset();
+            for (int i = 0; i < mosquitoSpawnZones.Length; i++)
+                mosquitoSpawnZones[i].Reset();
 
             for (int i = 0; i < objectiveSpawnZones.Length; i++)
                 objectiveSpawnZones[i].Reset();
@@ -215,11 +213,11 @@ namespace Core
         }
 
         /// <summary>
-        /// Provides a random killer spawn position in a random killer spawn zone.
+        /// Provides a random mosquito spawn position in a random mosquito spawn zone.
         /// </summary>
-        public Vector3 GetRandomKillerSpawnPosition()
+        public Vector3 GetRandomMosquitoSpawnPosition()
         {
-            SpawnZone[] unusedZones = Array.FindAll(killerSpawnZones, x => !x.Used);
+            SpawnZone[] unusedZones = Array.FindAll(mosquitoSpawnZones, x => !x.Used);
             int randomIndex = UnityEngine.Random.Range(0, unusedZones.Length);
 
             return unusedZones[randomIndex].GetRandomPosition();
@@ -270,7 +268,6 @@ namespace Core
             {
                 currentEpisodeCount++;
 
-                groundRenderer.material = defaultGroundMaterial;
                 ResetSpawnZones();
 
                 for (int i = 0; i < environmentElements.Length; i++)
@@ -284,7 +281,7 @@ namespace Core
                 for(int i = 0; i < objectives.Length; i++)
                     objectives[i].Reset();
 
-                killer.gameObject.SetActive(true);
+                mosquito.gameObject.SetActive(true);
 
                 for(int i = 0; i < campers.Length; i++)
                 {
@@ -307,32 +304,30 @@ namespace Core
         public void InvokeEpisodeEnd()
         {
             bool campersWin = Array.Find(objectives, x => !x.IsCompleted) == null;
-            bool killerWins = Array.Find(campers, x => x.gameObject.activeInHierarchy) == null;
+            bool mosquitoWins = Array.Find(campers, x => x.gameObject.activeInHierarchy) == null;
 
-            float killerReward = 0f;
+            float mosquitoReward = 0f;
             float camperReward = 0f;
 
-            if (killerWins || campersWin || IsResetConditionMet)
+            if (mosquitoWins || campersWin || IsResetConditionMet)
             {
                 if (IsResetConditionMet)
                 {
                     Debug.Log("Episode timed out - no one wins.");
-                    killerReward = timeoutReward;
+                    mosquitoReward = timeoutReward;
                     camperReward = timeoutReward;
                 }
-                if (killerWins)
+                if (mosquitoWins)
                 {
-                    Debug.Log("Killer wins!");
-                    killerReward = winReward;
+                    Debug.Log("Mosquito wins!");
+                    mosquitoReward = winReward;
                     camperReward = lossReward;
-                    groundRenderer.material = killerWinGroundMaterial;
                 }
                 else if (campersWin)
                 {
                     Debug.Log("Campers win!");
-                    killerReward = lossReward;
+                    mosquitoReward = lossReward;
                     camperReward = winReward;
-                    groundRenderer.material = camperWinGroundMaterial;
                 }
 
                 if (IsResetConditionMet)
@@ -344,17 +339,17 @@ namespace Core
                     if (camperReward > 0f)
                     {
                         totalCamperWins++;
-                        totalKillerLosses++;
+                        totalMosquitoLosses++;
                     }
                     else
                     {
                         totalCamperLosses++;
-                        totalKillerWins++;
+                        totalMosquitoWins++;
                     }
                 }
 
                 camperAgentGroup.AddGroupReward(camperReward);
-                killer.AddReward(killerReward);
+                mosquito.AddReward(mosquitoReward);
 
                 if (IsResetConditionMet)
                     camperAgentGroup.EndGroupEpisode();
@@ -371,8 +366,8 @@ namespace Core
                     }
                 }
 
-                Debug.Log("Killer's episode ended");
-                killer.gameObject.SetActive(false);
+                Debug.Log("Mosquito's episode ended");
+                mosquito.gameObject.SetActive(false);
 
                 Debug.Log("Episode ended");
                 InvokeEpisodeBegin();

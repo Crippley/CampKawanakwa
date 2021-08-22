@@ -19,8 +19,8 @@ namespace CustomEditorScripts
 
             if (agentManager)
             {
-                if (GUILayout.Button("Fetch killer"))
-                    agentManager.FindKiller();
+                if (GUILayout.Button("Fetch mosquito"))
+                    agentManager.FindMosquito();
 
                 if (GUILayout.Button("Fetch all campers"))
                     agentManager.FindAllCampers();
