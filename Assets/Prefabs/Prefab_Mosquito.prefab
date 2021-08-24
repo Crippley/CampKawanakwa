@@ -193,8 +193,8 @@ MonoBehaviour:
   rb: {fileID: 1840767590119777060}
   movementSpeed: 0.75
   rotationSpeed: 300
-  killCamperReward: 1
-  timeReward: -0.00001
+  killCamperReward: 0.1
+  timeReward: -0.000001
 --- !u!114 &8799207743412206052
 MonoBehaviour:
   m_ObjectHideFlags: 0

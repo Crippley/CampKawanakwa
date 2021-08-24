@@ -25,11 +25,7 @@ namespace Entities
         [Header("Reward values")]
         [SerializeField] private float objectivePickupReward;
         [SerializeField] private float objectiveDropOffReward;
-        [SerializeField] private float timeReward;
         [SerializeField] private float deathReward;
-
-        [Header("Misc values")]
-        [SerializeField] private float timeRatioRewardMultiplier;
 
         private Vector3 movementVector;
         private Vector3 turningRotation;
@@ -47,7 +43,7 @@ namespace Entities
             heldObjective.transform.SetParent(transform);
             heldObjective.transform.position = transform.position + addedHeldObjectivePosition;
 
-            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward + objectivePickupReward * ((1 - (agentManager.CurrentMaxStepCountPerEpisode - Academy.Instance.StepCount) / agentManager.CurrentMaxStepCountPerEpisode) * timeRatioRewardMultiplier));
+            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward);
             //AddReward(objectivePickupReward);
             agentManager.currentObjectivePickedUpRewards += objectivePickupReward;
         }
@@ -59,7 +55,7 @@ namespace Entities
 
             if (success)
             {
-                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward + objectiveDropOffReward * ((1 - (agentManager.CurrentMaxStepCountPerEpisode - Academy.Instance.StepCount) / agentManager.CurrentMaxStepCountPerEpisode) * timeRatioRewardMultiplier));
+                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward);
                 //AddReward(objectiveDropOffReward);
                 agentManager.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
             }
@@ -75,7 +71,7 @@ namespace Entities
 
         public void GetKilled()
         {
-            AddReward(deathReward + deathReward * (agentManager.CurrentMaxStepCountPerEpisode - Academy.Instance.StepCount) / agentManager.CurrentMaxStepCountPerEpisode * timeRatioRewardMultiplier);
+            AddReward(deathReward);
             agentManager.currentDeathRewards += deathReward;
             DropHeldObjective(false);
 
@@ -156,8 +152,6 @@ namespace Entities
                 turningRotation = transform.up;
             else
                 turningRotation = -transform.up;
-
-            AddReward(timeReward);
         }
 
         private void FixedUpdate() 

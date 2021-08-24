@@ -18,6 +18,8 @@ namespace Core
     public class AgentManager : MonoBehaviour
     {
         #region Vars
+        public float camperTimeReward;
+        public float mosquitoTimeReward;
         public float winReward;
         public float lossReward;
         public float timeoutReward;
@@ -194,6 +196,13 @@ namespace Core
         /// </summary>
         private void FixedUpdate() 
         {
+            for (int i = 0; i < campers.Length; i++)
+                if (campers[i].gameObject.activeInHierarchy)
+                    campers[i].AddReward(camperTimeReward);
+
+            if (mosquito.gameObject.activeInHierarchy)
+                mosquito.AddReward(mosquitoTimeReward);
+
             if (Academy.Instance.StepCount > currentMaxStepCountPerEpisode)
             {
                 IsResetConditionMet = true;
@@ -352,9 +361,9 @@ namespace Core
                 mosquito.AddReward(mosquitoReward);
 
                 if (IsResetConditionMet)
-                    camperAgentGroup.EndGroupEpisode();
-                else
                     camperAgentGroup.GroupEpisodeInterrupted();
+                else
+                    camperAgentGroup.EndGroupEpisode();
 
                 for(int i = 0; i < campers.Length; i++)
                 {
@@ -371,6 +380,8 @@ namespace Core
 
                 Debug.Log("Episode ended");
                 InvokeEpisodeBegin();
+
+                IsResetConditionMet = false;
             }
         }
         #endregion

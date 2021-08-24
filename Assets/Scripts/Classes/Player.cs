@@ -19,8 +19,6 @@ namespace Entities
 
         [Header("Rewars values")]
         [SerializeField] private float killCamperReward;
-        [SerializeField] private float timeReward;
-
         private Vector3 movementVector;
         private Vector3 turningRotation;
 
@@ -116,8 +114,6 @@ namespace Entities
                 turningRotation = transform.up;
             else
                 turningRotation = -transform.up;
-
-            AddReward(timeReward);
         }
 
         private void FixedUpdate() 
