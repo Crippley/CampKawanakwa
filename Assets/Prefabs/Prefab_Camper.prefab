@@ -126,13 +126,12 @@ MonoBehaviour:
   knockbackSpeed: 45
   abilityStepCooldown: 100
   addedHeldObjectivePosition: {x: 0, y: 1, z: 0}
-  objectivePickupReward: 0.5
-  objectiveDropOffReward: 1
+  objectivePickupReward: 0.2
+  objectiveDropOffReward: 0.2
   hitTargetWithAbility: 0.05
-  missedTargetWithAbility: -0.1
-  deathReward: -0.5
-  timeReward: -0.000001
-  timeRatioRewardMultiplier: 5
+  missedTargetWithAbility: -0.05
+  deathReward: -0.3
+  timeReward: -0.00005
 --- !u!114 &6606613529142666403
 MonoBehaviour:
   m_ObjectHideFlags: 0
