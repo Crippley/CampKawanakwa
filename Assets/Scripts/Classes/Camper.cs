@@ -118,6 +118,14 @@ namespace Entities
             sensor.AddObservation(heldObjective == null);
         }
 
+        public override void WriteDiscreteActionMask(IDiscreteActionMask actionMask)
+        {
+            if (Academy.Instance.StepCount < lastAbilityUseStep)
+                actionMask.SetActionEnabled(3, 1, false);
+            else
+                actionMask.SetActionEnabled(3, 1, true);
+        }
+
         /*public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
