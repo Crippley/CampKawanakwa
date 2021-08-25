@@ -196,9 +196,8 @@ namespace Core
         /// </summary>
         private void FixedUpdate() 
         {
-            for (int i = 0; i < campers.Length; i++)
-                if (campers[i].gameObject.activeInHierarchy)
-                    campers[i].AddReward(camperTimeReward);
+            if (camperAgentGroup.GetRegisteredAgents().Count > 0)
+                camperAgentGroup.AddGroupReward(camperTimeReward);
 
             if (mosquito.gameObject.activeInHierarchy)
                 mosquito.AddReward(mosquitoTimeReward);

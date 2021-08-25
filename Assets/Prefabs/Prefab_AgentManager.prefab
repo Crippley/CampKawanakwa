@@ -494,7 +494,7 @@ MonoBehaviour:
   mosquitoTimeReward: -0.000001
   winReward: 1
   lossReward: -1
-  timeoutReward: -0.5
+  timeoutReward: 0
   maxStepCountPerEpisode: 10000
   maxEpisodes: 0
   mosquito: {fileID: 1668535517049621771}
