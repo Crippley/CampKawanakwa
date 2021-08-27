@@ -24,10 +24,13 @@ namespace Items
         {
             Camper triggeringCamper = other?.GetComponent<Camper>();
 
-            if (triggeringCamper == null || triggeringCamper.HeldObjective != null)
+            if (triggeringCamper == null)
                 return;
 
-            triggeringCamper.PickUpObjective(this);
+            if (triggeringCamper.HeldObjective == null)
+                triggeringCamper.PickUpObjective(this);
+            else
+                triggeringCamper.AddReward(-triggeringCamper.objectivePickupReward);
         }
     }
 }

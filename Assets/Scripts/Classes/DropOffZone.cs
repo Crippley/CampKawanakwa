@@ -25,22 +25,29 @@ namespace Zones
         {
             Camper triggeringCamper = other?.GetComponent<Camper>();
 
-            if (triggeringCamper?.HeldObjective == null)
+            if (triggeringCamper == null)
                 return;
 
-            Objective droppedOffObjective = triggeringCamper.HeldObjective;
-            droppedOffObjective.IsCompleted = true;
-            triggeringCamper.DropHeldObjective(true);
+            if (triggeringCamper.HeldObjective == null)
+            {
+                triggeringCamper.AddReward(-triggeringCamper.objectiveDropOffReward);
+            }
+            else
+            {
+                Objective droppedOffObjective = triggeringCamper.HeldObjective;
+                droppedOffObjective.IsCompleted = true;
+                triggeringCamper.DropHeldObjective(true);
 
-            droppedOffObjectives.Add(droppedOffObjective);
-            currentDroppedOffObjectiveCount++;
+                droppedOffObjectives.Add(droppedOffObjective);
+                currentDroppedOffObjectiveCount++;
 
-            droppedOffObjective.transform.SetParent(transform);
-            droppedOffObjective.transform.localPosition = addedDroppedOffObjectivePosition * currentDroppedOffObjectiveCount;
-            droppedOffObjective.transform.rotation = Quaternion.identity;
+                droppedOffObjective.transform.SetParent(transform);
+                droppedOffObjective.transform.localPosition = addedDroppedOffObjectivePosition * currentDroppedOffObjectiveCount;
+                droppedOffObjective.transform.rotation = Quaternion.identity;
 
-            if (currentDroppedOffObjectiveCount >= agentManager.objectives.Length)
-                agentManager.InvokeEpisodeEnd();
+                if (currentDroppedOffObjectiveCount >= agentManager.objectives.Length)
+                    agentManager.InvokeEpisodeEnd();
+            }
         }
     }
 }

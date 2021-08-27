@@ -30,8 +30,8 @@ namespace Entities
         [SerializeField] private Vector3 addedHeldObjectivePosition;
 
         [Header("Reward values")]
-        [SerializeField] private float objectivePickupReward;
-        [SerializeField] private float objectiveDropOffReward;
+        public float objectivePickupReward;
+        public float objectiveDropOffReward;
         [SerializeField] private float hitTargetWithAbility;
         [SerializeField] private float missedTargetWithAbility;
         [SerializeField] private float deathReward;
