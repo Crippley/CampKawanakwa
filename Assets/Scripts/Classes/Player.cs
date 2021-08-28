@@ -53,7 +53,7 @@ namespace Entities
 
                 killedCamperCount++;
 
-                if (agentManager.campers.Length == killedCamperCount)
+                if (agentManager.trainingStages[agentManager.currentTrainingStageIndex].campers.Length == killedCamperCount)
                     agentManager.InvokeEpisodeEnd();
             }
         }
@@ -71,6 +71,9 @@ namespace Entities
 
         public override void OnEpisodeBegin()
         {
+            if (agentManager.currentTrainingStageIndex < 2)
+                this.enabled = false;
+
             if (lastEpisodeCount == agentManager.CurrentEpisodeCount)
                 return;
 

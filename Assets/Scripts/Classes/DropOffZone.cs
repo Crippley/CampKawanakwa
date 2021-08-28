@@ -30,7 +30,7 @@ namespace Zones
 
             if (triggeringCamper.HeldObjective == null)
             {
-                triggeringCamper.AddReward(-triggeringCamper.objectiveDropOffReward);
+                triggeringCamper.AddReward(triggeringCamper.forbiddenInteractionReward);
             }
             else
             {
@@ -45,7 +45,7 @@ namespace Zones
                 droppedOffObjective.transform.localPosition = addedDroppedOffObjectivePosition * currentDroppedOffObjectiveCount;
                 droppedOffObjective.transform.rotation = Quaternion.identity;
 
-                if (currentDroppedOffObjectiveCount >= agentManager.objectives.Length)
+                if (currentDroppedOffObjectiveCount >= agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length)
                     agentManager.InvokeEpisodeEnd();
             }
         }

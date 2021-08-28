@@ -30,7 +30,7 @@ namespace Items
             if (triggeringCamper.HeldObjective == null)
                 triggeringCamper.PickUpObjective(this);
             else
-                triggeringCamper.AddReward(-triggeringCamper.objectivePickupReward);
+                triggeringCamper.AddReward(triggeringCamper.forbiddenInteractionReward);
         }
     }
 }

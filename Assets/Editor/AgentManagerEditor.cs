@@ -15,7 +15,7 @@ namespace CustomEditorScripts
         {
             DrawDefaultInspector();
 
-            AgentManager agentManager = target as AgentManager;
+            /*AgentManager agentManager = target as AgentManager;
 
             if (agentManager)
             {
@@ -27,7 +27,7 @@ namespace CustomEditorScripts
 
                 if (GUILayout.Button("Fetch all objectives"))
                     agentManager.FindAllObjectives();
-            }
+            }*/
         }
     }
 

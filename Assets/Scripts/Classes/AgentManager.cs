@@ -26,21 +26,8 @@ namespace Core
         public int maxStepCountPerEpisode;
         public int maxEpisodes;
 
-        [FormerlySerializedAs("killer")]
-        public Player mosquito;
-        public DropOffZone dropOffZone;
-
-        public Camper[] campers;
-        public Objective[] objectives;
-        public GameObject[] environmentElements;
-
-        public SpawnZone[] camperSpawnZones;
-        [FormerlySerializedAs("killerSpawnZones")]
-        public SpawnZone[] mosquitoSpawnZones;
-        public SpawnZone[] objectiveSpawnZones;
-        public SpawnZone[] dropOffZoneSpawnZones;
-        public SpawnZone[] environmentElementsSpawnZones;
-
+        public TrainingStage[] trainingStages;
+        public int currentTrainingStageIndex;
 
         public bool loopInfinitiely;
 
@@ -95,25 +82,6 @@ namespace Core
 
         private int currentMaxStepCountPerEpisode = 0;
         public int CurrentMaxStepCountPerEpisode => currentMaxStepCountPerEpisode;
-        #endregion
-        
-        #region Editor code
-        #if UNITY_EDITOR
-        public void FindMosquito()
-        {
-            mosquito = FindObjectOfType<Player>();
-        }
-
-        public void FindAllCampers()
-        {
-            campers = FindObjectsOfType<Camper>();
-        }
-
-        public void FindAllObjectives()
-        {
-            objectives = FindObjectsOfType<Objective>();
-        }
-        #endif
         #endregion
 
         #region Init
@@ -173,20 +141,20 @@ namespace Core
 
         private void ResetSpawnZones()
         {
-            for (int i = 0; i < camperSpawnZones.Length; i++)
-                camperSpawnZones[i].Reset();
+            for (int i = 0; i < trainingStages[currentTrainingStageIndex].camperSpawnZones.Length; i++)
+                trainingStages[currentTrainingStageIndex].camperSpawnZones[i].Reset();
 
-            for (int i = 0; i < mosquitoSpawnZones.Length; i++)
-                mosquitoSpawnZones[i].Reset();
+            for (int i = 0; i < trainingStages[currentTrainingStageIndex].mosquitoSpawnZones.Length; i++)
+                trainingStages[currentTrainingStageIndex].mosquitoSpawnZones[i].Reset();
 
-            for (int i = 0; i < objectiveSpawnZones.Length; i++)
-                objectiveSpawnZones[i].Reset();
+            for (int i = 0; i < trainingStages[currentTrainingStageIndex].objectiveSpawnZones.Length; i++)
+                trainingStages[currentTrainingStageIndex].objectiveSpawnZones[i].Reset();
 
-            for (int i = 0; i < dropOffZoneSpawnZones.Length; i++)
-                dropOffZoneSpawnZones[i].Reset();
+            for (int i = 0; i < trainingStages[currentTrainingStageIndex].dropOffZoneSpawnZones.Length; i++)
+                trainingStages[currentTrainingStageIndex].dropOffZoneSpawnZones[i].Reset();
 
-            for (int i = 0; i < environmentElementsSpawnZones.Length; i++)
-                environmentElementsSpawnZones[i].Reset();
+            for (int i = 0; i < trainingStages[currentTrainingStageIndex].environmentElementsSpawnZones.Length; i++)
+                trainingStages[currentTrainingStageIndex].environmentElementsSpawnZones[i].Reset();
         }
         #endregion
 
@@ -199,8 +167,11 @@ namespace Core
             if (camperAgentGroup.GetRegisteredAgents().Count > 0)
                 camperAgentGroup.AddGroupReward(camperTimeReward);
 
-            if (mosquito.gameObject.activeInHierarchy)
-                mosquito.AddReward(mosquitoTimeReward);
+            for (int i = 0; i < trainingStages[currentTrainingStageIndex].campers.Length; i++)
+                trainingStages[currentTrainingStageIndex].campers[i].AddReward(camperTimeReward);
+
+            if (trainingStages[currentTrainingStageIndex].mosquito.gameObject.activeInHierarchy)
+                trainingStages[currentTrainingStageIndex].mosquito.AddReward(mosquitoTimeReward);
 
             if (Academy.Instance.StepCount > currentMaxStepCountPerEpisode)
             {
@@ -214,7 +185,7 @@ namespace Core
         /// </summary>
         public Vector3 GetRandomCamperSpawnPosition()
         {
-            SpawnZone[] unusedZones = Array.FindAll(camperSpawnZones, x => !x.Used);
+            SpawnZone[] unusedZones = Array.FindAll(trainingStages[currentTrainingStageIndex].camperSpawnZones, x => !x.Used);
             int randomIndex = UnityEngine.Random.Range(0, unusedZones.Length);
 
             return unusedZones[randomIndex].GetRandomPosition();
@@ -225,7 +196,7 @@ namespace Core
         /// </summary>
         public Vector3 GetRandomMosquitoSpawnPosition()
         {
-            SpawnZone[] unusedZones = Array.FindAll(mosquitoSpawnZones, x => !x.Used);
+            SpawnZone[] unusedZones = Array.FindAll(trainingStages[currentTrainingStageIndex].mosquitoSpawnZones, x => !x.Used);
             int randomIndex = UnityEngine.Random.Range(0, unusedZones.Length);
 
             return unusedZones[randomIndex].GetRandomPosition();
@@ -236,7 +207,7 @@ namespace Core
         /// </summary>
         public Vector3 GetRandomObjectiveSpawnPosition()
         {
-            SpawnZone[] unusedZones = Array.FindAll(objectiveSpawnZones, x => !x.Used);
+            SpawnZone[] unusedZones = Array.FindAll(trainingStages[currentTrainingStageIndex].objectiveSpawnZones, x => !x.Used);
             int randomIndex = UnityEngine.Random.Range(0, unusedZones.Length);
 
             return unusedZones[randomIndex].GetRandomPosition();
@@ -247,7 +218,7 @@ namespace Core
         /// </summary>
         public Vector3 GetRandomDropOffZoneSpawnPosition()
         {
-            SpawnZone[] unusedZones = Array.FindAll(dropOffZoneSpawnZones, x => !x.Used);
+            SpawnZone[] unusedZones = Array.FindAll(trainingStages[currentTrainingStageIndex].dropOffZoneSpawnZones, x => !x.Used);
             int randomIndex = UnityEngine.Random.Range(0, unusedZones.Length);
 
             return unusedZones[randomIndex].GetRandomPosition();
@@ -258,7 +229,7 @@ namespace Core
         /// </summary>
         public Vector3 GetRandomEnvironmentSpawnPosition()
         {
-            SpawnZone[] unusedZones = Array.FindAll(environmentElementsSpawnZones, x => !x.Used);
+            SpawnZone[] unusedZones = Array.FindAll(trainingStages[currentTrainingStageIndex].environmentElementsSpawnZones, x => !x.Used);
             int randomIndex = UnityEngine.Random.Range(0, unusedZones.Length);
 
             return unusedZones[randomIndex].GetRandomPosition();
@@ -275,26 +246,36 @@ namespace Core
             if (loopInfinitiely || currentMaxStepCountPerEpisode / maxStepCountPerEpisode < maxEpisodes)
             {
                 currentEpisodeCount++;
+                currentTrainingStageIndex = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("training_stage_index", 0);
+
+                if (currentTrainingStageIndex > 0 && trainingStages[currentTrainingStageIndex-1].gameObject.activeInHierarchy)
+                {
+                    trainingStages[currentTrainingStageIndex-1].gameObject.SetActive(false);
+                    trainingStages[currentTrainingStageIndex].gameObject.SetActive(true);
+                }
 
                 ResetSpawnZones();
 
-                for (int i = 0; i < environmentElements.Length; i++)
+                for (int i = 0; i < trainingStages[currentTrainingStageIndex].environmentElements.Length; i++)
                 {
-                    environmentElements[i].transform.position = GetRandomEnvironmentSpawnPosition();
-                    environmentElements[i].GetComponentInChildren<NegativeRewardOnCollisionDistributer>()?.Reset();
+                    trainingStages[currentTrainingStageIndex].environmentElements[i].transform.position = GetRandomEnvironmentSpawnPosition();
+                    trainingStages[currentTrainingStageIndex].environmentElements[i].GetComponentInChildren<NegativeRewardOnCollisionDistributer>()?.Reset();
                 }
 
-                dropOffZone.Reset();
+                trainingStages[currentTrainingStageIndex].dropOffZone.Reset();
 
-                for(int i = 0; i < objectives.Length; i++)
-                    objectives[i].Reset();
+                for(int i = 0; i < trainingStages[currentTrainingStageIndex].objectives.Length; i++)
+                    trainingStages[currentTrainingStageIndex].objectives[i].Reset();
 
-                mosquito.gameObject.SetActive(true);
+                trainingStages[currentTrainingStageIndex].mosquito.gameObject.SetActive(true);
 
-                for(int i = 0; i < campers.Length; i++)
+                if (!trainingStages[currentTrainingStageIndex].mosquito.enabled)
+                    trainingStages[currentTrainingStageIndex].mosquito.enabled = true;
+
+                for(int i = 0; i < trainingStages[currentTrainingStageIndex].campers.Length; i++)
                 {
-                    campers[i].gameObject.SetActive(true);
-                    camperAgentGroup.RegisterAgent(campers[i]);
+                    trainingStages[currentTrainingStageIndex].campers[i].gameObject.SetActive(true);
+                    camperAgentGroup.RegisterAgent(trainingStages[currentTrainingStageIndex].campers[i]);
                 }
 
                 Debug.Log("Environment reset");
@@ -311,8 +292,8 @@ namespace Core
         /// </summary>
         public void InvokeEpisodeEnd()
         {
-            bool campersWin = Array.Find(objectives, x => !x.IsCompleted) == null;
-            bool mosquitoWins = Array.Find(campers, x => x.gameObject.activeInHierarchy) == null;
+            bool campersWin = Array.Find(trainingStages[currentTrainingStageIndex].objectives, x => !x.IsCompleted) == null;
+            bool mosquitoWins = Array.Find(trainingStages[currentTrainingStageIndex].campers, x => x.gameObject.activeInHierarchy) == null;
 
             float mosquitoReward = 0f;
             float camperReward = 0f;
@@ -347,35 +328,46 @@ namespace Core
                     if (camperReward > 0f)
                     {
                         totalCamperWins++;
-                        totalMosquitoLosses++;
+
+                        if (trainingStages[currentTrainingStageIndex].mosquito.enabled)
+                            totalMosquitoLosses++;
                     }
                     else
                     {
                         totalCamperLosses++;
-                        totalMosquitoWins++;
+
+                        if (trainingStages[currentTrainingStageIndex].mosquito.enabled)
+                            totalMosquitoWins++;
                     }
                 }
 
                 camperAgentGroup.AddGroupReward(camperReward);
-                mosquito.AddReward(mosquitoReward);
+
+                if (trainingStages[currentTrainingStageIndex].mosquito.enabled)
+                    trainingStages[currentTrainingStageIndex].mosquito.AddReward(mosquitoReward);
 
                 if (IsResetConditionMet)
                     camperAgentGroup.GroupEpisodeInterrupted();
                 else
                     camperAgentGroup.EndGroupEpisode();
 
-                for(int i = 0; i < campers.Length; i++)
+                for(int i = 0; i < trainingStages[currentTrainingStageIndex].campers.Length; i++)
                 {
-                    if (campers[i].isActiveAndEnabled)
+                    camperAgentGroup.UnregisterAgent(trainingStages[currentTrainingStageIndex].campers[i]);
+
+                    if (trainingStages[currentTrainingStageIndex].campers[i].isActiveAndEnabled)
                     {
-                        Debug.Log("Camper " + campers[i].name + "'s episode ended");
-                        campers[i].DropHeldObjective(false);
-                        campers[i].gameObject.SetActive(false);
+                        Debug.Log("Camper " + trainingStages[currentTrainingStageIndex].campers[i].name + "'s episode ended");
+                        trainingStages[currentTrainingStageIndex].campers[i].DropHeldObjective(false);
+                        trainingStages[currentTrainingStageIndex].campers[i].gameObject.SetActive(false);
                     }
                 }
 
-                Debug.Log("Mosquito's episode ended");
-                mosquito.gameObject.SetActive(false);
+                if (trainingStages[currentTrainingStageIndex].mosquito.enabled)
+                {
+                    Debug.Log("Mosquito's episode ended");
+                    trainingStages[currentTrainingStageIndex].mosquito.gameObject.SetActive(false);
+                }
 
                 Debug.Log("Episode ended");
                 InvokeEpisodeBegin();

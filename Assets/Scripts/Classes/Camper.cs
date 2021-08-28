@@ -32,6 +32,7 @@ namespace Entities
         [Header("Reward values")]
         public float objectivePickupReward;
         public float objectiveDropOffReward;
+        public float forbiddenInteractionReward;
         [SerializeField] private float hitTargetWithAbility;
         [SerializeField] private float missedTargetWithAbility;
         [SerializeField] private float deathReward;
@@ -54,8 +55,8 @@ namespace Entities
             heldObjective.transform.SetParent(transform);
             heldObjective.transform.position = transform.position + addedHeldObjectivePosition;
 
-            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward);
-            //AddReward(objectivePickupReward);
+            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
+            AddReward(objectivePickupReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
             agentManager.currentObjectivePickedUpRewards += objectivePickupReward;
         }
 
@@ -66,8 +67,8 @@ namespace Entities
 
             if (success)
             {
-                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward);
-                //AddReward(objectiveDropOffReward);
+                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
+                AddReward(objectiveDropOffReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
                 agentManager.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
             }
             else
