@@ -8571,9 +8571,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: leapSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
       propertyPath: agentManager
       value: 
       objectReference: {fileID: 8519317015837702384}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: movementSpeed
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: rotationSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: abilityStepCooldown
+      value: 275
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
 --- !u!4 &3768202955515695095 stripped
@@ -21573,9 +21589,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: leapSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
       propertyPath: agentManager
       value: 
       objectReference: {fileID: 8519317015837702384}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: movementSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: rotationSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729500797567385071, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
+      propertyPath: abilityStepCooldown
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f1c3b3337549e418137b75e8dca6ac, type: 3}
 --- !u!4 &6624654556696567423 stripped

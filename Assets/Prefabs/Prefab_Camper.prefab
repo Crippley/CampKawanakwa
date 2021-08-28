@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
+    VectorObservationSize: 3
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   agentCamera: {fileID: 7297464758405320453}
   rb: {fileID: 1510153807985867380}
   movementSpeed: 1
-  rotationSpeed: 300
+  rotationSpeed: 400
   abilityMask:
     serializedVersion: 2
     m_Bits: 264

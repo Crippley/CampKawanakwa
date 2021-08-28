@@ -70,7 +70,7 @@ environment_parameters:
           behavior: CamperBehaviour
           signal_smoothing: true
           min_lesson_length: 200
-          threshold: 0.3
+          threshold: 0.5
         value: 0
       - name: Stage1
         completion_criteria:

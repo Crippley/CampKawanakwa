@@ -167,8 +167,8 @@ namespace Core
             if (camperAgentGroup.GetRegisteredAgents().Count > 0)
                 camperAgentGroup.AddGroupReward(camperTimeReward);
 
-            for (int i = 0; i < trainingStages[currentTrainingStageIndex].campers.Length; i++)
-                trainingStages[currentTrainingStageIndex].campers[i].AddReward(camperTimeReward);
+            //for (int i = 0; i < trainingStages[currentTrainingStageIndex].campers.Length; i++)
+                //trainingStages[currentTrainingStageIndex].campers[i].AddReward(camperTimeReward);
 
             if (trainingStages[currentTrainingStageIndex].mosquito.gameObject.activeInHierarchy)
                 trainingStages[currentTrainingStageIndex].mosquito.AddReward(mosquitoTimeReward);
@@ -302,19 +302,19 @@ namespace Core
             {
                 if (IsResetConditionMet)
                 {
-                    Debug.Log("Episode timed out - no one wins.");
+                    Debug.Log("Episode timed out - no one wins. Stage " + currentTrainingStageIndex);
                     mosquitoReward = timeoutReward;
                     camperReward = timeoutReward;
                 }
                 if (mosquitoWins)
                 {
-                    Debug.Log("Mosquito wins!");
+                    Debug.Log("Mosquito wins! Stage " + currentTrainingStageIndex);
                     mosquitoReward = winReward;
                     camperReward = lossReward;
                 }
                 else if (campersWin)
                 {
-                    Debug.Log("Campers win!");
+                    Debug.Log("Campers win! Stage " + currentTrainingStageIndex);
                     mosquitoReward = lossReward;
                     camperReward = winReward;
                 }

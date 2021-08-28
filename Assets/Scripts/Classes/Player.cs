@@ -3,6 +3,7 @@ using Unity.MLAgents.Actuators;
 using UnityEngine;
 using Core;
 using Unity.MLAgents.Policies;
+using Unity.MLAgents.Sensors;
 
 namespace Entities
 {
@@ -71,9 +72,6 @@ namespace Entities
 
         public override void OnEpisodeBegin()
         {
-            if (agentManager.currentTrainingStageIndex < 2)
-                this.enabled = false;
-
             if (lastEpisodeCount == agentManager.CurrentEpisodeCount)
                 return;
 
@@ -82,6 +80,12 @@ namespace Entities
             transform.position = agentManager.GetRandomMosquitoSpawnPosition();
             killedCamperCount = 0;
             lastEpisodeCount = agentManager.CurrentEpisodeCount;
+        }
+
+        public override void CollectObservations(VectorSensor sensor)
+        {
+            sensor.AddObservation(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, abilityMask));
+            sensor.AddObservation(Academy.Instance.StepCount > lastAbilityUseStep);
         }
 
         public override void WriteDiscreteActionMask(IDiscreteActionMask actionMask)

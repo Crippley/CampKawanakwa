@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 0
+    VectorObservationSize: 2
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -202,7 +202,6 @@ MonoBehaviour:
   killCamperReward: 0.1
   hitTargetWithAbility: 0.01
   missedTargetWithAbility: -0.01
-  timeReward: -0.000001
 --- !u!114 &8799207743412206052
 MonoBehaviour:
   m_ObjectHideFlags: 0

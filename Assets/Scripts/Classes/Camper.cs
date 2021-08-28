@@ -43,6 +43,8 @@ namespace Entities
         private int lastAbilityUseStep;
 
         private int lastEpisodeCount = -1;
+        private int itemCollectedCounter;
+        private int itemDroppedOffConter;
         #endregion
 
         #region Objective holding
@@ -55,8 +57,9 @@ namespace Entities
             heldObjective.transform.SetParent(transform);
             heldObjective.transform.position = transform.position + addedHeldObjectivePosition;
 
-            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
-            AddReward(objectivePickupReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
+            itemCollectedCounter++;
+            agentManager.CamperAgentGroup.AddGroupReward(objectivePickupReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length * itemCollectedCounter);
+            AddReward(objectivePickupReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length * itemCollectedCounter);
             agentManager.currentObjectivePickedUpRewards += objectivePickupReward;
         }
 
@@ -67,8 +70,9 @@ namespace Entities
 
             if (success)
             {
-                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
-                AddReward(objectiveDropOffReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length);
+                itemDroppedOffConter++;
+                agentManager.CamperAgentGroup.AddGroupReward(objectiveDropOffReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length * itemDroppedOffConter);
+                AddReward(objectiveDropOffReward / agentManager.trainingStages[agentManager.currentTrainingStageIndex].objectives.Length * itemDroppedOffConter);
                 agentManager.currentObjectiveDroppedOffRewards += objectiveDropOffReward;
             }
             else
@@ -109,6 +113,8 @@ namespace Entities
             
             Debug.Log("Camper " + name + "'s episode started");
 
+            itemCollectedCounter = 0;
+            itemDroppedOffConter = 0;
             transform.position = agentManager.GetRandomCamperSpawnPosition();
             DropHeldObjective(false);
             lastEpisodeCount = agentManager.CurrentEpisodeCount;
@@ -117,6 +123,8 @@ namespace Entities
         public override void CollectObservations(VectorSensor sensor)
         {
             sensor.AddObservation(heldObjective == null);
+            sensor.AddObservation(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, abilityMask));
+            sensor.AddObservation(Academy.Instance.StepCount > lastAbilityUseStep);
         }
 
         public override void WriteDiscreteActionMask(IDiscreteActionMask actionMask)
