@@ -192,7 +192,7 @@ MonoBehaviour:
   agentCamera: {fileID: 1273369009941130741}
   rb: {fileID: 1840767590119777060}
   movementSpeed: 0.8
-  rotationSpeed: 300
+  rotationSpeed: 150
   abilityMask:
     serializedVersion: 2
     m_Bits: 136
@@ -302,11 +302,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_DetectableTags.Array.data[0]
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625985264553903852, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_DetectableTags.Array.data[1]
+      value: NPCWithItem
       objectReference: {fileID: 0}
     - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_SensorName
@@ -318,11 +322,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_DetectableTags.Array.data[0]
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883161158232941260, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
+      propertyPath: m_DetectableTags.Array.data[1]
+      value: NPCWithItem
       objectReference: {fileID: 0}
     - target: {fileID: 7990638543417293594, guid: 8470ddd5ef6aff84390a0a3b500e42a2, type: 3}
       propertyPath: m_RootOrder

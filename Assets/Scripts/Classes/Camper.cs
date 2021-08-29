@@ -37,6 +37,10 @@ namespace Entities
         [SerializeField] private float missedTargetWithAbility;
         [SerializeField] private float deathReward;
 
+        [Header("Misc values")]
+        [SerializeField] private string hasHeldItemTag;
+        [SerializeField] private string doesntHaveHeldItemTag;
+
         private Vector3 movementVector;
         private Vector3 turningRotation;
 
@@ -53,6 +57,11 @@ namespace Entities
 
         public void PickUpObjective(Objective objective)
         {
+            if (heldObjective != null)
+                return;
+            
+            gameObject.tag = hasHeldItemTag;
+
             heldObjective = objective;
             heldObjective.transform.SetParent(transform);
             heldObjective.transform.position = transform.position + addedHeldObjectivePosition;
@@ -67,6 +76,8 @@ namespace Entities
         {
             if (heldObjective == null)
                 return;
+
+            gameObject.tag = doesntHaveHeldItemTag;
 
             if (success)
             {
@@ -87,6 +98,7 @@ namespace Entities
 
         public void GetKilled()
         {
+            agentManager.CamperAgentGroup.AddGroupReward(deathReward);
             AddReward(deathReward);
             agentManager.currentDeathRewards += deathReward;
             DropHeldObjective(false);

@@ -8,6 +8,7 @@ TagManager:
   - Objective
   - DropOffZone
   - Environment
+  - NPCWithItem
   layers:
   - Default
   - TransparentFX

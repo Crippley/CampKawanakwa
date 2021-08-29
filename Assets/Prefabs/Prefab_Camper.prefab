@@ -118,7 +118,7 @@ MonoBehaviour:
   agentCamera: {fileID: 7297464758405320453}
   rb: {fileID: 1510153807985867380}
   movementSpeed: 1
-  rotationSpeed: 400
+  rotationSpeed: 250
   abilityMask:
     serializedVersion: 2
     m_Bits: 264
@@ -128,10 +128,12 @@ MonoBehaviour:
   addedHeldObjectivePosition: {x: 0, y: 1, z: 0}
   objectivePickupReward: 0.4
   objectiveDropOffReward: 0.4
-  forbiddenInteractionReward: -0.2
+  forbiddenInteractionReward: -0.1
   hitTargetWithAbility: 0.05
   missedTargetWithAbility: -0.05
-  deathReward: -1
+  deathReward: -0.5
+  hasHeldItemTag: NPC
+  doesntHaveHeldItemTag: NPCWithItem
 --- !u!114 &6606613529142666403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +215,7 @@ MonoBehaviour:
   - NPC
   - Player
   - Environment
+  - NPCWithItem
   m_RaysPerDirection: 7
   m_MaxRayDegrees: 60
   m_SphereCastRadius: 0.5
@@ -347,6 +350,7 @@ MonoBehaviour:
   - NPC
   - Player
   - Environment
+  - NPCWithItem
   m_RaysPerDirection: 10
   m_MaxRayDegrees: 110
   m_SphereCastRadius: 0.5

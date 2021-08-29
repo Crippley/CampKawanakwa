@@ -25,9 +25,11 @@ namespace Core
         public float timeoutReward;
         public int maxStepCountPerEpisode;
         public int maxEpisodes;
+        public bool isTraining;
 
         public TrainingStage[] trainingStages;
         public int currentTrainingStageIndex;
+        private int previousTrainingStageIndex;
 
         public bool loopInfinitiely;
 
@@ -246,11 +248,20 @@ namespace Core
             if (loopInfinitiely || currentMaxStepCountPerEpisode / maxStepCountPerEpisode < maxEpisodes)
             {
                 currentEpisodeCount++;
-                currentTrainingStageIndex = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("training_stage_index", 0);
+                
+                if (isTraining)
+                    currentTrainingStageIndex = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("training_stage_index", 0);
 
-                if (currentTrainingStageIndex > 0 && trainingStages[currentTrainingStageIndex-1].gameObject.activeInHierarchy)
+                if (currentTrainingStageIndex != previousTrainingStageIndex)
                 {
-                    trainingStages[currentTrainingStageIndex-1].gameObject.SetActive(false);
+                    previousTrainingStageIndex = currentTrainingStageIndex;
+
+                    for (int i = 0; i < currentTrainingStageIndex; i++)
+                    {
+                        if (trainingStages[i].gameObject.activeInHierarchy)
+                            trainingStages[i].gameObject.SetActive(false);
+                    }
+                    
                     trainingStages[currentTrainingStageIndex].gameObject.SetActive(true);
                 }
 

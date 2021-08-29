@@ -78,7 +78,7 @@ environment_parameters:
           behavior: CamperBehaviour
           signal_smoothing: true
           min_lesson_length: 200
-          threshold: 0.15
+          threshold: -0.25
         value: 1
       - name: Stage2
         completion_criteria:
@@ -86,7 +86,7 @@ environment_parameters:
           behavior: CamperBehaviour
           signal_smoothing: true
           min_lesson_length: 200
-          threshold: 0.15
+          threshold: -0.2
         value: 2
       - name: Stage3
         completion_criteria:
@@ -94,7 +94,7 @@ environment_parameters:
           behavior: CamperBehaviour
           signal_smoothing: true
           min_lesson_length: 200
-          threshold: 0.15
+          threshold: -0.2
         value: 3
       - name: Stage4
         value: 4
