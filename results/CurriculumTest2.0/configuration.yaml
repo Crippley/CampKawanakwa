@@ -1,0 +1,178 @@
+default_settings: null
+behaviors:
+  CamperBehaviour:
+    trainer_type: poca
+    hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 5
+      learning_rate_schedule: constant
+    network_settings:
+      normalize: false
+      hidden_units: 512
+      num_layers: 3
+      vis_encode_type: simple
+      memory: null
+      goal_conditioning_type: hyper
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+        network_settings:
+          normalize: false
+          hidden_units: 128
+          num_layers: 2
+          vis_encode_type: simple
+          memory: null
+          goal_conditioning_type: hyper
+    init_path: null
+    keep_checkpoints: 5
+    checkpoint_interval: 500000
+    max_steps: 20000000
+    time_horizon: 1000
+    summary_freq: 60000
+    threaded: false
+    self_play:
+      save_steps: 90000
+      team_change: 450000
+      swap_steps: 90000
+      window: 10
+      play_against_latest_model_ratio: 0.5
+      initial_elo: 1200.0
+    behavioral_cloning: null
+  MosquitoBehaviour:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 1024
+      buffer_size: 10240
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 5
+      learning_rate_schedule: constant
+    network_settings:
+      normalize: false
+      hidden_units: 256
+      num_layers: 2
+      vis_encode_type: simple
+      memory: null
+      goal_conditioning_type: hyper
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+        network_settings:
+          normalize: false
+          hidden_units: 128
+          num_layers: 2
+          vis_encode_type: simple
+          memory: null
+          goal_conditioning_type: hyper
+    init_path: null
+    keep_checkpoints: 5
+    checkpoint_interval: 500000
+    max_steps: 20000000
+    time_horizon: 1000
+    summary_freq: 60000
+    threaded: false
+    self_play:
+      save_steps: 30000
+      team_change: 150000
+      swap_steps: 10000
+      window: 10
+      play_against_latest_model_ratio: 0.5
+      initial_elo: 1200.0
+    behavioral_cloning: null
+env_settings:
+  env_path: null
+  env_args: null
+  base_port: 5005
+  num_envs: 1
+  seed: -1
+engine_settings:
+  width: 84
+  height: 84
+  quality_level: 5
+  time_scale: 20
+  target_frame_rate: -1
+  capture_frame_rate: 60
+  no_graphics: false
+environment_parameters:
+  training_stage_index:
+    curriculum:
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 5768
+          value: 0
+      name: Stage0
+      completion_criteria:
+        behavior: CamperBehaviour
+        measure: reward
+        min_lesson_length: 200
+        signal_smoothing: true
+        threshold: 0.5
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 5769
+          value: 1
+      name: Stage1
+      completion_criteria:
+        behavior: CamperBehaviour
+        measure: reward
+        min_lesson_length: 200
+        signal_smoothing: true
+        threshold: -0.25
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 5770
+          value: 2
+      name: Stage2
+      completion_criteria:
+        behavior: CamperBehaviour
+        measure: reward
+        min_lesson_length: 200
+        signal_smoothing: true
+        threshold: -0.2
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 5771
+          value: 3
+      name: Stage3
+      completion_criteria:
+        behavior: CamperBehaviour
+        measure: reward
+        min_lesson_length: 200
+        signal_smoothing: true
+        threshold: -0.2
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 5772
+          value: 4
+      name: Stage4
+      completion_criteria: null
+checkpoint_settings:
+  run_id: CurriculumTest2.0
+  initialize_from: null
+  load_model: false
+  resume: true
+  force: false
+  train_model: false
+  inference: false
+  results_dir: results
+torch_settings:
+  device: null
+debug: false
