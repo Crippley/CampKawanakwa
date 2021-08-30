@@ -4491,6 +4491,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 17993
       objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
 --- !u!20 &4208306218735151137 stripped
@@ -6356,8 +6360,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 17993
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -10475,6 +10487,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 67145
       objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
 --- !u!4 &56006685077336493 stripped
@@ -11804,8 +11820,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 17993
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -13247,8 +13271,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 34377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -13830,6 +13862,10 @@ PrefabInstance:
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 9801
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -14704,6 +14740,10 @@ PrefabInstance:
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 17993
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -15770,8 +15810,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 9801
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -16547,6 +16595,10 @@ PrefabInstance:
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 9801
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -18173,6 +18225,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 67145
       objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
 --- !u!4 &8451091063351126149 stripped
@@ -18243,6 +18299,10 @@ PrefabInstance:
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 34377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -19638,8 +19698,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 67145
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -21207,8 +21275,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 67145
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -21929,6 +22005,10 @@ PrefabInstance:
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 34377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -22692,8 +22772,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 34377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
@@ -23018,8 +23106,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: orthographic size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 9801
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618181480454491950, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7499e13e09bce1d4b8eb49d3d2af6652, type: 3}
