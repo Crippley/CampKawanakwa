@@ -13,7 +13,6 @@ namespace Entities
         #region Vars
         [Header("General values")]
         [SerializeField] private AgentManager agentManager;
-        [SerializeField] private Camera agentCamera;
 
         [Header("Movement related values")]
         [SerializeField] private Rigidbody rb;
@@ -38,6 +37,7 @@ namespace Entities
         [SerializeField] private float deathReward;
 
         [Header("Misc values")]
+        [SerializeField] private Light flashlight;
         [SerializeField] private string hasHeldItemTag;
         [SerializeField] private string doesntHaveHeldItemTag;
 
@@ -124,6 +124,9 @@ namespace Entities
                 return;
             
             Debug.Log("Camper " + name + "'s episode started");
+
+            if (agentManager.isTraining)
+                flashlight.enabled = false;
 
             itemCollectedCounter = 0;
             itemDroppedOffConter = 0;

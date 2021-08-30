@@ -12,7 +12,6 @@ namespace Entities
         #region Vars
         [Header("General values")]
         [SerializeField] private AgentManager agentManager;
-        [SerializeField] private Camera agentCamera;
 
         [Header("Movement related values")]
         [SerializeField] private Rigidbody rb;

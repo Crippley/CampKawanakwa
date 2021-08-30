@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1510153807985867380}
   - component: {fileID: 8409806813114238800}
   - component: {fileID: 6386212748623456386}
+  - component: {fileID: 8621518833906472652}
   - component: {fileID: 6606613529142666403}
   - component: {fileID: 14050553000611900}
   m_Layer: 7
@@ -35,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 7658798429640059807}
   - {fileID: 6687280100618437266}
-  - {fileID: 1295221933990886257}
+  - {fileID: 6073615633081515332}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,7 +116,6 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   agentManager: {fileID: 0}
-  agentCamera: {fileID: 7297464758405320453}
   rb: {fileID: 1510153807985867380}
   movementSpeed: 1
   rotationSpeed: 250
@@ -132,8 +132,29 @@ MonoBehaviour:
   hitTargetWithAbility: 0.05
   missedTargetWithAbility: -0.05
   deathReward: -0.5
+  flashlight: {fileID: 5181782721835971666}
   hasHeldItemTag: NPC
   doesntHaveHeldItemTag: NPCWithItem
+--- !u!114 &8621518833906472652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913939148468772725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282f342c2ab144bf38be65d4d0c4e07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
+  m_SensorName: CamperCameraSensor
+  m_Width: 100
+  m_Height: 100
+  m_Grayscale: 0
+  m_ObservationType: 0
+  m_ObservationStacks: 3
+  m_Compression: 1
 --- !u!114 &6606613529142666403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +199,7 @@ GameObject:
   - component: {fileID: 8698263557750296328}
   - component: {fileID: 6867729908973017924}
   m_Layer: 2
-  m_Name: Forward_Entities
+  m_Name: Forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,10 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: CamperForwardSensorEntities
   m_DetectableTags:
-  - NPC
   - Player
-  - Environment
-  - NPCWithItem
   m_RaysPerDirection: 7
   m_MaxRayDegrees: 60
   m_SphereCastRadius: 0.5
@@ -228,80 +246,6 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
---- !u!1 &6671289986313841928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1295221933990886257}
-  - component: {fileID: 7297464758405320453}
-  m_Layer: 2
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1295221933990886257
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671289986313841928}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4913939148468772724}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &7297464758405320453
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671289986313841928}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &7984932647210121714
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6687280100618437266}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &7628452100539514724
 MonoBehaviour:
@@ -347,10 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: CamperBackwardSensor
   m_DetectableTags:
-  - NPC
   - Player
-  - Environment
-  - NPCWithItem
   m_RaysPerDirection: 10
   m_MaxRayDegrees: 110
   m_SphereCastRadius: 0.5
@@ -363,7 +304,7 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
---- !u!1 &8525020503010012123
+--- !u!1 &8042488245612007934
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,58 +312,94 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6235528512510652532}
-  - component: {fileID: 1615876694586725871}
-  m_Layer: 2
-  m_Name: Forward_Objectives
+  - component: {fileID: 6073615633081515332}
+  - component: {fileID: 2468217841742843931}
+  - component: {fileID: 6847707517569013773}
+  - component: {fileID: 8819460330122190574}
+  m_Layer: 12
+  m_Name: TrainingMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6235528512510652532
+--- !u!4 &6073615633081515332
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8525020503010012123}
+  m_GameObject: {fileID: 8042488245612007934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.7283946, y: 0.8963527, z: 0.27281553}
   m_Children: []
-  m_Father: {fileID: 6687280100618437266}
-  m_RootOrder: 1
+  m_Father: {fileID: 4913939148468772724}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1615876694586725871
-MonoBehaviour:
+--- !u!33 &2468217841742843931
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8525020503010012123}
+  m_GameObject: {fileID: 8042488245612007934}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6847707517569013773
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8042488245612007934}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: CamperForwardSensorObjectives
-  m_DetectableTags:
-  - Objective
-  - DropOffZone
-  - Environment
-  m_RaysPerDirection: 7
-  m_MaxRayDegrees: 60
-  m_SphereCastRadius: 0.5
-  m_RayLength: 40
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294962696
-  m_ObservationStacks: 3
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8819460330122190574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8042488245612007934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8684516743055623049
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +428,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8698263557750296328}
-  - {fileID: 6235528512510652532}
   - {fileID: 8041066782037724847}
   m_Father: {fileID: 4913939148468772724}
   m_RootOrder: 1
@@ -516,5 +492,10 @@ PrefabInstance:
 --- !u!4 &7658798429640059807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2359900260710666642, guid: 1f980fda1a33bdc45963af7a5403a08a, type: 3}
+  m_PrefabInstance: {fileID: 5370973973628664333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &5181782721835971666 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 964029466542804575, guid: 1f980fda1a33bdc45963af7a5403a08a, type: 3}
   m_PrefabInstance: {fileID: 5370973973628664333}
   m_PrefabAsset: {fileID: 0}

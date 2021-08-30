@@ -110,4 +110,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialParent: {fileID: 0}
+  meshRenderer: {fileID: 8276134970105126706}
   agentManager: {fileID: 0}

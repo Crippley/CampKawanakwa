@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2359900260710666642}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Prefab_Camper_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2359900260755615377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2359900261602694307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2359900261751717867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2359900261894862676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115137264463511532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,6 +316,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Flashlight_Light
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: deb5e88cf0e6b5f40bfab65178a22953, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: deb5e88cf0e6b5f40bfab65178a22953, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb5e88cf0e6b5f40bfab65178a22953, type: 3}
 --- !u!1 &1169731056438715387 stripped
@@ -387,6 +395,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Crocth
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 04c67608f3bbf634b84546385876b471, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 04c67608f3bbf634b84546385876b471, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04c67608f3bbf634b84546385876b471, type: 3}
 --- !u!4 &2831275108823262989 stripped
@@ -448,6 +464,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d6365e2e5ebf1854cb54f6b390a95a31, type: 3}
       propertyPath: m_Name
       value: Camper_Head_Middle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d6365e2e5ebf1854cb54f6b390a95a31, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: d6365e2e5ebf1854cb54f6b390a95a31, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6365e2e5ebf1854cb54f6b390a95a31, type: 3}
@@ -511,6 +535,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Torso_Front
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc1b24f990699db4aaa971899d54975a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: dc1b24f990699db4aaa971899d54975a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc1b24f990699db4aaa971899d54975a, type: 3}
 --- !u!4 &2831275108794039004 stripped
@@ -572,6 +604,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
       propertyPath: m_Name
       value: Camper_Leg_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
@@ -635,6 +675,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Head_Back
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4cb3d82a4b837b0408ce16749e44787c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 4cb3d82a4b837b0408ce16749e44787c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb3d82a4b837b0408ce16749e44787c, type: 3}
 --- !u!4 &2831275108622084414 stripped
@@ -696,6 +744,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5c2b08b920605fc4a8ba2e18a94704ce, type: 3}
       propertyPath: m_Name
       value: Camper_Torso_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c2b08b920605fc4a8ba2e18a94704ce, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 5c2b08b920605fc4a8ba2e18a94704ce, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c2b08b920605fc4a8ba2e18a94704ce, type: 3}
@@ -759,6 +815,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Arm_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51d426769442dc847bc914a13b2465af, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 51d426769442dc847bc914a13b2465af, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51d426769442dc847bc914a13b2465af, type: 3}
 --- !u!4 &2831275107860436667 stripped
@@ -820,6 +884,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 907c334b5dd2d0d42b9d40b4f7085496, type: 3}
       propertyPath: m_Name
       value: Camper_Head_Front
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 907c334b5dd2d0d42b9d40b4f7085496, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 907c334b5dd2d0d42b9d40b4f7085496, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 907c334b5dd2d0d42b9d40b4f7085496, type: 3}
@@ -883,6 +955,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Leg_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83273b4d0cbfb864d91e92874d6e6762, type: 3}
 --- !u!4 &2831275107686215481 stripped
@@ -944,6 +1024,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 51d426769442dc847bc914a13b2465af, type: 3}
       propertyPath: m_Name
       value: Camper_Arm_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51d426769442dc847bc914a13b2465af, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 51d426769442dc847bc914a13b2465af, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51d426769442dc847bc914a13b2465af, type: 3}
@@ -1007,6 +1095,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camper_Head_MiddleFront
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 036e5641fb1079e4398550f310020237, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 036e5641fb1079e4398550f310020237, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036e5641fb1079e4398550f310020237, type: 3}
 --- !u!4 &2831275107015367034 stripped
@@ -1068,6 +1164,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fa7bc617ffd3fc8488907020f150f2b0, type: 3}
       propertyPath: m_Name
       value: Camper_Head_MiddleBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa7bc617ffd3fc8488907020f150f2b0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: fa7bc617ffd3fc8488907020f150f2b0, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa7bc617ffd3fc8488907020f150f2b0, type: 3}
@@ -1134,6 +1238,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ffadb16ce5abacc478b640a411bec296, type: 3}
       propertyPath: m_Name
       value: Camper_Flashlight_Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ffadb16ce5abacc478b640a411bec296, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ffadb16ce5abacc478b640a411bec296, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffadb16ce5abacc478b640a411bec296, type: 3}
@@ -1204,6 +1316,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ff779b9b2c5af324380424f6abb2f302, type: 3}
       propertyPath: m_Name
       value: Camper_Flashlight_Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff779b9b2c5af324380424f6abb2f302, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff779b9b2c5af324380424f6abb2f302, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff779b9b2c5af324380424f6abb2f302, type: 3}

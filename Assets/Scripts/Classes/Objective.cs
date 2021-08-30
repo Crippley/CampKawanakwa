@@ -7,6 +7,7 @@ namespace Items
     public class Objective : MonoBehaviour
     {
         public Transform initialParent;
+        [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private AgentManager agentManager;
 
         public bool IsCompleted { get; set; }
@@ -14,6 +15,7 @@ namespace Items
         #region Initialization
         public void Reset()
         {
+            meshRenderer.enabled = true;
             transform.parent = initialParent;
             transform.position = agentManager.GetRandomObjectiveSpawnPosition();
             IsCompleted = false;
@@ -28,9 +30,14 @@ namespace Items
                 return;
 
             if (triggeringCamper.HeldObjective == null)
+            {
                 triggeringCamper.PickUpObjective(this);
+                meshRenderer.enabled = false;
+            }
             else
+            {
                 triggeringCamper.AddReward(triggeringCamper.forbiddenInteractionReward);
+            }
         }
     }
 }

@@ -23,10 +23,10 @@ TagManager:
   - Objective
   - 
   - Ignore
-  - 
-  - 
-  - 
-  - 
+  - MosquitoTrainingMarker
+  - Camper1TrainingMarker
+  - Camper2TrainingMarker
+  - Camper3TrainingMarker
   - 
   - 
   - 
