@@ -199,9 +199,9 @@ MonoBehaviour:
   abilityRange: 5
   leapSpeed: 25
   abilityStepCooldown: 250
-  killCamperReward: 0.1
-  hitTargetWithAbility: 0.01
-  missedTargetWithAbility: -0.01
+  killCamperReward: 0.5
+  hitTargetWithAbility: 0.05
+  missedTargetWithAbility: -0.05
 --- !u!114 &8799207743412206052
 MonoBehaviour:
   m_ObjectHideFlags: 0
