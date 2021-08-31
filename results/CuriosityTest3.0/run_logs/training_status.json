@@ -1,0 +1,128 @@
+{
+    "training_stage_index": {
+        "lesson_num": 4
+    },
+    "MosquitoBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 999647,
+                "file_path": "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-999647.onnx",
+                "reward": 0.9033598899841309,
+                "creation_time": 1630430184.6572993,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-999647.pt"
+                ]
+            },
+            {
+                "steps": 1499822,
+                "file_path": "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-1499822.onnx",
+                "reward": -1.0655301014582317,
+                "creation_time": 1630435414.7829807,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-1499822.pt"
+                ]
+            },
+            {
+                "steps": 1999978,
+                "file_path": "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-1999978.onnx",
+                "reward": -0.9744378129641215,
+                "creation_time": 1630441755.42281,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-1999978.pt"
+                ]
+            },
+            {
+                "steps": 2002516,
+                "file_path": "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-2002516.onnx",
+                "reward": -1.0737813711166382,
+                "creation_time": 1630441762.813313,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-2002516.pt"
+                ]
+            },
+            {
+                "steps": 2003835,
+                "file_path": "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-2003835.onnx",
+                "reward": -1.7829400300979614,
+                "creation_time": 1630441823.2875013,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-2003835.pt"
+                ]
+            }
+        ],
+        "elo": 1300.7004153386654,
+        "final_checkpoint": {
+            "steps": 2003835,
+            "file_path": "results\\CuriosityTest3.0\\MosquitoBehaviour.onnx",
+            "reward": -1.7829400300979614,
+            "creation_time": 1630441823.2875013,
+            "auxillary_file_paths": [
+                "results\\CuriosityTest3.0\\MosquitoBehaviour\\MosquitoBehaviour-2003835.pt"
+            ]
+        }
+    },
+    "CamperBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 4499761,
+                "file_path": "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-4499761.onnx",
+                "reward": -0.8729629599385791,
+                "creation_time": 1630436470.6841838,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-4499761.pt"
+                ]
+            },
+            {
+                "steps": 4999447,
+                "file_path": "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-4999447.onnx",
+                "reward": -0.5464285037347248,
+                "creation_time": 1630438966.6391165,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-4999447.pt"
+                ]
+            },
+            {
+                "steps": 5499708,
+                "file_path": "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5499708.onnx",
+                "reward": -0.3699999451637268,
+                "creation_time": 1630440746.3346698,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5499708.pt"
+                ]
+            },
+            {
+                "steps": 5857906,
+                "file_path": "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5857906.onnx",
+                "reward": -1.1174999768845737,
+                "creation_time": 1630441763.1668842,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5857906.pt"
+                ]
+            },
+            {
+                "steps": 5857906,
+                "file_path": "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5857906.onnx",
+                "reward": null,
+                "creation_time": 1630441823.712907,
+                "auxillary_file_paths": [
+                    "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5857906.pt"
+                ]
+            }
+        ],
+        "elo": 1990.5378310753106,
+        "final_checkpoint": {
+            "steps": 5857906,
+            "file_path": "results\\CuriosityTest3.0\\CamperBehaviour.onnx",
+            "reward": null,
+            "creation_time": 1630441823.712907,
+            "auxillary_file_paths": [
+                "results\\CuriosityTest3.0\\CamperBehaviour\\CamperBehaviour-5857906.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
