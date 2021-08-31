@@ -135,6 +135,8 @@ namespace Entities
         public override void CollectObservations(VectorSensor sensor)
         {
             sensor.AddObservation(heldObjective == null);
+            sensor.AddObservation(Vector3.SignedAngle(transform.forward, agentManager.trainingStages[agentManager.currentTrainingStageIndex].dropOffZone.transform.position - transform.position, Vector3.up) / 180f);
+
             sensor.AddObservation(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, abilityRange, abilityMask));
             sensor.AddObservation(Academy.Instance.StepCount > lastAbilityUseStep);
         }
