@@ -60,7 +60,7 @@ namespace Entities
             lastEpisodeCount = agentManager.CurrentEpisodeCount;
         }
 
-        /*public override void Heuristic(in ActionBuffers actionsOut)
+        public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
@@ -84,7 +84,7 @@ namespace Entities
                 discreteActions[2] = 1;
             else
                 discreteActions[2] = 0;
-        }*/
+        }
 
         public override void OnActionReceived(ActionBuffers actions)
         {
