@@ -96,7 +96,7 @@ namespace Entities
                 actionMask.SetActionEnabled(3, 1, true);
         }
 
-        /*public override void Heuristic(in ActionBuffers actionsOut)
+        public override void Heuristic(in ActionBuffers actionsOut)
         {
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
@@ -129,7 +129,7 @@ namespace Entities
                 discreteActions[3] = 1;
             else
                 discreteActions[3] = 0;
-        }*/
+        }
 
         public override void OnActionReceived(ActionBuffers actions)
         {
